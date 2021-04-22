@@ -11,12 +11,39 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com'
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap'
+      },
+      {
+        rel: 'prefetch',
+        as: 'font',
+        type: 'font/woff',
+        href: '/fonts/MicrobrewSoftOneD.woff'
+      },
+      {
+        rel: 'prefetch',
+        as: 'font',
+        type: 'font/woff2',
+        href: '/fonts/MicrobrewSoftOneD.woff2'
+      },
+      {
+        rel: 'stylesheet',
+        type: 'text/css',
+        href: '/fonts/font.css'
+      }
+
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '@/assets/scss/app.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
