@@ -49,7 +49,8 @@
                       type="text"
                       name="contribute-money"
                       id="contribute-money"
-                      :value="form.price.toLocaleString()"
+                      :value="form.priceDisplay"
+                      @keyup="formatPrice"
                       required
                     />
                     <div class="currency">VND</div>
@@ -170,7 +171,8 @@ export default {
             name: '',
             phone: '',
             email: '',
-            price: 200000,
+            price: 0,
+            priceDisplay: '',
             message: '',
             type: '',
             contribution:''
@@ -178,13 +180,26 @@ export default {
     };
   },
   methods: {
-    formatPrice(value) {
-      let val = (value / 1).toFixed(2).replace(".", ",");
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    formatPrice(e) {
+        if (e.target.value == '') {
+            this.form.price = 0;
+            this.form.priceDisplay = '';
+            return
+        }
+        this.form.price = parseInt(e.target.value.toString().replaceAll(',',''))
+        this.form.priceDisplay = this.form.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
     },
     submit(){
         if(!this.form.name){
             alert('Vui lòng nhập tên!')
+            return
+        }
+        if(!this.form.phone){
+            alert('Vui lòng nhập Số điện thoại!')
+            return
+        }
+        if(!this.form.price){
+            alert('Vui lòng nhập số tiền đóng góp!')
             return
         }
         this.$router.push("/success");
