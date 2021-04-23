@@ -15,19 +15,19 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav w-100 justify-content-center">
           <li class="nav-item active">
-            <a class="nav-link" href="#"
-              >Thông tin quỹ
-            </a>
+              <NuxtLink to="#" class="nav-link">
+                Thông tin quỹ
+              </NuxtLink>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <NuxtLink to="#" class="nav-link">
                 Tài năng
-            </a>
+            </NuxtLink>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-                Đóng góp
-            </a>
+            <NuxtLink to="/contribute" class="nav-link">
+               Đóng góp
+            </NuxtLink>
           </li>
         </ul>
       </div>
@@ -39,7 +39,17 @@
 export default {};
 </script>
 
-<style>
+<style lang='scss' scoped>
+.header{
+    height: 56px;
+    nav {
+        position: fixed;
+        top: 0;
+        z-index: 2;
+        width: 100%;
+        background: #fff;
+    }
+}
 .nav-header ul li a {
     text-transform: uppercase;
 }
