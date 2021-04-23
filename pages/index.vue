@@ -12,13 +12,45 @@
             </div>
             <div class="d-flex justify-content-center">
               <div class="fund-box">
-                <div class="title-line-box">Tổng Giá Trị Quỹ</div>
+                <!-- <div class="title-line-box">Tổng Giá Trị Quỹ</div> -->
                 <div class="value-fund-box text-center">
                   3.682.938.000
                 </div>
                 <sup>VNĐ</sup>
               </div>
             </div>
+            <div class="row btn-row">
+              <div class="col-md-6 col-12 col-lg-6">
+                <div class="d-flex justify-content-center">
+                  <div class="fund-box-row">
+                    <div class="title-line-box">Đã tài trợ</div>
+                    <div class="value-fund-box text-center">
+                      1.455.150.000
+                    </div>
+                    <sup>VNĐ</sup>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-12 col-lg-6">
+                <div class="d-flex justify-content-center">
+                  <div class="fund-box-row">
+                    <div class="title-line-box">Quỹ còn lại</div>
+                    <div class="value-fund-box text-center">
+                      2.154.055.000
+                    </div>
+                    <sup>VNĐ</sup>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <div class='btn-sponsor'>
+                <NuxtLink to="/">
+                    Tài năng đã nhận tài trợ
+                </NuxtLink>
+              </div>
+            </div>
+            
             <div class="row">
               <div class="col-lg-4 col-md-4 group-btn">
                 <NuxtLink to="/">
@@ -56,7 +88,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .fund-box {
   min-width: 30rem;
   position: relative;
@@ -101,51 +132,134 @@ export default {
   top: 0;
 }
 .fund-box sup {
+  position: absolute;
+  font-family: "MicrobrewSoftOneD", sans-serif;
+  font-size: 1.5rem;
+  top: 2.5rem;
+  left: auto;
+  right: 1.5rem;
+  letter-spacing: normal;
+}
+.btn-row{
+    padding-left: 6rem;
+    padding-right: 6rem;
+}
+.fund-box-row{
+  min-width: 246px;
+  position: relative;
+  border: 1px solid #3a3a3a;
+  border-radius: 1.6rem;
+  display: flex;
+  justify-content: center;
+  flex-basis: auto;
+  padding: 2.5rem 1.7rem;
+  margin: 1.5rem 0rem 2.5rem 0rem;
+  .title-line-box{
+    position: absolute;
+    top: -18px;
+    font-size: 22px;
+    line-height: normal;
+    padding: 0 1rem;
+    font-family: "Oswald", sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    z-index: 1;
+    &:after{
+      content: "";
+      position: absolute;
+      height: 10px;
+      width: 100%;
+      top: 50%;
+      left: 0;
+      z-index: -1;
+      background-color: #ffda4a;
+    }
+  }
+  .value-fund-box{
+    display: flex;
+    overflow: hidden;
+    font-family: "MicrobrewSoftOneD", sans-serif;
+    font-size: 3rem;
+    line-height: normal;
+    letter-spacing: -2px;
+    position: relative;
+    top: 20rem;
+    top: 0;
+  }
+  sup{
     position: absolute;
     font-family: "MicrobrewSoftOneD", sans-serif;
-    font-size: 1.5rem;
-    top: 2.5rem;
+    font-size: 0.7rem;
+    top: 2.3rem;
     left: auto;
-    right: 1.5rem;
+    right: 0.5rem;
     letter-spacing: normal;
+  }
 }
-.info-group{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
-    font-family: "Oswald",sans-serif;
-    font-size: 20px;
-    color: #000;
-    height: 56px;
-    margin-bottom: 4rem;
-    background: url('~/assets/images/stroke.svg') no-repeat;
-    background-size: contain;
+.info-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-family: "Oswald", sans-serif;
+  font-size: 20px;
+  color: #000;
+  height: 56px;
+  margin-bottom: 4rem;
+  background: url("~/assets/images/stroke.svg") no-repeat;
+  background-size: contain;
 }
-.group-btn a:hover{
+.group-btn a:hover {
   text-decoration: none;
 }
+.btn-sponsor{
+  text-align: center;
+  margin-bottom: 2.5rem;
+  transform: skew(-15deg);
+  -webkit-transform: skew(-15deg);
+  -moz-transform: skew(-15deg);
+  border: 2px solid #000;
+  display: inline-block;
+  a{
+    color: #000;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 20px 100px;
+    transform: skew(15deg);
+    -webkit-transform: skew(15deg);
+    -moz-transform: skew(15deg);
+    display: inline-block;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+}
 @media only screen and (max-width: 550px) {
-  .content img{
+  .content img {
     width: 100%;
   }
-  .fund-box{
+  .fund-box {
     min-width: 100%;
   }
-  .bg-leaf{
-    background-image:unset ;
+  .fund-box .title-line-box:after {
+    background-image: linear-gradient(to right, #f3c924, #fdda4e);
   }
-  .fund-box .title-line-box:after{
-    background-image: linear-gradient(to right, #f3c924 , #fdda4e);
-  }
-  .fund-box{
+  .fund-box {
     padding: 2rem 2.5rem;
   }
-  .fund-box .value-fund-box{
+  .fund-box .value-fund-box {
     font-size: 2.5rem;
   }
-  .info-group{
+  .info-group {
     background-position: center;
+  }
+  .btn-sponsor a{
+    padding: 20px 5px;
+    font-size: 22px;
+  }
+  .fund-box-row .title-line-box:after{
+        background-image: linear-gradient(to right, #f3c924, #fad133);
   }
 }
 </style>

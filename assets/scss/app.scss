@@ -14,3 +14,20 @@
         url("~/assets/images/leaf-right.svg") right -14rem bottom -14rem no-repeat;
     background-size: 25rem;
 }
+.btn-defaut {
+    a {
+        background: #ffd52a;
+        border: 1px solid #ffd52a;
+        padding: 12px 25px;
+        font-weight: bold; 
+        color: #000;
+        &:hover{
+            text-decoration: none;
+        }
+    }
+}
+@media only screen and (max-width: 550px) {
+    .bg-leaf {
+        background-image: unset;
+    }
+}
