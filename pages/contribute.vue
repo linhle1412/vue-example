@@ -12,7 +12,7 @@
                 Đóng góp cho <br />
                 quỹ phát triển tài năng việt
               </div>
-              <form action="">
+              <form>
                 <div class="form-group">
                   <label for="contribute-name">Họ tên*</label>
                   <input
@@ -49,17 +49,17 @@
                       type="text"
                       name="contribute-money"
                       id="contribute-money"
-                      :value="price.toLocaleString()"
+                      :value="form.price.toLocaleString()"
                       required
                     />
                     <div class="currency">VND</div>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="contribute-textarea">Lời nhắn</label>
+                  <label for="contribute-message">Lời nhắn</label>
                   <textarea
-                    name="contribute-textarea"
-                    id="contribute-textarea"
+                    name="contribute-message"
+                    id="contribute-message"
                     rows="3"
                   ></textarea>
                 </div>
@@ -150,7 +150,7 @@
                   </div>
                 </div>
                 <div class="text-center mt-4">
-                  <input type="submit" value="Gửi đóng góp" />
+                  <input type="submit" @click="submit()" value="Gửi đóng góp" />
                 </div>
               </form>
             </div>
@@ -166,14 +166,29 @@ export default {
   layout: "default",
   data() {
     return {
-      price: 200000
+        form: {
+            name: '',
+            phone: '',
+            email: '',
+            price: 200000,
+            message: '',
+            type: '',
+            contribution:''
+        }        
     };
   },
   methods: {
     formatPrice(value) {
       let val = (value / 1).toFixed(2).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    }
+    },
+    submit(){
+        if(!this.form.name){
+            alert('Vui lòng nhập tên!')
+            return
+        }
+        this.$router.push("/success");
+      }
   }
 };
 </script>
@@ -221,6 +236,7 @@ export default {
       .group-radio {
         width: 100%;
         border-radius: 0 ;
+        border: unset;
       }
       input{
           height: 40px;
