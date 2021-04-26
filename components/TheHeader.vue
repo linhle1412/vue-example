@@ -41,13 +41,14 @@ export default {};
 
 <style lang='scss' scoped>
 .header{
-    height: 56px;
+    height: 72px;
     nav {
         position: fixed;
         top: 0;
         z-index: 2;
         width: 100%;
         background: #fff;
+        padding: 1rem;
     }
 }
 .nav-header ul li a {
