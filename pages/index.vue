@@ -3,7 +3,7 @@
     <div class="bg-leaf">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 col-md-12 mx-auto py-5">
+          <div class="col-lg-8 col-md-12 mx-auto py-3">
             <div class="logo text-center mb-4">
               <img src="~/assets/images/slogan.svg" alt="" />
             </div>

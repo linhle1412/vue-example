@@ -1,3 +1,6 @@
+.logo img {
+  max-width: 100%;
+}
 .bg-home {
     background: url("~/assets/images/bg-home-page.png") #ffda4a no-repeat;
     position: relative;
@@ -26,8 +29,60 @@
         }
     }
 }
-@media only screen and (max-width: 550px) {
-    .bg-leaf {
-        background-image: unset;
+.form-group {
+  display: flex;
+  align-items: flex-start;
+  &.form-radio {
+    >label {
+      margin-top: 0
     }
+  }
+  @media only screen and (max-width: 500px) {
+    flex-direction: column;
+  }
+  >label {
+    flex: 0 0 160px;
+    margin-top: 5px;
+    @media only screen and (max-width: 500px) {
+      flex: none;
+    }
+  }
+  textarea,
+  input,
+  .group-radio {
+    width: 100%;
+    border-radius: 0 ;
+    border: unset;
+  }
+  input{
+    height: 35px;
+  }
+  input,
+  textarea {
+    &:focus {
+      outline: none;
+    }
+    padding: 0 10px;
+    border-color: transparent;
+  }
+  .group-radio {
+    display: flex;
+    flex-grow: 1;
+    .custom-control {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      &:first-child {
+        margin-right: 30px;
+      }
+      label {
+        width: 100%;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 550px) {
+  .bg-leaf {
+      background-image: unset;
+  }
 }

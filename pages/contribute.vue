@@ -3,7 +3,7 @@
     <div class="bg-leaf">
       <div class="container">
         <div class="row">
-          <div class="col-lg-7 col-md-12 mx-auto py-5">
+          <div class="col-lg-7 col-md-12 mx-auto py-3">
             <div class="logo text-center mb-4">
               <img src="~/assets/images/slogan.svg" alt="" />
             </div>
@@ -64,7 +64,7 @@
                     rows="3"
                   ></textarea>
                 </div>
-                <div class="form-group">
+                <div class="form-group form-radio">
                   <label for="contribute-type">Loại đóng góp</label>
                   <div class="group-radio">
                     <div class="custom-control custom-radio">
@@ -96,9 +96,10 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group mb-4">
+                <div class="form-group form-radio">
                   <label for="contribution">Hình thức đóng góp</label>
-                  <div class="group-radio">
+                  <div style="flex: 1">
+                     <div class="group-radio mb-4">
                     <div class="custom-control custom-radio w-100">
                       <input
                         type="radio"
@@ -112,9 +113,6 @@
                       >
                     </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="contribution"></label>
                   <div class="group-radio">
                     <div class="custom-control custom-radio">
                       <input
@@ -149,6 +147,8 @@
                       >
                     </div>
                   </div>
+                  </div>
+                 
                 </div>
                 <div class="text-center mt-4">
                   <input type="submit" @click="submit()" value="Gửi đóng góp" />
@@ -240,42 +240,7 @@ export default {
           right: 10px;
       }
     }
-    .form-group {
-      display: flex;
-      flex-grow: 1;
-      label {
-        width: 35%;
-      }
-      textarea,
-      input,
-      .group-radio {
-        width: 100%;
-        border-radius: 0 ;
-        border: unset;
-      }
-      input{
-          height: 40px;
-      }
-      input,
-      textarea {
-        &:focus {
-          outline-color: transparent;
-        }
-        border-color: transparent;
-      }
-      .group-radio {
-        display: flex;
-        flex-grow: 1;
-        .custom-control {
-          width: 40%;
-          align-items: center;
-          display: flex;
-          label {
-            width: 100%;
-          }
-        }
-      }
-    }
+
   }
 
   .custom-control-input:checked ~ .custom-control-label::before {
