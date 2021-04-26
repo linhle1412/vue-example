@@ -7,14 +7,11 @@
             <div class="logo text-center mb-4">
               <img src="~/assets/images/slogan.svg" alt="" />
             </div>
-            <div class="content text-center mb-4">
-              <img src="~/assets/images/tagline.svg" alt="" />
-            </div>
             <div class="d-flex justify-content-center">
               <div class="fund-box">
                 <!-- <div class="title-line-box">Tổng Giá Trị Quỹ</div> -->
                 <div class="value-fund-box text-center">
-                  3.682.938.000
+                  {{totalFund | money}}
                 </div>
                 <sup>VNĐ</sup>
               </div>
@@ -25,7 +22,7 @@
                   <div class="fund-box-row">
                     <div class="title-line-box">Đã tài trợ</div>
                     <div class="value-fund-box text-center">
-                      1.455.150.000
+                      <!-- {{sponsored}} -->
                     </div>
                     <sup>VNĐ</sup>
                   </div>
@@ -36,7 +33,7 @@
                   <div class="fund-box-row">
                     <div class="title-line-box">Quỹ còn lại</div>
                     <div class="value-fund-box text-center">
-                      2.154.055.000
+                        <!-- {{cash}} -->
                     </div>
                     <sup>VNĐ</sup>
                   </div>
@@ -82,8 +79,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  layout: "default"
+  layout: "default",
+  computed:{
+    ...mapState(['totalFund']),
+  }
 };
 </script>
 

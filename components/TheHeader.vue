@@ -14,19 +14,13 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav w-100 justify-content-center">
-          <li class="nav-item active">
-              <NuxtLink to="#" class="nav-link">
-                Thông tin quỹ
-              </NuxtLink>
-          </li>
-          <li class="nav-item">
-            <NuxtLink to="#" class="nav-link">
-                Tài năng
-            </NuxtLink>
-          </li>
-          <li class="nav-item">
-            <NuxtLink to="/contribute" class="nav-link">
-               Đóng góp
+          <li class="nav-item" v-for="(item, index) in menus" :key="index">
+            <NuxtLink
+              :to="item.path"
+              class="nav-link"
+              v-on:click="setActive(item.name)"
+            >
+              {{item.title}}
             </NuxtLink>
           </li>
         </ul>
@@ -36,26 +30,56 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      menus: [
+        {
+            title: 'Thông tin quỹ',
+            name: 'fund',
+            path: '/thong-tin-quy'
+        },
+        {
+            title: 'Tài năng',
+            name: 'talent',
+            path: '/tai-nang'
+        },
+        {
+            title: 'Đóng góp',
+            name: 'contribute',
+            path: '/dong-gop'
+        }
+      ]
+    };
+  },
+  created(){
+  },
+  methods: {
+  }
+};
 </script>
-
-<style lang='scss' scoped>
-.header{
-    height: 72px;
-    nav {
-        position: fixed;
-        top: 0;
-        z-index: 2;
-        width: 100%;
-        background: #fff;
-        padding: 1rem;
-    }
+<style lang="scss">
+.nav-header .navbar-nav .nav-link.nuxt-link-active{
+    color: #000;
+}
+</style>
+<style lang="scss" scoped>
+.header {
+  height: 72px;
+  nav {
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+    background: #fff;
+    padding: 1rem;
+  }
 }
 .nav-header ul li a {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
-.nav-header .navbar-nav .nav-link{
-    padding-right: 2rem;
-    padding-left: 2rem;
+.nav-header .navbar-nav .nav-link {
+  padding-right: 2rem;
+  padding-left: 2rem;
 }
 </style>

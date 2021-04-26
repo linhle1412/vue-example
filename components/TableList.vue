@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="card-row row bg-white mb-3 mx-0">
-      <div class="col-md-2 font-weight-bold stt">{{ stt }}</div>
+      <div class="col-md-2 font-weight-bold stt">{{ index }}</div>
       <div class="col-md-4 font-weight-bold name">{{ name }}</div>
       <div class="col-md-2 detail"><a :href="link">Chi tiết</a></div>
       <div class="col-md-4 price">{{ price | money }}<u>đ</u></div>
     </div>
     <div class="card-row-mobile row bg-white mb-3 mx-0">
-      <div class="col-2 font-weight-bold stt">{{ stt }}</div>
+      <div class="col-2 font-weight-bold stt">{{ index }}</div>
       <div class="col-10">
         <p class="name">{{ name }}</p>
         <p class="detail"><a :href="link">Chi tiết</a></p>
@@ -20,7 +20,7 @@
 <script>
 export default {
   name: "TableList",
-  props: ["stt", "name", "link", "price"],
+  props: ["index", "name", "link", "price"],
   data() {
     return {};
   },
