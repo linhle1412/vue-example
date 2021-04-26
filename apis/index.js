@@ -32,13 +32,7 @@ Object.keys(api).forEach((item) => {
     return new Promise((resolve, reject) => {
       client[item](prefix + url, data, header)
         .then((resp) => {
-          const data = resp.data
-          if (!data.code) {
-            resolve(data.data)
-          }
-          reject({
-            
-          })
+          resolve(resp.data)
         })
         .catch((error) => reject(error))
     })

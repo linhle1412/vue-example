@@ -1,7 +1,15 @@
+body {
+  font-family: "Roboto Condensed",monospace
+}
 .logo img {
   max-width: 100%;
 }
-
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
 .bg-home {
   background: url("~/assets/images/bg-home-page.png") #ffda4a no-repeat;
   position: relative;
@@ -126,3 +134,111 @@
     background-image: unset;
   }
 }
+
+.page-title {
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-family: "Yeseva One",sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  @media only screen and (max-width: 550px) {
+    font-size: 24px;
+  }
+}
+.table-main {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 1rem;
+  .table-body {
+    font-family: "Yeseva One",sans-serif;
+  }
+  .card-row {
+    border-radius: 12px;
+    align-items: center;
+    display: flex;
+    .index {
+      position: relative;
+      padding: 12px 30px;
+      &:after {
+        content: "";
+        right: 25px;
+        top: 0;
+        width: 2px;
+        height: 100%;
+        position: absolute;
+        background-color: #f5f5f5;
+      }
+    }
+    .name {
+      padding: 0;
+    }
+    .detail {
+      font-family: "Roboto Condensed", sans-serif;
+      text-align: center;
+      a {
+        color: #000;
+        border-bottom: 1px solid;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    .price {
+      color: #ffcb05;
+      font-weight: 700;
+      font-family: "Roboto Condensed", sans-serif;
+      font-size: 20px;
+      text-align: right;
+    }
+  }
+  .card-row-mobile {
+    display: none;
+    align-items: center;
+    border-radius: 15px;
+    .index {
+      text-align: center;
+    }
+  
+    .col-10 {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      &:before {
+        content: "";
+        left: 0;
+        top: 0;
+        width: 2px;
+        height: 100%;
+        position: absolute;
+        background-color: #f5f5f5;
+      }
+      p {
+        margin-bottom: 0;
+      }
+      .detail {
+        font-family: "Roboto Condensed", sans-serif;
+        a {
+          color: #000;
+          border-bottom: 1px solid;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+      .price {
+        color: #ffcb05;
+        font-weight: 500;
+        font-family: "Roboto Condensed", sans-serif;
+        font-size: 18px;
+      }
+    }
+  }
+  @media only screen and (max-width: 550px) {
+    .card-row {
+      display: none;
+    }
+    .card-row-mobile {
+      display: flex;
+    }
+  }
+}
+

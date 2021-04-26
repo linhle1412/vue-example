@@ -7,7 +7,7 @@
             <div class="logo text-center mb-4">
               <img src="~/assets/images/slogan.svg" alt="" />
             </div>
-            <div class='title-list text-center'>
+            <div class='page-title text-center'>
                 Bảng vinh danh đóng góp
             </div>
             <div class="tab-contribute">
@@ -38,16 +38,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.title-list{
-    margin-bottom: 20px;
-    font-size: 25px;
-    font-family: "Yeseva One",sans-serif;
-}
+
 .tab-contribute {
   background: #f5f5f5;
   padding: 20px;
 }
 
-@media only screen and (max-width: 550px) {
-}
+
 </style>

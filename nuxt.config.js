@@ -68,9 +68,18 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/bootstrap
-    "bootstrap-vue/nuxt"
+    "bootstrap-vue/nuxt",
+    'nuxt-webfontloader'
   ],
-
+  webfontloader: {
+    google: {
+      families: [
+        'Yeseva+One:400:vietnamese',
+        'Roboto+Condensed:400,700:vietnamese',
+        'Oswald:500:vietnamese'
+      ]
+    }
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 
@@ -78,17 +87,17 @@ export default {
     extendRoutes(routes, resolve) {
       routes.forEach(r => {
         switch (r.name) {
-          case "talent":
-            r.path = "/tai-nang";
+          case "talent-sponsorship":
+            r.path = "/tai-nang-nhan-tai-tro";
             break;
           case "contribute":
             r.path = "/dong-gop";
             break;
-          case "list-talent":
-            r.path = "/danh-sach-tai-nang";
+          case "talent":
+            r.path = "/tai-nang";
             break;
-          case "talent-detail":
-            r.path = "/chi-tiet-tai-nang";
+          case "talent-id":
+            r.path = "/tai-nang/:id";
             break;
           default:
             break;

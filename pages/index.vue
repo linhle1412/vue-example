@@ -3,7 +3,7 @@
     <div class="bg-leaf">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 col-md-12 mx-auto py-3">
+          <div class="col-12 py-3">
             <div class="logo text-center mb-4">
               <img src="~/assets/images/slogan.svg" alt="" />
             </div>
@@ -11,29 +11,29 @@
               <div class="fund-box">
                 <!-- <div class="title-line-box">Tổng Giá Trị Quỹ</div> -->
                 <div class="value-fund-box text-center">
-                  {{totalFund | money}}
+                  {{(totalFund || 0) | money}}
                 </div>
                 <sup>VNĐ</sup>
               </div>
             </div>
-            <div class="row btn-row">
-              <div class="col-md-6 col-12 col-lg-6">
-                <div class="d-flex justify-content-center">
+            <div class="row">
+              <div class="col-12 col-sm-6">
+                <div class="d-flex justify-content-end">
                   <div class="fund-box-row">
                     <div class="title-line-box">Đã tài trợ</div>
                     <div class="value-fund-box text-center">
-                      <!-- {{sponsored}} -->
+                      0
                     </div>
                     <sup>VNĐ</sup>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6 col-12 col-lg-6">
-                <div class="d-flex justify-content-center">
+              <div class="col-12 col-sm-6">
+                <div class="d-flex justify-content-start">
                   <div class="fund-box-row">
                     <div class="title-line-box">Quỹ còn lại</div>
                     <div class="value-fund-box text-center">
-                        <!-- {{cash}} -->
+                      0
                     </div>
                     <sup>VNĐ</sup>
                   </div>
@@ -42,31 +42,31 @@
             </div>
             <div class="text-center">
               <div class='btn-sponsor'>
-                <NuxtLink to="/">
+                <NuxtLink to="/tai-nang-nhan-tai-tro">
                     Tài năng đã nhận tài trợ
                 </NuxtLink>
               </div>
             </div>
             
-            <div class="row">
-              <div class="col-lg-4 col-md-4 group-btn">
-                <NuxtLink to="/">
+            <div class="row justify-content-center">
+              <div class="px-2 d-flex justify-content-end">
+                <NuxtLink to="/dong-gop">
+                  <div class="info-group">
+                    Đóng góp
+                  </div>
+                </NuxtLink>
+              </div>
+              <div class="px-2 d-flex justify-content-center">
+                <NuxtLink to="/thong-tin-quy">
                   <div class="info-group">
                     Thông tin quỹ
                   </div>
                 </NuxtLink>
               </div>
-              <div class="col-lg-4 col-md-4 group-btn">
-                <NuxtLink to="/">
+              <div class="px-2 d-flex justify-content-start">
+                <NuxtLink to="/tai-nang">
                   <div class="info-group">
-                    Cửa hàng đóng góp
-                  </div>
-                </NuxtLink>
-              </div>
-              <div class="col-lg-4 col-md-4 group-btn">
-                <NuxtLink to="/">
-                  <div class="info-group">
-                    Tài năng ương mầm
+                    Thông tin các tài năng
                   </div>
                 </NuxtLink>
               </div>
@@ -124,7 +124,6 @@ export default {
 }
 .fund-box .value-fund-box {
   display: flex;
-  overflow: hidden;
   font-family: "MicrobrewSoftOneD", sans-serif;
   font-size: 6.2rem;
   line-height: normal;
@@ -142,10 +141,7 @@ export default {
   right: 1.5rem;
   letter-spacing: normal;
 }
-.btn-row{
-    padding-left: 6rem;
-    padding-right: 6rem;
-}
+
 .fund-box-row{
   min-width: 246px;
   position: relative;
@@ -156,6 +152,9 @@ export default {
   flex-basis: auto;
   padding: 2.5rem 1.7rem;
   margin: 1.5rem 0rem 2.5rem 0rem;
+  @media screen and (max-width: 576px) {
+    width: 100%;
+  }
   .title-line-box{
     position: absolute;
     top: -18px;
@@ -179,7 +178,6 @@ export default {
   }
   .value-fund-box{
     display: flex;
-    overflow: hidden;
     font-family: "MicrobrewSoftOneD", sans-serif;
     font-size: 3rem;
     line-height: normal;
@@ -204,12 +202,13 @@ export default {
   align-items: center;
   text-transform: uppercase;
   font-family: "Oswald", sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   color: #000;
-  height: 56px;
-  margin-bottom: 4rem;
+  height: 65px;
+  margin-bottom: 20px;
   background: url("~/assets/images/stroke.svg") no-repeat;
-  background-size: contain;
+  background-size: 100%;
+  min-width: 240px;
 }
 .group-btn a:hover {
   text-decoration: none;
@@ -220,7 +219,7 @@ export default {
   transform: skew(-15deg);
   -webkit-transform: skew(-15deg);
   -moz-transform: skew(-15deg);
-  border: 2px solid #000;
+  border: 1px solid #000;
   display: inline-block;
   a{
     color: #000;
@@ -235,6 +234,9 @@ export default {
     &:hover{
       text-decoration: none;
     }
+  }
+  @media screen and (max-width: 576px) {
+    width: 100%;
   }
 }
 @media only screen and (max-width: 550px) {
