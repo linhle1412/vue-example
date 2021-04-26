@@ -36,6 +36,14 @@
                 Various versions have evolved over the years, sometimes by
                 accident, sometimes on purpose (injected humour and the like).
               </div>
+              <div class="pre-next-btn">
+                <NuxtLink to="#">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i> Tài năng trước
+                </NuxtLink>
+                <NuxtLink to="#">
+                  Tài năng sau <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </NuxtLink>
+              </div>
             </div>
           </div>
         </div>
@@ -76,12 +84,12 @@ export default {
   text-transform: uppercase;
 }
 .talent-detail-img {
-    max-width: 300px;
-    padding: 15px;
-    background-color: #fff;
-    border-radius: 15px;
-    float: left;
-    margin-right: 15px;
+  max-width: 300px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 15px;
+  float: left;
+  margin-right: 15px;
   img {
     width: 100%;
     height: auto;
@@ -92,6 +100,29 @@ export default {
   padding: 20px;
   border-radius: 1rem;
 }
+.pre-next-btn{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    a{
+        color: #000;
+        font-weight: bold;
+        font-size: 18px;
+        font-family: "Roboto Condensed", sans-serif;
+        &:hover{
+            text-decoration: none;
+        }
+        i{
+            font-weight: bold;
+        }
+        i.fa-angle-left{
+            margin-right: 20px;
+        }
+        i.fa-angle-right{
+            margin-left: 20px;
+        }
+    }
+}
 @media only screen and (max-width: 550px) {
   .talent-detail-img {
     width: 100%;
@@ -99,7 +130,7 @@ export default {
     margin-right: 0;
     margin-bottom: 15px;
     max-width: unset;
-}
+  }
   .title-list {
     font-size: 24px;
   }

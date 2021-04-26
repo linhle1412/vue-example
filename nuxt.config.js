@@ -47,6 +47,9 @@ export default {
         type: "text/css",
         href: "/fonts/font.css"
       }
+    ],
+    script: [
+      { src: 'https://use.fontawesome.com/d9800c8843.js' },
     ]
   },
 
