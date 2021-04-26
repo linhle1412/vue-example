@@ -38,10 +38,12 @@
               </div>
               <div class="pre-next-btn">
                 <NuxtLink to="#">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i> Tài năng trước
+                  <i class="fa fa-angle-left" aria-hidden="true"></i> Tài năng
+                  trước
                 </NuxtLink>
                 <NuxtLink to="#">
-                  Tài năng sau <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  Tài năng sau
+                  <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </NuxtLink>
               </div>
             </div>
@@ -100,28 +102,28 @@ export default {
   padding: 20px;
   border-radius: 1rem;
 }
-.pre-next-btn{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 50px;
-    a{
-        color: #000;
-        font-weight: bold;
-        font-size: 18px;
-        font-family: "Roboto Condensed", sans-serif;
-        &:hover{
-            text-decoration: none;
-        }
-        i{
-            font-weight: bold;
-        }
-        i.fa-angle-left{
-            margin-right: 20px;
-        }
-        i.fa-angle-right{
-            margin-left: 20px;
-        }
+.pre-next-btn {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  a {
+    color: #000;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: "Roboto Condensed", sans-serif;
+    &:hover {
+      text-decoration: none;
     }
+    i {
+      font-weight: bold;
+      &.fa-angle-left{
+        margin-right: 20px;
+      }
+       &.fa-angle-right{
+        margin-left: 20px;
+      }
+    }
+  }
 }
 @media only screen and (max-width: 550px) {
   .talent-detail-img {
@@ -133,6 +135,12 @@ export default {
   }
   .title-list {
     font-size: 24px;
+  }
+  i.fa-angle-left {
+    margin-right: 10px !important;
+  }
+  i.fa-angle-right {
+    margin-left: 10px !important;
   }
 }
 </style>
