@@ -1,88 +1,244 @@
+body {
+  font-family: "Roboto Condensed",monospace
+}
 .logo img {
   max-width: 100%;
 }
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
 .bg-home {
-    background: url("~/assets/images/bg-home-page.png") #ffda4a no-repeat;
+  background: url("~/assets/images/bg-home-page.png") #ffda4a no-repeat;
+  position: relative;
+  background-size: cover;
+  min-height: calc(100vh - 72px);
+  display: flex;
+  flex-direction: column;
+}
+
+.bg-form {
+    background: #ffcb05;
     position: relative;
     background-size: cover;
-    min-height: calc(100vh - 56px);
+    min-height: calc(100vh - 72px);
     display: flex;
     flex-direction: column;
-    }
+}
+
 .bg-leaf {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  background: url("~/assets/images/leaf-left.svg") left -9rem top 2rem no-repeat,
+    url("~/assets/images/leaf-right.svg") right -14rem bottom -14rem no-repeat;
+  background-size: 25rem;
+}
+
+.bg-leaf-banner-bottom {
     flex: 1;
     width: 100%;
     height: 100%;
-    background: url("~/assets/images/leaf-left.svg") left -9rem top 2rem no-repeat,
-        url("~/assets/images/leaf-right.svg") right -14rem bottom -14rem no-repeat;
+    background: url("~/assets/images/pattern_fund_left.svg") left -10rem top 2rem no-repeat,
+      url("~/assets/images/pattern_fund_right.svg") right -6.5rem bottom 0rem no-repeat;
     background-size: 25rem;
-}
+  }
+
 .btn-defaut {
-    a {
-        background: #ffd52a;
-        border: 1px solid #ffd52a;
-        padding: 12px 25px;
-        font-weight: bold; 
-        color: #000;
-        &:hover{
-            text-decoration: none;
-        }
+  a {
+    background: #ffd52a;
+    border: 1px solid #ffd52a;
+    padding: 12px 25px;
+    font-weight: bold;
+    color: #000;
+
+    &:hover {
+      text-decoration: none;
     }
+  }
 }
+
+.padding-bottom-20 {
+  padding-bottom: 20px;
+}
+
 .form-group {
   display: flex;
   align-items: flex-start;
+
   &.form-radio {
     >label {
       margin-top: 0
     }
   }
+
   @media only screen and (max-width: 500px) {
     flex-direction: column;
   }
+
   >label {
     flex: 0 0 160px;
     margin-top: 5px;
+
     @media only screen and (max-width: 500px) {
       flex: none;
     }
   }
+
   textarea,
   input,
   .group-radio {
     width: 100%;
-    border-radius: 0 ;
+    border-radius: 0;
     border: unset;
   }
-  input{
+
+  input {
     height: 35px;
   }
+
   input,
   textarea {
     &:focus {
       outline: none;
     }
+
     padding: 0 10px;
     border-color: transparent;
   }
+
   .group-radio {
     display: flex;
     flex-grow: 1;
+
     .custom-control {
       align-items: center;
       display: flex;
       flex-wrap: wrap;
+
       &:first-child {
         margin-right: 30px;
       }
+
       label {
         width: 100%;
       }
     }
   }
 }
+
 @media only screen and (max-width: 550px) {
-  .bg-leaf {
-      background-image: unset;
+  .bg-leaf, .bg-leaf-banner-bottom {
+    background-image: unset;
   }
 }
+
+.page-title {
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-family: "Yeseva One",sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  @media only screen and (max-width: 550px) {
+    font-size: 24px;
+  }
+}
+.table-main {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 1rem;
+  .table-body {
+    font-family: "Yeseva One",sans-serif;
+  }
+  .card-row {
+    border-radius: 12px;
+    align-items: center;
+    display: flex;
+    .index {
+      position: relative;
+      padding: 12px 30px;
+      &:after {
+        content: "";
+        right: 25px;
+        top: 0;
+        width: 2px;
+        height: 100%;
+        position: absolute;
+        background-color: #f5f5f5;
+      }
+    }
+    .name {
+      padding: 0;
+    }
+    .detail {
+      font-family: "Roboto Condensed", sans-serif;
+      text-align: center;
+      a {
+        color: #000;
+        border-bottom: 1px solid;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    .price {
+      color: #ffcb05;
+      font-weight: 700;
+      font-family: "Roboto Condensed", sans-serif;
+      font-size: 20px;
+      text-align: right;
+    }
+  }
+  .card-row-mobile {
+    display: none;
+    align-items: center;
+    border-radius: 15px;
+    .index {
+      text-align: center;
+    }
+  
+    .col-10 {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      &:before {
+        content: "";
+        left: 0;
+        top: 0;
+        width: 2px;
+        height: 100%;
+        position: absolute;
+        background-color: #f5f5f5;
+      }
+      p {
+        margin-bottom: 0;
+      }
+      .detail {
+        font-family: "Roboto Condensed", sans-serif;
+        a {
+          color: #000;
+          border-bottom: 1px solid;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+      .price {
+        color: #ffcb05;
+        font-weight: 500;
+        font-family: "Roboto Condensed", sans-serif;
+        font-size: 18px;
+      }
+    }
+  }
+  @media only screen and (max-width: 550px) {
+    .card-row {
+      display: none;
+    }
+    .card-row-mobile {
+      display: flex;
+    }
+  }
+}
+
