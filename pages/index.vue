@@ -249,7 +249,10 @@ export default {
     padding: 2rem 2.5rem;
   }
   .fund-box .value-fund-box {
-    font-size: 2.5rem;
+    font-size: 3rem;
+  }
+  .fund-box-row .value-fund-box {
+    font-size: 2.8rem;
   }
   .info-group {
     background-position: center;

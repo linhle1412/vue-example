@@ -1,88 +1,128 @@
 .logo img {
   max-width: 100%;
 }
+
 .bg-home {
-    background: url("~/assets/images/bg-home-page.png") #ffda4a no-repeat;
+  background: url("~/assets/images/bg-home-page.png") #ffda4a no-repeat;
+  position: relative;
+  background-size: cover;
+  min-height: calc(100vh - 72px);
+  display: flex;
+  flex-direction: column;
+}
+
+.bg-form {
+    background: #ffcb05;
     position: relative;
     background-size: cover;
     min-height: calc(100vh - 72px);
     display: flex;
     flex-direction: column;
-    }
+}
+
 .bg-leaf {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  background: url("~/assets/images/leaf-left.svg") left -9rem top 2rem no-repeat,
+    url("~/assets/images/leaf-right.svg") right -14rem bottom -14rem no-repeat;
+  background-size: 25rem;
+}
+
+.bg-leaf-banner-bottom {
     flex: 1;
     width: 100%;
     height: 100%;
-    background: url("~/assets/images/leaf-left.svg") left -9rem top 2rem no-repeat,
-        url("~/assets/images/leaf-right.svg") right -14rem bottom -14rem no-repeat;
+    background: url("~/assets/images/pattern_fund_left.svg") left -10rem top 2rem no-repeat,
+      url("~/assets/images/pattern_fund_right.svg") right -6.5rem bottom 0rem no-repeat;
     background-size: 25rem;
-}
+  }
+
 .btn-defaut {
-    a {
-        background: #ffd52a;
-        border: 1px solid #ffd52a;
-        padding: 12px 25px;
-        font-weight: bold; 
-        color: #000;
-        &:hover{
-            text-decoration: none;
-        }
+  a {
+    background: #ffd52a;
+    border: 1px solid #ffd52a;
+    padding: 12px 25px;
+    font-weight: bold;
+    color: #000;
+
+    &:hover {
+      text-decoration: none;
     }
+  }
 }
+
+.padding-bottom-20 {
+  padding-bottom: 20px;
+}
+
 .form-group {
   display: flex;
   align-items: flex-start;
+
   &.form-radio {
     >label {
       margin-top: 0
     }
   }
+
   @media only screen and (max-width: 500px) {
     flex-direction: column;
   }
+
   >label {
     flex: 0 0 160px;
     margin-top: 5px;
+
     @media only screen and (max-width: 500px) {
       flex: none;
     }
   }
+
   textarea,
   input,
   .group-radio {
     width: 100%;
-    border-radius: 0 ;
+    border-radius: 0;
     border: unset;
   }
-  input{
+
+  input {
     height: 35px;
   }
+
   input,
   textarea {
     &:focus {
       outline: none;
     }
+
     padding: 0 10px;
     border-color: transparent;
   }
+
   .group-radio {
     display: flex;
     flex-grow: 1;
+
     .custom-control {
       align-items: center;
       display: flex;
       flex-wrap: wrap;
+
       &:first-child {
         margin-right: 30px;
       }
+
       label {
         width: 100%;
       }
     }
   }
 }
+
 @media only screen and (max-width: 550px) {
-  .bg-leaf {
-      background-image: unset;
+  .bg-leaf, .bg-leaf-banner-bottom {
+    background-image: unset;
   }
 }
