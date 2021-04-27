@@ -43,7 +43,7 @@
 import { mapState, mapActions } from "vuex";
 
 export default {
-  layout: "banner-bottom",
+  layout: "default",
   components: {
   },
   data() {

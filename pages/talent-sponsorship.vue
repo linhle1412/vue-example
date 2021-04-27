@@ -119,6 +119,12 @@ export default {
     padding-bottom: 15px;
   }
 }
+
+// .text-sliver {
+//   color: $color-silver;
+// }
+
+
 @media only screen and (max-width: 550px) {
   .table-head {
     display: none;
