@@ -5,12 +5,6 @@ aliases-deployment-triggers:
     ref:
       - refs/tags/v*
 
-  - &when_deploy_prod
-    event:
-      - tag
-    ref:
-      - refs/tags/p_v*
-
 basic-build:
   - &build-setting
     username:
@@ -85,34 +79,7 @@ steps:
   when:
     <<: *when_deploy_stage
 
-- <<: *build
-  name: build-prod
-  settings:
-    <<: *build-setting
-  when:
-    <<: *when_deploy_prod
 
-- name: deploy-production
-  image: appleboy/drone-ssh:1.5.5
-  settings:
-    host: dashboard.otoviethan.com.vn
-    username: apphyund
-    password:
-      from_secret: ssh_prod_password
-    port: 22
-    script:
-      - export COMPOSE_PROJECT_NAME=tnv
-      - export IMAGE_TAG="${DRONE_TAG}"
-      - DOCKER_REPO='registry.eyeteam.vn/tnv/tnv-web'
-      - export DOCKER_API_IMAGE=$DOCKER_REPO:$IMAGE_TAG
-      - docker pull $DOCKER_API_IMAGE
-      - cd ./deployment
-      - docker-compose stop api
-      - docker-compose rm -f api
-      - docker-compose run --rm api npm run migrate
-      - docker-compose up -d api
-  when:
-    <<: *when_deploy_prod
 
 - name: telegram
   image: appleboy/drone-telegram
