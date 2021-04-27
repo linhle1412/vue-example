@@ -1,3 +1,9 @@
+## <small>1.0.3 (2021-04-27)</small>
+
+* remove production build ([b069767](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/b069767))
+
+
+
 ## <small>1.0.2 (2021-04-27)</small>
 
 * prepare.sh ([43d76a9](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/43d76a9))
