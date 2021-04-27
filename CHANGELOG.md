@@ -1,3 +1,8 @@
+## <small>1.0.4 (2021-04-27)</small>
+
+
+
+
 ## <small>1.0.3 (2021-04-27)</small>
 
 * remove production build ([b069767](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/b069767))
