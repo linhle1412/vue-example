@@ -9,7 +9,7 @@
             </div>
             <div class="d-flex justify-content-center">
               <div class="fund-box">
-                <!-- <div class="title-line-box">Tổng Giá Trị Quỹ</div> -->
+                <div class="title-line-box">Tổng Giá Trị Quỹ</div>
                 <div class="value-fund-box text-center">
                   {{(totalFund || 0) | money}}
                 </div>

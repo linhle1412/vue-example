@@ -140,7 +140,7 @@ export default {
 .pre-next-btn {
   display: flex;
   justify-content: space-between;
-  margin-top: 50px;
+  padding-top: 50px;
   clear: both;
   a {
     color: #000;

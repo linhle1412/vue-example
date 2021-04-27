@@ -1,18 +1,8 @@
 <template>
   <div class="header">
-    <nav class="navbar navbar-expand-lg navbar-light nav-header">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <b-navbar toggleable="lg" type="light">
+    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      <b-collapse id="nav-collapse" is-nav>
         <ul class="navbar-nav w-100 justify-content-center">
           <li class="nav-item" v-for="(item, index) in menus" :key="index">
             <NuxtLink
@@ -24,8 +14,8 @@
             </NuxtLink>
           </li>
         </ul>
-      </div>
-    </nav>
+      </b-collapse>
+    </b-navbar>
   </div>
 </template>
 
@@ -34,6 +24,11 @@ export default {
   data() {
     return {
       menus: [
+        {
+            title: 'Trang chủ',
+            name: 'index',
+            path: '/'
+        },
         {
             title: 'Thông tin quỹ',
             name: 'fund',
@@ -78,7 +73,7 @@ export default {
 .nav-header ul li a {
   text-transform: uppercase;
 }
-.nav-header .navbar-nav .nav-link {
+.header .nav-link {
   padding-right: 2rem;
   padding-left: 2rem;
 }
