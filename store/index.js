@@ -58,7 +58,7 @@ const store = () =>
 						{
 							name: 'Lê Đình Linh',
 							amount: 1000000,
-							link: 'http://localhost:3000/tai-nang/1-le-dinh-linh-hoc-sinh-guong-mau'
+							link: '/tai-nang/1-le-dinh-linh-hoc-sinh-guong-mau'
 						}
 					])
 					return 1
