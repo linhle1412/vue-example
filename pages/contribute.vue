@@ -89,7 +89,7 @@
                         name="contribute-type"
                         v-model="form.type"
                         value="personal"
-                        checked='checked'
+                        checked
                       />
                       <label
                         class="custom-control-label"
@@ -114,60 +114,60 @@
                     </div>
                   </div>
                 </div>
-                <!-- <div class="form-group form-radio">
+                <div class="form-group form-radio d-flex">
                   <label for="contribution">Hình thức đóng góp</label>
                   <div style="flex: 1">
-                     <div class="group-radio mb-4">
-                    <div class="custom-control custom-radio w-100">
-                      <input
-                        type="radio"
-                        class="custom-control-input"
-                        id="contribution-1"
-                        name="contribution"
-                        checked
-                      />
-                      <label class="custom-control-label" for="contribution-1"
-                        >Chuyển khoản/ Đóng góp tại quầy</label
-                      >
-                    </div>
-                  </div>
-                  <div class="group-radio">
-                    <div class="custom-control custom-radio">
-                      <input
-                        type="radio"
-                        class="custom-control-input"
-                        id="contribution-2"
-                        name="contribution"
-                      />
-                      <label class="custom-control-label" for="contribution-2"
-                        ><img
-                          src="~/assets/images/momo-icon.png"
-                          alt="momo-icon"
-                          width="30px"
+                    <div class="group-radio mb-4">
+                      <div class="custom-control custom-radio w-100">
+                        <input
+                          type="radio"
+                          class="custom-control-input"
+                          id="contribution-1"
+                          name="contribution"
+                          v-model="form.method"
+                          value="cash"
                         />
-                        Ví Momo</label
-                      >
+                        <label class="custom-control-label" for="contribution-1"
+                          >Chuyển khoản/ Đóng góp tại quầy</label
+                        >
+                      </div>
                     </div>
-                    <div class="custom-control custom-radio">
-                      <input
-                        type="radio"
-                        class="custom-control-input"
-                        id="contribution-3"
-                        name="contribution"
-                      />
-                      <label class="custom-control-label" for="contribution-3"
-                        ><img
-                          src="~/assets/images/zalo-pay.jpeg"
-                          alt="zalo-pay-icon"
-                          width="30px"
+                    <!-- <div class="group-radio">
+                      <div class="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          class="custom-control-input"
+                          id="contribution-2"
+                          name="contribution"
                         />
-                        Ví ZaloPay</label
-                      >
-                    </div>
+                        <label class="custom-control-label" for="contribution-2"
+                          ><img
+                            src="~/assets/images/momo-icon.png"
+                            alt="momo-icon"
+                            width="30px"
+                          />
+                          Ví Momo</label
+                        >
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          class="custom-control-input"
+                          id="contribution-3"
+                          name="contribution"
+                        />
+                        <label class="custom-control-label" for="contribution-3"
+                          ><img
+                            src="~/assets/images/zalo-pay.jpeg"
+                            alt="zalo-pay-icon"
+                            width="30px"
+                          />
+                          Ví ZaloPay</label
+                        >
+                      </div>
+                    </div> -->
                   </div>
-                  </div>
-                 
-                </div> -->
+                </div>
                 <div class="text-center mt-4">
                   <button type="submit" @click="checkForm">Gửi đóng góp</button>
                 </div>
@@ -192,7 +192,7 @@ export default {
         amount: 0,
         priceDisplay: "",
         note: "",
-        type: "",
+        type: "personal",
         method: "cash"
       },
       rules: {
@@ -338,6 +338,9 @@ export default {
         right: 10px;
         top: 0;
       }
+    }
+    small {
+      color: #dc3545;
     }
   }
 
