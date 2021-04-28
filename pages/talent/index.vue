@@ -27,7 +27,7 @@
                       {{talent.description}}
                     </div>
                     <div class="talent-list-btn">
-                      <NuxtLink :to="'/tai-nang/' + talent.id + '-' + talent.slug">
+                      <NuxtLink :to="'/tai-nang/' +  talent.slug">
                         Chi tiết
                       </NuxtLink>
                     </div>
@@ -43,6 +43,8 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class='banner-bottom'>
     </div>
   </div>
 </template>

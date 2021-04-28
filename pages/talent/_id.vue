@@ -19,7 +19,8 @@
                     <img width="30px" src="~/assets/images/medal-icon.png" alt="" />
                     {{talentDetail.title}}
                   </div>
-                  {{talentDetail.content}}
+                  <div v-html="talentDetail.content">
+                  </div>
                 </div>
               <div class="pre-next-btn">
                 <NuxtLink to="#">
@@ -53,7 +54,8 @@ export default {
   },
   async fetch({ store, params, redirect, query }) {
     try {
-      const id = params.id.split('-')[0]
+      // const id = params.id.split('-')[0]
+      const id = params.id
       await store.dispatch('fetchTalentDetail', id)
     } catch (e) {
       redirect('/not-found')
