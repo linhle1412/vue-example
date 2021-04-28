@@ -7,32 +7,48 @@
             <div class="logo text-center mb-4">
               <img src="~/assets/images/slogan-larger.svg" alt="" />
             </div>
-            <div class='page-title text-center'>
-                Bảng vinh danh đóng góp
+            <div class="page-title text-center">
+              Bảng vinh danh đóng góp
             </div>
             <div class="table-main list-talent">
               <div class="table-head">
-                  <div class="row">
-                      <div class="col-md-2"></div>
-                      <div class="col-md-4">Tên tài năng</div>
-                      <div class="col-md-2"></div>
-                      <div class="col-md-4 text-center">Số tiền tài trợ</div>
-                  </div>
+                <div class="row">
+                  <div class="col-md-2"></div>
+                  <div class="col-md-4">Tên tài năng</div>
+                  <div class="col-md-2"></div>
+                  <div class="col-md-4 text-center">Số tiền tài trợ</div>
+                </div>
               </div>
-              <div v-for="(talent, index) in sponsorships" :key="index" class="table-body">
+              <div
+                v-for="(talent, index) in sponsorships"
+                :key="index"
+                class="table-body"
+              >
                 <div>
                   <div class="card-row row bg-white mb-3 mx-0">
-                    <div class="col-md-2 font-weight-bold index">{{ index + 1 }}</div>
-                    <div class="col-md-4 font-weight-bold name">{{ talent.name }}</div>
-                    <div class="col-md-2 detail"><a :href="talent.link">Chi tiết</a></div>
-                    <div class="col-md-4 price">{{ talent.amount | money }}<u>đ</u></div>
+                    <div class="col-md-2 font-weight-bold index">
+                      {{ index + 1 }}
+                    </div>
+                    <div class="col-md-4 font-weight-bold name">
+                      {{ talent.name }}
+                    </div>
+                    <div class="col-md-2 detail">
+                      <a :href="talent.link">Chi tiết</a>
+                    </div>
+                    <div class="col-md-4 price">
+                      {{ talent.amount | money }}₫
+                    </div>
                   </div>
                   <div class="card-row-mobile row bg-white mb-3 mx-0">
                     <div class="col-2 font-weight-bold index">{{ index }}</div>
                     <div class="col-10">
                       <p class="name">{{ talent.name }}</p>
-                      <p class="detail"><a :href="talent.link">Chi tiết</a></p>
-                      <p class="price">{{ talent.amount | money }}<u>đ</u></p>
+                      <p class="detail">
+                        <NuxtLink :to="talent.link">
+                          Chi tiết
+                        </NuxtLink>
+                      </p>
+                      <p class="price">{{ talent.amount | money }}₫</p>
                     </div>
                   </div>
                 </div>
@@ -40,10 +56,10 @@
               <pagination
                 v-model="page"
                 :page-count="pageCount"
-                :page-range="6">
+                :page-range="6"
+              >
               </pagination>
             </div>
-           
           </div>
         </div>
       </div>
@@ -53,8 +69,8 @@
 
 <script>
 // import TableList from '@/components/TableList'
-import Pagination from '@/components/Pagination'
-import { mapState, mapActions } from 'vuex'
+import Pagination from "@/components/Pagination";
+import { mapState, mapActions } from "vuex";
 
 export default {
   layout: "default",
@@ -69,41 +85,49 @@ export default {
     };
   },
   computed: {
-      ...mapState(['sponsorships']),
-      pageCount() {
-        return Math.ceil(this.total / this.perpage)
-      }
+    ...mapState(["sponsorships"]),
+    pageCount() {
+      return Math.ceil(this.total / this.perpage);
+    }
   },
   watch: {
     page: {
       immediate: true,
       handler(val) {
-        this.getData()
+        this.getData();
       }
     }
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
-      ...mapActions(['fetchSponsorships']),
+    ...mapActions(["fetchSponsorships"]),
     getData() {
-      this.fetchSponsorships({page: this.page - 1, perpage: this.perpage}).then((total) => {
-        this.total = total
-      })
+      this.fetchSponsorships({
+        page: this.page - 1,
+        perpage: this.perpage
+      }).then(total => {
+        this.total = total;
+      });
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.table-head{
-    .row{
-        padding-bottom: 15px;
-    }
+.table-head {
+  .row {
+    padding-bottom: 15px;
+  }
 }
+
+// .text-sliver {
+//   color: $color-silver;
+// }
+
+
 @media only screen and (max-width: 550px) {
-    .table-head{
-        display: none;
-    }
+  .table-head {
+    display: none;
+  }
 }
 </style>
