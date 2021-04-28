@@ -1,3 +1,17 @@
+## <small>1.0.8 (2021-04-28)</small>
+
+* add api article ([d6aa00f](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/d6aa00f))
+* fix bug, validate ([8047178](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/8047178))
+* fix fetchSponsorships ([d40baab](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/d40baab))
+
+
+
+## <small>1.0.5 (2021-04-28)</small>
+
+* Release 1.0.5 ([8daffdc](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/8daffdc))
+
+
+
 ## <small>1.0.5 (2021-04-28)</small>
 
 * fix bug index add menu index ([1cd5201](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/1cd5201))
