@@ -38,10 +38,7 @@
                         <i class="fa fa-search" aria-hidden="true"></i>
                         <b-input
                           id="search_text"
-                          prefix-icon="search"
-                          :value="searchText"
-                          aria-hidden="true"
-                          @input="handleInputSearch"
+                          
                         />
                       </div>
                     </div>
@@ -202,35 +199,9 @@ export default {
     this.loadDataShops();
     this.loadDataCustomers();
     this.getActiveTab();
-    const getAlldataShop = await this.$repo.getFundsShop.list({
-      start: 0,
-      length: 2000
-    });
-    this.dataFundsShopOrgi = {
-      data: getAlldataShop
-        ? getAlldataShop.data.map(shop => {
-            const {
-              rank = shop.rank,
-              name = shop.shopName,
-              image = shop.shopImage,
-              code = shop.ShopCode,
-              total = shop.total,
-              type = "shop"
-            } = shop;
-            return { rank, name, code, image, total, type };
-          })
-        : null,
-      total: getAlldataShop ? getAlldataShop.total : 0
-    };
-    this.dataFundsCustomersOrig = await this.$repo.getFundsCustomers.list({
-      start: 0,
-      length: 2000
-    });
+  
     this.mapDataFunds(this.tabActive);
-    this.athletesData = await this.$repo.getTalens.list({
-      start: 0,
-      length: 2000
-    });
+   
     this.athletesDetail = this.athletesData
       ? this.athletesData.entities[0]
       : null;
@@ -329,21 +300,7 @@ export default {
       }
     },
     mapDataFunds(key) {
-      if (key === 2) {
-        this.dataFunds.entities = this.dataFundsShop
-          ? this.dataFundsShop.data
-          : null;
-        this.dataFunds.total = this.dataFundsShop
-          ? this.dataFundsShop.total
-          : 0;
-      } else {
-        this.dataFunds.entities = this.dataFundsCustomers
-          ? this.dataFundsCustomers.data
-          : null;
-        this.dataFunds.total = this.dataFundsCustomers
-          ? this.dataFundsCustomers.total
-          : 0;
-      }
+     return this.dataFunds.entities
     },
 
     setTabActive(index) {
@@ -369,37 +326,13 @@ export default {
     },
     async loadDataShops(isAll, pageSizeMax) {
       const pageIndex = this.currentPage - 1;
-      const dataShop = await this.$repo.getFundsShop.list({
-        start:
-          isAll ||
-          (this.currentPage === 1 ? 0 : 1) + this.pageSizes * pageIndex,
-        length: pageSizeMax || this.pageSizes
-      });
-      this.dataFundsShop = {
-        data: dataShop
-          ? dataShop.data.map(shop => {
-              const {
-                rank = shop.rank,
-                name = shop.shopName,
-                image = shop.shopImage,
-                code = shop.ShopCode,
-                total = shop.total,
-                type = "shop"
-              } = shop;
-              return { rank, name, code, image, total, type };
-            })
-          : null,
-        total: dataShop ? dataShop.total : 0
-      };
+    
+      
       this.mapDataFunds(this.tabActive);
     },
     async loadDataCustomers(isAll, pageSizeMax) {
       const pageIndex = this.currentPage - 1;
-      const dataCustomers = await this.$repo.getFundsCustomers.list({
-        start: isAll || this.pageSizes * pageIndex,
-        length: pageSizeMax || this.pageSizes
-      });
-      this.dataFundsCustomers = dataCustomers || null;
+     
       this.mapDataFunds(this.tabActive);
     },
     handleInputSearch() {
@@ -434,10 +367,7 @@ export default {
         };
       } else {
         this.currentPage = 1;
-        resultSearch = {
-          data: this.dataFundsShop ? this.dataFundsShop.data : null,
-          total: this.dataFundsShop ? this.dataFundsShop.total : 0
-        };
+        
       }
       this.resultSearch = {
         entities: resultSearch.data,
