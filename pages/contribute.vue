@@ -14,40 +14,52 @@
               </div>
               <form class="form" action="" method="post">
                 <div class="floating-label">
-                  <input class="floating-input" type="text" placeholder=" " />
+                  <input
+                    class="floating-input"
+                    type="text"
+                    placeholder=" "
+                    v-on:blur="validate(form, rules)"
+                    :class="{ error: rules.name.error }"
+                    v-model="form.name"
+                  />
                   <label>TÊN CÁ NHÂN / TỔ CHỨC</label>
-                  <small v-show="require">&nbsp;</small>
+                  <small>{{ rules.name.error }}&nbsp;</small>
                 </div>
 
                 <div class="floating-label">
                   <input
-                    class="floating-input error"
+                    class="floating-input"
+                    v-on:blur="validate(form, rules)"
+                    :class="{ error: rules.phone.error }"
                     type="text"
+                    v-model="form.phone"
                     placeholder=" "
                   />
                   <label>Số điện thoại *</label>
-                  <small v-show="require">Vui lòng nhập số điện thoại</small>
+                  <small>{{ rules.phone.error }}&nbsp;</small>
                 </div>
                 <div class="floating-label">
                   <input class="floating-input" type="email" placeholder=" " />
                   <label>Email</label>
-                  <small v-show="require">&nbsp;</small>
+                  <small>&nbsp;</small>
                 </div>
                 <div class="floating-label contribute-money">
                   <input
                     class="floating-input"
-                    type="email"
+                    type="text"
                     placeholder=" "
                     name="contribute-money"
                     id="contribute-money"
                     :value="form.priceDisplay"
+                    v-on:blur="validate(form, rules)"
                     @keyup="formatPrice"
+                    :class="{ error: rules.priceDisplay.error }"
                     v-on:keypress="isNumber(event)"
                   />
                   <div class="currency">VND</div>
                   <label>Số tiền đóng góp *</label>
+                  <small>{{ rules.priceDisplay.error }}&nbsp;</small>
                 </div>
-                <small v-show="require">&nbsp;</small>
                 <div class="floating-label">
                   <textarea
                     name="contribute-message"
@@ -146,7 +158,7 @@
                  
                 </div> -->
                 <div class="text-center mt-4">
-                  <button @click="checkForm">Gửi đóng góp</button>
+                  <button type="submit" @click="checkForm">Gửi đóng góp</button>
                 </div>
               </form>
             </div>
@@ -171,12 +183,45 @@ export default {
         message: "",
         type: "",
         contribution: ""
+      },
+      rules: {
+        name: {
+          required: false,
+          label: "TÊN CÁ NHÂN / TỔ CHỨC",
+          error: ""
+        },
+        phone: {
+          required: true,
+          label: "số điện thoại",
+          validate: value => {
+            return value && value.length === 10 && value.indexOf("0") === 0;
+          },
+          error: ""
+        },
+        email: {
+          required: false,
+          label: "email",
+          validate: value => {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+          },
+          error: ""
+        },
+        priceDisplay: {
+          required: true,
+          label: "Số tiền đóng góp",
+          error: ""
+        },
+        message: {
+          required: false,
+          label: "Lời nhắn",
+          error: ""
+        },
+        type: {
+          required: false,
+          label: "Loại đóng góp",
+          error: ""
+        }
       }
-      //   rules: {
-      //       name: {
-      //           required
-      //       }
-      //   }
     };
   },
   methods: {
@@ -191,17 +236,7 @@ export default {
         .toString()
         .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
     },
-    checkForm(e) {
-      if (this.form.name && this.form.phone) return true;
 
-      if (!this.form.name) {
-        this.require = true;
-      }
-      if (!this.form.phone) {
-        this.require = true;
-      }
-      e.preventDefault();
-    },
     isNumber(evt) {
       evt = evt ? evt : window.event;
       var charCode = evt.which ? evt.which : evt.keyCode;
@@ -214,6 +249,40 @@ export default {
       } else {
         return true;
       }
+    },
+    validate(data, rules) {
+      let isValidate = true;
+      for (const key of Object.keys(rules)) {
+        if (rules[key].required === true && data[key] === "") {
+          rules[key].error = "Vui lòng nhập " + rules[key].label;
+          isValidate = false;
+          continue;
+        } else {
+          rules[key].error = "";
+        }
+        if (rules[key].validate) {
+          if (!rules[key].validate(data[key])) {
+            isValidate = false;
+            rules[key].error = "Vui lòng nhập đúng " + rules[key].label;
+            continue;
+          } else {
+            rules[key].error = "";
+          }
+        }
+      }
+
+      // if (customValidateFunc) {
+      //   if (!customValidateFunc()) {
+      //     isValidate = false
+      //   }
+      // }
+
+      return isValidate;
+    },
+    checkForm(e) {
+      e.preventDefault();
+      this.validate(this.form, this.rules)
+
     }
   }
 };
@@ -246,8 +315,6 @@ export default {
     .contribute-money {
       position: relative;
       width: 100%;
-      display: flex;
-      align-items: center;
       .currency {
         position: absolute;
         right: 10px;
@@ -275,6 +342,9 @@ export default {
 }
 .floating-input,
 .floating-select {
+  &.error{
+    border-color: #dc3545;
+  }
   font-size: 15px;
   padding: 0;
   display: block;
@@ -415,7 +485,6 @@ textarea.floating-input {
   font-family: arial, sans-serif;
 }
 /***  daniel - Fork me friend - style  ***/
-
 
 @media only screen and (max-width: 550px) {
   .form-contribute {
