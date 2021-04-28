@@ -1,31 +1,23 @@
 <template>
   <div class="header">
-    <nav class="navbar navbar-expand-lg navbar-light nav-header">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <b-navbar toggleable="lg" type="light">
+      <b-navbar-toggle target="nav-collapse">
+          <img src="~/assets/images/nav-toggle-icon.svg" alt="">
+      </b-navbar-toggle>
+      <b-collapse id="nav-collapse" is-nav>
         <ul class="navbar-nav w-100 justify-content-center">
           <li class="nav-item" v-for="(item, index) in menus" :key="index">
             <NuxtLink
               :to="item.path"
               class="nav-link"
-              v-on:click="setActive(item.name)"
+              :class="item.name == 'index' ? 'nav-home' : ''"
             >
-              {{item.title}}
+              {{ item.title }}
             </NuxtLink>
           </li>
         </ul>
-      </div>
-    </nav>
+      </b-collapse>
+    </b-navbar>
   </div>
 </template>
 
@@ -35,32 +27,43 @@ export default {
     return {
       menus: [
         {
-            title: 'Thông tin quỹ',
-            name: 'fund',
-            path: '/thong-tin-quy'
+          title: "Trang chủ",
+          name: "index",
+          path: "/"
         },
         {
-            title: 'Tài năng',
-            name: 'talent',
-            path: '/tai-nang'
+          title: "Thông tin quỹ",
+          name: "fund",
+          path: "/thong-tin-quy"
         },
         {
-            title: 'Đóng góp',
-            name: 'contribute',
-            path: '/dong-gop'
+          title: "Tài năng",
+          name: "talent",
+          path: "/tai-nang"
+        },
+        {
+          title: "Đóng góp",
+          name: "contribute",
+          path: "/dong-gop"
         }
       ]
     };
   },
-  created(){
-  },
-  methods: {
-  }
+  created() {},
+  methods: {}
 };
 </script>
 <style lang="scss">
-.nav-header .navbar-nav .nav-link.nuxt-link-active{
-    color: #000;
+.header .navbar-nav .nav-link.nuxt-link-active {
+  color: #930 !important;
+}
+.header .navbar-nav .nav-link.nav-home {
+    &.nuxt-link-active {
+        color: #000 !important
+    }
+    &.nuxt-link-exact-active, &:hover {
+        color: #930 !important
+    }
 }
 </style>
 <style lang="scss" scoped>
@@ -75,11 +78,25 @@ export default {
     padding: 1rem;
   }
 }
-.nav-header ul li a {
+.header ul li a {
   text-transform: uppercase;
+  color: #000 !important;
+  &:hover{
+    color: #930 !important;
+  }
 }
-.nav-header .navbar-nav .nav-link {
+.header .nav-link {
   padding-right: 2rem;
   padding-left: 2rem;
+}
+@media only screen and (max-width: 550px) {
+  .header .nav-link {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .header .navbar-light .navbar-toggler{
+      border-color: transparent;
+      padding-left: 0;
+  }
 }
 </style>

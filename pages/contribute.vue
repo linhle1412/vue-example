@@ -12,59 +12,54 @@
                 Đóng góp cho <br />
                 quỹ phát triển tài năng việt
               </div>
-              <form>
-                <div class="form-group">
-                  <label for="contribute-name">Họ tên*</label>
-                  <input
-                    type="text"
-                    name="contribute-name"
-                    id="contribute-name"
-                    value=""
-                    required
-                  />
+              <form class="form" action="" method="post">
+                <div class="floating-label">
+                  <input class="floating-input" type="text" placeholder=" " />
+                  <label>TÊN CÁ NHÂN / TỔ CHỨC</label>
+                  <small v-show="require">&nbsp;</small>
                 </div>
-                <div class="form-group">
-                  <label for="contribute-name">Số điện thoại*</label>
+
+                <div class="floating-label">
                   <input
+                    class="floating-input error"
                     type="text"
-                    name="contribute-phone"
-                    id="contribute-phone"
-                    value=""
-                    required
+                    placeholder=" "
                   />
+                  <label>Số điện thoại *</label>
+                  <small v-show="require">Vui lòng nhập số điện thoại</small>
                 </div>
-                <div class="form-group">
-                  <label for="contribute-name">Email</label>
+                <div class="floating-label">
+                  <input class="floating-input" type="email" placeholder=" " />
+                  <label>Email</label>
+                  <small v-show="require">&nbsp;</small>
+                </div>
+                <div class="floating-label contribute-money">
                   <input
+                    class="floating-input"
                     type="email"
-                    name="contribute-email"
-                    id="contribute-email"
-                    value=""
+                    placeholder=" "
+                    name="contribute-money"
+                    id="contribute-money"
+                    :value="form.priceDisplay"
+                    @keyup="formatPrice"
+                    v-on:keypress="isNumber(event)"
                   />
+                  <div class="currency">VND</div>
+                  <label>Số tiền đóng góp *</label>
                 </div>
-                <div class="form-group">
-                  <label for="contribute-money">Số tiền đóng góp*</label>
-                  <div class="contribute-money">
-                    <input
-                      type="text"
-                      name="contribute-money"
-                      id="contribute-money"
-                      :value="form.priceDisplay"
-                      @keyup="formatPrice"
-                      required
-                    />
-                    <div class="currency">VND</div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="contribute-message">Lời nhắn</label>
+                <small v-show="require">&nbsp;</small>
+                <div class="floating-label">
                   <textarea
                     name="contribute-message"
                     id="contribute-message"
                     rows="3"
+                    class="floating-input"
+                    v-model="form.message"
+                    placeholder=" "
                   ></textarea>
+                  <label>Lời nhắn</label>
                 </div>
-                <div class="form-group form-radio">
+                <div class="form-group form-radio d-flex">
                   <label for="contribute-type">Loại đóng góp</label>
                   <div class="group-radio">
                     <div class="custom-control custom-radio">
@@ -96,7 +91,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group form-radio">
+                <!-- <div class="form-group form-radio">
                   <label for="contribution">Hình thức đóng góp</label>
                   <div style="flex: 1">
                      <div class="group-radio mb-4">
@@ -149,9 +144,9 @@
                   </div>
                   </div>
                  
-                </div>
+                </div> -->
                 <div class="text-center mt-4">
-                  <input type="submit" @click="submit()" value="Gửi đóng góp" />
+                  <button @click="checkForm">Gửi đóng góp</button>
                 </div>
               </form>
             </div>
@@ -167,43 +162,59 @@ export default {
   layout: "default",
   data() {
     return {
-        form: {
-            name: '',
-            phone: '',
-            email: '',
-            price: 0,
-            priceDisplay: '',
-            message: '',
-            type: '',
-            contribution:''
-        }        
+      form: {
+        name: "",
+        phone: "",
+        email: "",
+        price: 0,
+        priceDisplay: "",
+        message: "",
+        type: "",
+        contribution: ""
+      }
+      //   rules: {
+      //       name: {
+      //           required
+      //       }
+      //   }
     };
   },
   methods: {
     formatPrice(e) {
-        if (e.target.value == '') {
-            this.form.price = 0;
-            this.form.priceDisplay = '';
-            return
-        }
-        this.form.price = parseInt(e.target.value.toString().replaceAll(',',''))
-        this.form.priceDisplay = this.form.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-    },
-    submit(){
-        if(!this.form.name){
-            alert('Vui lòng nhập tên!')
-            return
-        }
-        if(!this.form.phone){
-            alert('Vui lòng nhập Số điện thoại!')
-            return
-        }
-        if(!this.form.price){
-            alert('Vui lòng nhập số tiền đóng góp!')
-            return
-        }
-        this.$router.push("/success");
+      if (e.target.value == "") {
+        this.form.price = 0;
+        this.form.priceDisplay = "";
+        return;
       }
+      this.form.price = parseInt(e.target.value.toString().replaceAll(",", ""));
+      this.form.priceDisplay = this.form.price
+        .toString()
+        .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    },
+    checkForm(e) {
+      if (this.form.name && this.form.phone) return true;
+
+      if (!this.form.name) {
+        this.require = true;
+      }
+      if (!this.form.phone) {
+        this.require = true;
+      }
+      e.preventDefault();
+    },
+    isNumber(evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+      if (
+        charCode > 31 &&
+        (charCode < 48 || charCode > 57) &&
+        charCode !== 46
+      ) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+    }
   }
 };
 </script>
@@ -211,23 +222,25 @@ export default {
 <style lang="scss" scoped>
 .form-contribute {
   background: #f5f5f5;
-  padding: 20px;
+  padding: 30px 40px;
+  border-radius: 20px;
   .title-form {
     text-transform: uppercase;
     font-size: 25px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    font-family: "Yeseva One", sans-serif;
   }
-  form {
+  .form {
     input[type="radio"] {
       &:checked + label:before {
         background: #ffd52a;
       }
     }
-    input[type="submit"] {
+    button {
       background: #ffd52a;
       border: 1px solid #ffd52a;
-      padding: 10px 20px;
+      padding: 8px 30px;
       font-weight: bold;
     }
     .contribute-money {
@@ -235,12 +248,12 @@ export default {
       width: 100%;
       display: flex;
       align-items: center;
-      .currency{
-          position: absolute;
-          right: 10px;
+      .currency {
+        position: absolute;
+        right: 10px;
+        top: 0;
       }
     }
-
   }
 
   .custom-control-input:checked ~ .custom-control-label::before {
@@ -255,12 +268,162 @@ export default {
   }
 }
 
+/****  floating-Lable style start ****/
+.floating-label {
+  position: relative;
+  margin-bottom: 20px;
+}
+.floating-input,
+.floating-select {
+  font-size: 15px;
+  padding: 0;
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #888;
+}
+textarea.floating-input {
+  height: 80px;
+}
+.floating-input:focus,
+.floating-select:focus {
+  &.error {
+    border-color: #dc3545;
+  }
+  outline: none;
+  border-bottom: 2px solid #ffcb05;
+}
+.floating-label {
+  label {
+    color: #999;
+    font-size: 15px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    font-weight: bold;
+    left: 0;
+    top: 0px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+  }
+}
+
+.floating-input:focus ~ label,
+.floating-input:not(:placeholder-shown) ~ label {
+  top: -18px;
+  font-size: 15px;
+  color: #000;
+}
+
+.floating-select:focus ~ label,
+.floating-select:not([value=""]):valid ~ label {
+  top: -18px;
+  font-size: 15px;
+  color: #000;
+}
+
+/* active state */
+.floating-input:focus ~ .bar:before,
+.floating-input:focus ~ .bar:after,
+.floating-select:focus ~ .bar:before,
+.floating-select:focus ~ .bar:after {
+  width: 50%;
+}
+
+.floating-textarea {
+  min-height: 30px;
+  max-height: 260px;
+  overflow: hidden;
+  overflow-x: hidden;
+}
+
+/* highlighter */
+.highlight {
+  position: absolute;
+  height: 50%;
+  width: 100%;
+  top: 15%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* active state */
+.floating-input:focus ~ .highlight,
+.floating-select:focus ~ .highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+
+/* animation */
+@-webkit-keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@-moz-keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+
+/****  floating-Lable style end ****/
+
+/***   daniel - Fork me friend - style   ***/
+.floating-credit {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  color: #aaa;
+  font-size: 13px;
+  font-family: arial, sans-serif;
+}
+.floating-credit a {
+  text-decoration: none;
+  color: #000000;
+  font-weight: bold;
+}
+.floating-credit a:hover {
+  border-bottom: 1px dotted #f8f8f8;
+}
+.floating-heading {
+  position: fixed;
+  color: #aaa;
+  font-size: 20px;
+  font-family: arial, sans-serif;
+}
+/***  daniel - Fork me friend - style  ***/
+
+
 @media only screen and (max-width: 550px) {
-    .form-contribute{
-        padding: 15px;
-        .title-form{
-            margin-bottom: 15px;
-        }
+  .form-contribute {
+    padding: 15px;
+    .title-form {
+      margin-bottom: 15px;
+      font-size: 18px;
     }
+  }
 }
 </style>

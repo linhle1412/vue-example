@@ -99,6 +99,9 @@ export default {
           case "talent-id":
             r.path = "/tai-nang/:id";
             break;
+          case "fund-info":
+            r.path = "/thong-tin-quy";
+            break;
           default:
             break;
         }
