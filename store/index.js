@@ -2,6 +2,23 @@ import Vue from "vue";
 import Vuex from "vuex";
 import api from "../apis";
 
+function buildQuery(params) {
+  if (!params) {
+    return '';
+  }
+  if (typeof params === 'string') {
+    return params;
+  }
+  if (typeof params !== 'object') {
+    return '';
+  }
+  let arr = [];
+  for (let key of Object.keys(params)) {
+    arr.push(encodeURIComponent(key) + '=' + encodeURIComponent(params[key]));
+  }
+  return '?' + arr.join('&');
+}
+
 Vue.use(Vuex);
 
 const store = () =>
@@ -37,7 +54,7 @@ const store = () =>
 		actions: {
 			async fetchTalents({ commit }, params) {
 				try {
-					let res = await api.get('article/active', params)
+					let res = await api.get('article/active' + buildQuery(params))
 					commit('SET_TALENTS', res.data)
 					return res.total
 				} catch (e) {
@@ -55,9 +72,9 @@ const store = () =>
 			},
 			async fetchSponsorships({ commit }, params) {
 				try {
-					let res = await api.get('article/slug/:slug', params)
-					commit('SET_TALENTS', res.data)
-					return 1
+					let res = await api.get('sponsored/active' + buildQuery(params))
+					commit('SET_SPONSORSHIPS', res.data)
+					return res.total
 				} catch (e) {
 					throw e
 				}
@@ -71,10 +88,9 @@ const store = () =>
 					throw e
 				}
 			},
-			async fetchContribute({ commit }, form) {
+			async createContribute({ commit }, form) {
 				try {
 					let res = await api.post('order',form)
-					commit('SET_CONTRIBUTE', res.data)
 					return res.data
 				} catch (e) {
 					throw e

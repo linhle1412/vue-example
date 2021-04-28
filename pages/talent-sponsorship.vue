@@ -44,9 +44,9 @@
                     <div class="col-10">
                       <p class="name">{{ talent.name }}</p>
                       <p class="detail">
-                        <NuxtLink :to="talent.link">
+                        <a :href="talent.link">
                           Chi tiết
-                        </NuxtLink>
+                        </a>
                       </p>
                       <p class="price">{{ talent.amount | money }}₫</p>
                     </div>
