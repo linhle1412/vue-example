@@ -1,5 +1,5 @@
 <template>
-  <div class="page-index bg-home">
+  <div class="page-index bg-form">
     <div class="bg-leaf">
       <div class="container">
         <div class="row">
@@ -160,6 +160,8 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class='banner-bottom'>
     </div>
   </div>
 </template>

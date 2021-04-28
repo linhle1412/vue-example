@@ -18,14 +18,16 @@
                   </div>
                   <div class="talent-list-content">
                     <div class="talent-list-title">
+                      <NuxtLink :to="'/tai-nang/' + talent.id + '-' + talent.slug">
                       <img width="30px" src="~/assets/images/medal-icon.png" alt="" />
                       {{talent.title}}
+                      </NuxtLink>
                     </div>
                     <div class="talent-list-des">
                       {{talent.description}}
                     </div>
                     <div class="talent-list-btn">
-                      <NuxtLink :to="'/tai-nang/' + talent.id + '-' + talent.slug">
+                      <NuxtLink :to="'/tai-nang/' +  talent.slug">
                         Chi tiết
                       </NuxtLink>
                     </div>
@@ -41,6 +43,8 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class='banner-bottom'>
     </div>
   </div>
 </template>
@@ -127,6 +131,9 @@ export default {
   }
 }
 .talent-list-title {
+  a{
+    color: #000;
+  }
   text-transform: uppercase;
   font-weight: bold;
   margin-bottom: 15px;

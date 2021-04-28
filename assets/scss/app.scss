@@ -87,6 +87,7 @@ a {
     flex: 0 0 160px;
     margin-top: 5px;
     font-weight: bold;
+
     @media only screen and (max-width: 500px) {
       flex: none;
     }
@@ -106,14 +107,16 @@ a {
 
   input,
   textarea {
-    &.error{
-        border-color: #dc3545;
+    &.error {
+      border-color: #dc3545;
     }
+
     &:focus {
       outline: none;
       border-color: #ffcb05;
       box-shadow: unset;
     }
+
     width: 100%;
     font-size: 19px;
     color: #000;
@@ -144,55 +147,86 @@ a {
     }
   }
 }
+
 footer {
-    ul{
-        list-style: none;
-        padding-left: 0;
-    }
-    position: relative;
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-  
-      width: 100%;
-      height: 2px;
-      border-top: 0.2rem solid #ffcb05;
-    }
+  ul {
+    list-style: none;
+    padding-left: 0;
   }
-  .app-footer {
-    font-family: 'Roboto Condensed', sans-serif;
+
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    width: 100%;
+    height: 2px;
+    border-top: 0.2rem solid #ffcb05;
+  }
+}
+
+.app-footer {
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #000;
+  font-size: 18px;
+  background-color: #efeeec;
+  font-weight: 400;
+
+  h4 {
+    font-weight: bold;
+  }
+
+  a {
     color: #000;
-    font-size: 18px;
-    background-color: #efeeec;
-    font-weight: 400;
-    h4{
-        font-weight: bold;
-    }
-    a{
-        color: #000;
-    }
-    .container{
-        padding-top: 4rem;
-        padding-bottom: 4rem;
-    }
-    .block-heading,
-    li,
-    span {
-      font-family: 'Roboto Condensed', sans-serif;
-    }
   }
-  
-  .app-branding-footer {
-    max-width: 18.3rem;
+
+  .container {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
+
+  .block-heading,
+  li,
+  span {
+    font-family: 'Roboto Condensed', sans-serif;
+  }
+}
+
+.app-branding-footer {
+  max-width: 18.3rem;
+}
+
+.banner-bottom {
+  background: url('~/assets/images/bg_kid.png') bottom no-repeat;
+  height: 42rem;
+  position: relative;
+  width: 100%;
+  background-size: cover;
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    height: 2rem;
+    width: 100%;
+    background: #efeeec;
+  }
+}
+
 @media only screen and (max-width: 550px) {
 
   .bg-leaf,
   .bg-leaf-banner-bottom {
     background-image: unset;
+  }
+
+  .banner-bottom {
+    height: 14rem;
   }
 }
 

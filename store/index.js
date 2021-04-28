@@ -35,16 +35,17 @@ const store = () =>
 			},
 			async fetchTalentDetail({ commit }, id) {
 				try {
-					// let res = await api.get('article/' + id)
-					// commit('SET_TALENT', res.data)
-					commit('SET_TALENT', {
-						title: 'LÊ ĐÌNH LINH',
-						description: 'description',
-						content: 'ihihihiihh',
-						image: {
-							small: 'https://tnv.eyeteam.vn/file/1619249459145-91d11afb-6d47-4b52-bc76-60cbfe6bedd7-unnamed_460.jpg'
-						}
-					})
+					let res = await api.get('article/slug/' + id)
+					commit('SET_TALENT', res.data)
+					console.log('id',id);
+					// commit('SET_TALENT', {
+					// 	title: 'LÊ ĐÌNH LINH',
+					// 	description: 'description',
+					// 	content: 'ihihihiihh',
+					// 	image: {
+					// 		small: 'https://tnv.eyeteam.vn/file/1619249459145-91d11afb-6d47-4b52-bc76-60cbfe6bedd7-unnamed_460.jpg'
+					// 	}
+					// })
 
 				} catch (e) {
 					throw e
@@ -52,15 +53,15 @@ const store = () =>
 			},
 			async fetchSponsorships({ commit }, params) {
 				try {
-					// let res = await api.get('article/active', params)
-					// commit('SET_TALENTS', res.data)
-					commit('SET_SPONSORSHIPS', [
-						{
-							name: 'Lê Đình Linh',
-							amount: 1000000,
-							link: 'http://localhost:3000/tai-nang/1-le-dinh-linh-hoc-sinh-guong-mau'
-						}
-					])
+					let res = await api.get('article/slug/:slug', params)
+					commit('SET_TALENTS', res.data)
+					// commit('SET_SPONSORSHIPS', [
+					// 	{
+					// 		name: 'Lê Đình Linh',
+					// 		amount: 1000000,
+					// 		link: 'http://localhost:3000/tai-nang/1-le-dinh-linh-hoc-sinh-guong-mau'
+					// 	}
+					// ])
 					return 1
 				} catch (e) {
 					throw e
