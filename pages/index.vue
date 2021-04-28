@@ -22,7 +22,7 @@
                   <div class="fund-box-row">
                     <div class="title-line-box">Đã tài trợ</div>
                     <div class="value-fund-box text-center">
-                      0
+                      {{(sponsored || 0) | money}}
                     </div>
                     <sup>VNĐ</sup>
                   </div>
@@ -33,7 +33,7 @@
                   <div class="fund-box-row">
                     <div class="title-line-box">Quỹ còn lại</div>
                     <div class="value-fund-box text-center">
-                      0
+                      {{(remained || 0) | money}}
                     </div>
                     <sup>VNĐ</sup>
                   </div>
@@ -79,13 +79,33 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from "vuex";
+
 
 export default {
   layout: "default",
+  data() {
+    return {
+      interval: null
+    };
+  },
+  mounted() {
+    this.$store.dispatch('fetchFund')
+    this.interval = setInterval(() => {
+      this.$store.dispatch('fetchFund')
+    }, 5000);
+  },
   computed:{
-    ...mapState(['totalFund']),
-  }
+    ...mapState(['totalFund', 'sponsored', 'remained']),
+  },
+  methods: {
+  },
+  destroyed() {
+    if (this.interval) {
+      clearInterval(this.interval)
+    }
+  },
+  
 };
 </script>
 
@@ -136,7 +156,7 @@ export default {
   position: absolute;
   font-family: "MicrobrewSoftOneD", sans-serif;
   font-size: 1.5rem;
-  top: 2.5rem;
+  top: 1.5rem;
   left: auto;
   right: 1.5rem;
   letter-spacing: normal;
@@ -179,7 +199,7 @@ export default {
   .value-fund-box{
     display: flex;
     font-family: "MicrobrewSoftOneD", sans-serif;
-    font-size: 3rem;
+    font-size: 2.8rem;
     line-height: normal;
     letter-spacing: -2px;
     position: relative;
@@ -189,7 +209,7 @@ export default {
   sup{
     position: absolute;
     font-family: "MicrobrewSoftOneD", sans-serif;
-    font-size: 0.7rem;
+    font-size: 1rem;
     top: 2.3rem;
     left: auto;
     right: 0.5rem;

@@ -14,6 +14,18 @@ a {
   }
 }
 
+.is-loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.6;
+  &::after {
+    content: "...";
+    position: absolute;
+    right: 10px;
+  }
+}
+
+
 .bg-home {
   background: url("~/assets/images/bg-home-page.png") #ffda4a no-repeat;
   position: relative;
@@ -51,12 +63,15 @@ a {
 }
 
 .btn-defaut {
+  cursor: pointer;
   a {
     background: #ffd52a;
     border: 1px solid #ffd52a;
-    padding: 12px 25px;
+    padding: 10px 25px;
     font-weight: bold;
     color: #000;
+    display: inline-block;
+    cursor: pointer;
 
     &:hover {
       text-decoration: none;

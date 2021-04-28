@@ -8,7 +8,7 @@
               <img src="~/assets/images/slogan-larger.svg" alt="" />
             </div>
             <div class="page-title text-center">
-              Bảng vinh danh đóng góp
+              Danh sách tài năng đã nhận tài trợ
             </div>
             <div class="table-main list-talent">
               <div class="table-head">
@@ -44,9 +44,9 @@
                     <div class="col-10">
                       <p class="name">{{ talent.name }}</p>
                       <p class="detail">
-                        <NuxtLink :to="talent.link">
+                        <a :href="talent.link">
                           Chi tiết
-                        </NuxtLink>
+                        </a>
                       </p>
                       <p class="price">{{ talent.amount | money }}₫</p>
                     </div>

@@ -18,7 +18,7 @@
                   </div>
                   <div class="talent-list-content">
                     <div class="talent-list-title">
-                      <NuxtLink :to="'/tai-nang/' + talent.id + '-' + talent.slug">
+                      <NuxtLink :to="'/tai-nang/' +  talent.slug">
                       <img width="30px" src="~/assets/images/medal-icon.png" alt="" />
                       {{talent.title}}
                       </NuxtLink>
