@@ -8,7 +8,7 @@
               <img src="~/assets/images/slogan-larger.svg" alt="" />
             </div>
             <div class="page-title text-center">
-              Bảng vinh danh đóng góp
+              Danh sách tài năng đã nhận tài trợ
             </div>
             <div class="table-main list-talent">
               <div class="table-head">

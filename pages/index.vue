@@ -22,7 +22,7 @@
                   <div class="fund-box-row">
                     <div class="title-line-box">Đã tài trợ</div>
                     <div class="value-fund-box text-center">
-                      0
+                      {{(sponsored || 0) | money}}
                     </div>
                     <sup>VNĐ</sup>
                   </div>
@@ -33,7 +33,7 @@
                   <div class="fund-box-row">
                     <div class="title-line-box">Quỹ còn lại</div>
                     <div class="value-fund-box text-center">
-                      0
+                      {{(remained || 0) | money}}
                     </div>
                     <sup>VNĐ</sup>
                   </div>
@@ -79,13 +79,27 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from "vuex";
+
 
 export default {
   layout: "default",
+    data() {
+    return {
+    };
+  },
+  mounted() {
+    this.$store.dispatch('fetchFund')
+    setInterval(() => {
+      this.$store.dispatch('fetchFund')
+    }, 5000);
+  },
   computed:{
-    ...mapState(['totalFund']),
+    ...mapState(['totalFund', 'sponsored', 'remained']),
+  },
+  methods: {
   }
+  
 };
 </script>
 

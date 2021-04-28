@@ -52,7 +52,16 @@
                     <div class="w-10">Xếp hạng</div>
                     <div class="w-90">
                       <div class="row">
-                        <div class="col-3">Thành viên</div>
+                        <div 
+                          v-if="tabActive === 1"
+                         class="col-3"
+                         >Thành viên
+                         </div>
+                         <div 
+                          v-if="tabActive === 2"
+                         class="col-4"
+                         >Thành viên
+                         </div>
                         <div
                           v-if="tabActive === 1"
                           class="col-2 text-lg-center"
@@ -62,6 +71,15 @@
                         <div
                           v-if="tabActive === 1"
                           class="col-3 text-lg-center"
+                        >
+                          <span class="pl-9x"
+                            >Ngày đóng góp
+                            <i class="fa fa-sort" aria-hidden="true"></i
+                          ></span>
+                        </div>
+                        <div
+                          v-if="tabActive === 2"
+                          class="col-4 text-lg-center"
                         >
                           <span class="pl-9x"
                             >Ngày đóng góp
@@ -94,7 +112,7 @@
                                 class="'col-md-12 name-customer"
                                 :class="{
                                   'col-lg-3': tabActive === 1,
-                                  'col-lg-7': tabActive === 2
+                                  'col-lg-4': tabActive === 2
                                 }"
                               >
                                 {{ item.name }}
@@ -112,11 +130,13 @@
                                 {{ item.date }}
                               </div>
                               <div
-                                class="col-md-12 total-money"
-                                :class="{
-                                  'col-lg-4': tabActive === 1,
-                                  'col-lg-5': tabActive === 2
-                                }"
+                                v-if="tabActive === 2"
+                                class="col-md-12 col-lg-4 text-lg-center"
+                              >
+                                {{ item.date }}
+                              </div>
+                              <div
+                                class="col-md-12 col-lg-4 total-money"
                               >
                                 {{ item.total | money }}₫
                               </div>

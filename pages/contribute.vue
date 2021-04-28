@@ -19,11 +19,11 @@
                     type="text"
                     placeholder=" "
                     v-on:blur="validate(form, rules)"
-                    :class="{ error: rules.name.error }"
-                    v-model="form.name"
+                    :class="{ error: rules.fullname.error }"
+                    v-model="form.fullname"
                   />
                   <label>TÊN CÁ NHÂN / TỔ CHỨC</label>
-                  <small>{{ rules.name.error }}&nbsp;</small>
+                  <small>{{ rules.fullname.error }}&nbsp;</small>
                 </div>
 
                 <div class="floating-label">
@@ -39,9 +39,16 @@
                   <small>{{ rules.phone.error }}&nbsp;</small>
                 </div>
                 <div class="floating-label">
-                  <input class="floating-input" type="email" placeholder=" " />
+                  <input
+                    class="floating-input"
+                    type="email"
+                    placeholder=" "
+                    v-on:blur="validate(form, rules)"
+                    :class="{ error: rules.email.error }"
+                    v-model="form.email"
+                  />
                   <label>Email</label>
-                  <small>&nbsp;</small>
+                  <small>{{ rules.email.error }} &nbsp;</small>
                 </div>
                 <div class="floating-label contribute-money">
                   <input
@@ -66,7 +73,7 @@
                     id="contribute-message"
                     rows="3"
                     class="floating-input"
-                    v-model="form.message"
+                    v-model="form.note"
                     placeholder=" "
                   ></textarea>
                   <label>Lời nhắn</label>
@@ -80,7 +87,9 @@
                         class="custom-control-input"
                         id="contribute-type-1"
                         name="contribute-type"
-                        checked
+                        v-model="form.type"
+                        value="personal"
+                        checked='checked'
                       />
                       <label
                         class="custom-control-label"
@@ -94,6 +103,8 @@
                         class="custom-control-input"
                         id="contribute-type-2"
                         name="contribute-type"
+                        v-model="form.type"
+                        value="organization"
                       />
                       <label
                         class="custom-control-label"
@@ -175,17 +186,17 @@ export default {
   data() {
     return {
       form: {
-        name: "",
+        fullname: "",
         phone: "",
         email: "",
-        price: 0,
+        amount: 0,
         priceDisplay: "",
-        message: "",
+        note: "",
         type: "",
-        contribution: ""
+        method: "cash"
       },
       rules: {
-        name: {
+        fullname: {
           required: false,
           label: "TÊN CÁ NHÂN / TỔ CHỨC",
           error: ""
@@ -199,7 +210,7 @@ export default {
           error: ""
         },
         email: {
-          required: false,
+          required: true,
           label: "email",
           validate: value => {
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -211,7 +222,7 @@ export default {
           label: "Số tiền đóng góp",
           error: ""
         },
-        message: {
+        note: {
           required: false,
           label: "Lời nhắn",
           error: ""
@@ -227,12 +238,14 @@ export default {
   methods: {
     formatPrice(e) {
       if (e.target.value == "") {
-        this.form.price = 0;
+        this.form.amount = 0;
         this.form.priceDisplay = "";
         return;
       }
-      this.form.price = parseInt(e.target.value.toString().replaceAll(",", ""));
-      this.form.priceDisplay = this.form.price
+      this.form.amount = parseInt(
+        e.target.value.toString().replaceAll(",", "")
+      );
+      this.form.priceDisplay = this.form.amount
         .toString()
         .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
     },
@@ -281,8 +294,13 @@ export default {
     },
     checkForm(e) {
       e.preventDefault();
-      this.validate(this.form, this.rules)
-
+      this.validate(this.form, this.rules);
+      this.$store
+        .dispatch("fetchContribute", this.form)
+        .then(res => {
+          console.log(res);
+        })
+        .catch(e => {});
     }
   }
 };
@@ -342,7 +360,7 @@ export default {
 }
 .floating-input,
 .floating-select {
-  &.error{
+  &.error {
     border-color: #dc3545;
   }
   font-size: 15px;
