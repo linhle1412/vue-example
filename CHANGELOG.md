@@ -1,3 +1,10 @@
+## <small>1.0.5 (2021-04-28)</small>
+
+* fix bug index add menu index ([1cd5201](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/1cd5201))
+* page fund-info, footer, contribute ([6b84566](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/6b84566))
+
+
+
 ## <small>1.0.4 (2021-04-27)</small>
 
 
