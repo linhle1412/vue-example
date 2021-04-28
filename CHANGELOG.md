@@ -1,3 +1,9 @@
+## <small>1.0.7 (2021-04-28)</small>
+
+* fixx: sth ([b7c97a3](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/b7c97a3))
+
+
+
 ## <small>1.0.6 (2021-04-28)</small>
 
 * fix: merge ([30661f6](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/30661f6))
