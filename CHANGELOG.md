@@ -1,3 +1,11 @@
+## <small>1.0.11 (2021-04-29)</small>
+
+* fix: sth ([afc494f](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/afc494f))
+* fix code contribute ([0aef348](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/0aef348))
+* fix logo ([c49351a](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/c49351a))
+
+
+
 ## <small>1.0.10 (2021-04-29)</small>
 
 * hot-fix perpage ([96f6135](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/96f6135))
