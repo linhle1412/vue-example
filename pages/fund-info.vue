@@ -36,10 +36,7 @@
                     <div class="col-sm-12 col-md-5">
                       <div class="search-bar">
                         <i class="fa fa-search" aria-hidden="true"></i>
-                        <b-input
-                          id="search_text"
-                          
-                        />
+                        <b-input id="search_text" />
                       </div>
                     </div>
                   </div>
@@ -49,16 +46,12 @@
                     <div class="w-10">Xếp hạng</div>
                     <div class="w-90">
                       <div class="row">
-                        <div 
-                          v-if="tabActive === 1"
-                         class="col-3"
-                         >Thành viên
-                         </div>
-                         <div 
-                          v-if="tabActive === 2"
-                         class="col-4"
-                         >Thành viên
-                         </div>
+                        <div v-if="tabActive === 1" class="col-3">
+                          Thành viên
+                        </div>
+                        <div v-if="tabActive === 2" class="col-4">
+                          Thành viên
+                        </div>
                         <div
                           v-if="tabActive === 1"
                           class="col-2 text-lg-center"
@@ -71,7 +64,7 @@
                         >
                           <span class="pl-9x"
                             >Ngày đóng góp
-                            <i class="fa fa-sort" aria-hidden="true"></i
+                            <i class="fa fa-sort" aria-hidden="true" @click="sort('date')"></i
                           ></span>
                         </div>
                         <div
@@ -80,11 +73,20 @@
                         >
                           <span class="pl-9x"
                             >Ngày đóng góp
-                            <i class="fa fa-sort" aria-hidden="true"></i
+                            <i
+                              class="fa fa-sort"
+                              aria-hidden="true"
+                              @click="sort('date')"
+                            ></i
                           ></span>
                         </div>
                         <div class="col-4 text-lg-right">
-                          Số tiền đóng góp <i class="fa fa-sort" aria-hidden="true"></i>
+                          Số tiền đóng góp
+                          <i
+                            class="fa fa-sort"
+                            @click="sort('total')"
+                            aria-hidden="true"
+                          ></i>
                         </div>
                       </div>
                     </div>
@@ -93,7 +95,7 @@
 
                 <div v-if="dataFunds.entities && dataFunds.entities.length > 0">
                   <div
-                    v-for="(item, index) in dataFunds.entities"
+                    v-for="(item, index) in sortedCats "
                     :key="index"
                     class="content-table"
                   >
@@ -132,9 +134,7 @@
                               >
                                 {{ item.date }}
                               </div>
-                              <div
-                                class="col-md-12 col-lg-4 total-money"
-                              >
+                              <div class="col-md-12 col-lg-4 total-money">
                                 {{ item.total | money }}₫
                               </div>
                             </div>
@@ -150,13 +150,11 @@
         </div>
       </div>
     </div>
-    <div class='banner-bottom'>
-    </div>
+    <div class="banner-bottom"></div>
   </div>
 </template>
 
 <script>
-
 export default {
   layout: "default",
   filters: {
@@ -166,15 +164,6 @@ export default {
     }
   },
   async fetch() {
-    this.loadDataShops();
-    this.loadDataCustomers();
-    this.getActiveTab();
-  
-    this.mapDataFunds(this.tabActive);
-   
-    this.athletesDetail = this.athletesData
-      ? this.athletesData.entities[0]
-      : null;
   },
   data() {
     return {
@@ -191,33 +180,42 @@ export default {
             rank: 2,
             name: "Nghĩa Đinh",
             code: "0345xxxx03",
-            date: "22/06/2021",
+            date: "10/06/2021",
             total: 307000
           }
         ]
       },
 
-      tabActive: 1,
+      currentSort: "date",
+      currentSortDir: "asc",
+      tabActive: 1
     };
   },
   computed: {
-
-  },
-
-  mounted() {
-  },
-  destroyed() {
+    sortedCats:function() {
+    return this.dataFunds.entities.sort((a,b) => {
+      let modifier = 1;
+      if(this.currentSortDir === 'desc') modifier = -1;
+      if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
+      if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
+      return 0;
+    });
+  }
   },
   methods: {
-
     setTabActive(index) {
       this.tabActive = index;
       this.currentPage = 1;
+    },
+    sort: function(s) {
+      //if s == current sort, reverse
+      if (s === this.currentSort) {
+        this.currentSortDir = this.currentSortDir === "asc" ? "desc" : "asc";
+      }
+      this.currentSort = s;
     }
   },
-  head() {
-   
-  }
+  head() {}
 };
 </script>
 
