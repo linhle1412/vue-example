@@ -1,3 +1,9 @@
+## <small>1.0.10 (2021-04-29)</small>
+
+* hot-fix perpage ([96f6135](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/96f6135))
+
+
+
 ## <small>1.0.9 (2021-04-29)</small>
 
 * fix all ([836038e](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/836038e))
