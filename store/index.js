@@ -54,7 +54,7 @@ const store = () =>
 		actions: {
 			async fetchTalents({ commit }, params) {
 				try {
-					let res = await api.get('article/active' + buildQuery(params))
+					let res = await api.get('article/active')
 					commit('SET_TALENTS', res.data)
 					return res.total
 				} catch (e) {
@@ -72,7 +72,7 @@ const store = () =>
 			},
 			async fetchSponsorships({ commit }, params) {
 				try {
-					let res = await api.get('sponsored/active' + buildQuery(params))
+					let res = await api.get('sponsored/active')
 					commit('SET_SPONSORSHIPS', res.data)
 					return res.total
 				} catch (e) {
