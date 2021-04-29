@@ -166,8 +166,6 @@ export default {
     }
   },
   async fetch() {
-    this.loadDataShops();
-    this.loadDataCustomers();
     this.getActiveTab();
   
     this.mapDataFunds(this.tabActive);
@@ -549,6 +547,7 @@ export default {
     top: 50%;
     left: 5px;
     transform: translate(0%, -50%);
+    font-size: 22px;
   }
   #search_text {
     width: 100%;
