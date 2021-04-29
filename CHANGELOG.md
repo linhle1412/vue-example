@@ -1,3 +1,9 @@
+## <small>1.0.12 (2021-04-29)</small>
+
+* fix: pagination ([f809f57](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/f809f57))
+
+
+
 ## <small>1.0.11 (2021-04-29)</small>
 
 * fix: sth ([afc494f](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/afc494f))
