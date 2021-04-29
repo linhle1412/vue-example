@@ -11,23 +11,30 @@
               Thông tin các tài năng
             </div>
             <div class="talent-detail">
-                <div class="talent-detail-img">
-                  <div v-bind:style="{'background-image': 'url('+ talentDetail.image.small + ')'}"></div>
+              <div class="talent-detail-img">
+                <div
+                  v-bind:style="{
+                    'background-image': 'url(' + talentDetail.image.small + ')'
+                  }"
+                ></div>
+              </div>
+              <div class="talent-detail-content">
+                <div class="talent-detail-title">
+                  <img
+                    width="30px"
+                    src="~/assets/images/medal-icon.png"
+                    alt=""
+                  />
+                  {{ talentDetail.title }}
                 </div>
-                <div class="talent-detail-content">
-                  <div class="talent-detail-title">
-                    <img width="30px" src="~/assets/images/medal-icon.png" alt="" />
-                    {{talentDetail.title}}
-                  </div>
-                  <div v-html="talentDetail.content">
-                  </div>
-                </div>
+                <div v-html="talentDetail.content"></div>
+              </div>
               <div class="pre-next-btn">
-                <NuxtLink to="#">
+                <NuxtLink class='pre-btn' v-if='previousTalen()' :to="'/tai-nang/' + previousTalen()">
                   <i class="fa fa-angle-left" aria-hidden="true"></i> Tài năng
                   trước
                 </NuxtLink>
-                <NuxtLink to="#">
+                <NuxtLink class='next-btn' v-if='nextTalen()' :to="'/tai-nang/' + nextTalen()">
                   Tài năng sau
                   <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </NuxtLink>
@@ -45,8 +52,7 @@ import { mapState, mapActions } from "vuex";
 
 export default {
   layout: "default",
-  components: {
-  },
+  components: {},
   data() {
     return {
       talentDetail: this.$store.state.talentDetail
@@ -55,10 +61,10 @@ export default {
   async fetch({ store, params, redirect, query }) {
     try {
       // const id = params.id.split('-')[0]
-      const id = params.id
-      await store.dispatch('fetchTalentDetail', id)
+      const id = params.id;
+      await store.dispatch("fetchTalentDetail", id);
     } catch (e) {
-      redirect('/not-found')
+      redirect("/not-found");
     }
   },
   head() {
@@ -66,41 +72,61 @@ export default {
       title: this.talentDetail.title,
       meta: [
         {
-          hid: 'description',
-          name: 'description',
+          hid: "description",
+          name: "description",
           content: this.talentDetail.description
         },
         {
-          hid: 'og:title',
-          property: 'og:title',
+          hid: "og:title",
+          property: "og:title",
           content: this.talentDetail.title
         },
         {
-          hid: 'og:url',
-          property: 'og:url',
+          hid: "og:url",
+          property: "og:url",
           content: this.$nuxt.$route.fullPath
         },
         {
-          hid: 'og:description',
-          property: 'og:description',
+          hid: "og:description",
+          property: "og:description",
           content: this.talentDetail.description
         },
         {
-          hid: 'og:type',
-          property: 'og:type',
-          content: 'article'
+          hid: "og:type",
+          property: "og:type",
+          content: "article"
         },
         {
-          hid: 'og:image',
-          property: 'og:image',
+          hid: "og:image",
+          property: "og:image",
           content: this.talentDetail.image.small
         }
       ]
-    }
+    };
   },
-  mounted() {
+  computed: {
+    ...mapState(["talents"])
   },
+  created() {
+    this.fetchTalents()
+  },
+  mounted() {},
   methods: {
+    ...mapActions(["fetchTalents"]),
+    nextTalen() {
+     let index = this.talents.findIndex((t) => t.id == this.talentDetail.id)
+     if (index != -1 ) {
+      return this.talents[index + 1] && this.talents[index + 1].slug
+     } 
+      return ''
+    },
+    previousTalen() {
+     let index = this.talents.findIndex((t) => t.id == this.talentDetail.id)
+     if (index <= this.talents.length ) {
+      return this.talents[index - 1] && this.talents[index - 1].slug
+     } 
+      return ''
+    }
   }
 };
 </script>
@@ -112,7 +138,7 @@ export default {
   border-radius: 15px;
   float: left;
   margin-right: 25px;
-  >div {
+  > div {
     width: 190px;
     padding-bottom: 100%;
     background-size: cover;
@@ -140,10 +166,11 @@ export default {
   width: 100%;
 }
 .pre-next-btn {
-  display: flex;
-  justify-content: space-between;
   padding-top: 50px;
   clear: both;
+  .next-btn{
+    float: right;
+  }
   a {
     color: #000;
     font-weight: bold;
@@ -154,10 +181,10 @@ export default {
     }
     i {
       font-weight: bold;
-      &.fa-angle-left{
+      &.fa-angle-left {
         margin-right: 20px;
       }
-       &.fa-angle-right{
+      &.fa-angle-right {
         margin-left: 20px;
       }
     }
@@ -169,7 +196,7 @@ export default {
     float: unset;
     margin-right: 0;
     margin-bottom: 20px;
-    >div {
+    > div {
       width: 100%;
     }
   }
