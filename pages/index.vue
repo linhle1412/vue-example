@@ -84,13 +84,14 @@ import { mapState, mapActions } from "vuex";
 
 export default {
   layout: "default",
-    data() {
+  data() {
     return {
+      interval: null
     };
   },
   mounted() {
     this.$store.dispatch('fetchFund')
-    setInterval(() => {
+    this.interval = setInterval(() => {
       this.$store.dispatch('fetchFund')
     }, 5000);
   },
@@ -98,7 +99,12 @@ export default {
     ...mapState(['totalFund', 'sponsored', 'remained']),
   },
   methods: {
-  }
+  },
+  destroyed() {
+    if (this.interval) {
+      clearInterval(this.interval)
+    }
+  },
   
 };
 </script>
@@ -150,7 +156,7 @@ export default {
   position: absolute;
   font-family: "MicrobrewSoftOneD", sans-serif;
   font-size: 1.5rem;
-  top: 2.5rem;
+  top: 1.5rem;
   left: auto;
   right: 1.5rem;
   letter-spacing: normal;
@@ -193,7 +199,7 @@ export default {
   .value-fund-box{
     display: flex;
     font-family: "MicrobrewSoftOneD", sans-serif;
-    font-size: 3rem;
+    font-size: 2.8rem;
     line-height: normal;
     letter-spacing: -2px;
     position: relative;
@@ -203,7 +209,7 @@ export default {
   sup{
     position: absolute;
     font-family: "MicrobrewSoftOneD", sans-serif;
-    font-size: 0.7rem;
+    font-size: 1rem;
     top: 2.3rem;
     left: auto;
     right: 0.5rem;

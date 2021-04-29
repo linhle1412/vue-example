@@ -1,3 +1,12 @@
+## <small>1.0.9 (2021-04-29)</small>
+
+* fix all ([836038e](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/836038e))
+* fix bug giao dien ([875b90a](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/875b90a))
+* fix bugs ([9c0e785](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/9c0e785))
+* fix bugs form contribute ([497bba5](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/497bba5))
+
+
+
 ## <small>1.0.8 (2021-04-28)</small>
 
 * add api article ([d6aa00f](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/d6aa00f))
