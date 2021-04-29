@@ -196,8 +196,13 @@
                 Hành động nhỏ - Ý nghĩa lớn của bạn đã giúp cho các tài năng <br/>
                 mở rộng cơ hội trong tương lai
               </div>
-              <div class="btn-defaut text-center my-3" @click="isSubmitted = false">
+              <!-- <div class="btn-defaut text-center my-3" @click="isSubmitted = false">
                 <a>Đóng</a>
+              </div> -->
+                <div class="btn-defaut text-center mb-4">
+                <NuxtLink to="/thong-tin-quy" class='text-uppercase'>
+                  Thông tin quỹ
+                </NuxtLink>
               </div>
             </div>
           </div>
@@ -335,13 +340,13 @@ export default {
         this.$store
           .dispatch("createContribute", this.form)
           .then(res => {
-            this.isLoading = false;
+            this.isLoading = false
             this.isSubmitted = true
             this.isSuccess = true
             this.clearForm()
           })
           .catch(e => {
-            this.isLoading = false;
+            this.isLoading = false
             this.isSubmitted = true
             this.isSuccess = false
             this.clearForm()

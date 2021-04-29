@@ -76,6 +76,8 @@ export default {
     width: 100%;
     background: #fff;
     padding: 1rem;
+    box-shadow: 0 0.4rem 2rem rgb(0 0 0 / 18%);
+    border-bottom: 2px solid #ffcb05;
   }
 }
 .header ul li a {
