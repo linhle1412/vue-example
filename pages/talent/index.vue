@@ -113,6 +113,8 @@ export default {
   display: flex;
   @media only screen and (max-width: 500px) {
     flex-direction: column;
+    background: #fff;
+    border-radius: 15px;
   }
 
 }
@@ -127,7 +129,6 @@ export default {
   }
   @media only screen and (max-width: 500px) {
     margin-right: 0;
-    margin-bottom: 15px;
   }
 }
 .talent-list-title {
