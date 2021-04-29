@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-lg-8 col-md-12 mx-auto py-5">
             <div class="logo text-center mb-4">
-              <img src="~/assets/images/slogan.svg" alt="" />
+              <img src="~/assets/images/slogan-larger.svg" alt="" />
             </div>
             <div class="page-title text-center">
               Bảng vinh danh đóng góp
@@ -144,34 +144,6 @@
                     </div>
                   </div>
                 </div>
-                <div v-else-if="searchText" class="d-flex mt-4x content-center">
-                  <div class="text-sliver">
-                    <div class="d-flex content-center mb-2x">
-                      <img
-                        src="images/funds/icon_not-found.svg"
-                        alt="loading"
-                        height="52"
-                      />
-                    </div>
-                    Không tìm thấy
-                    {{ tabActive === 1 ? "thành viên" : "cửa hàng" }} đã nhập
-                  </div>
-                </div>
-                <div v-else class="loading d-flex content-center">
-                  <img src="images/spinner.svg" alt="loading" width="50" />
-                </div>
-                <div v-if="dataFunds.total > pageSizes" class="paging-row">
-                  <el-pagination
-                    background
-                    layout="prev, pager, next"
-                    :pager-count="pageCount"
-                    :total="dataFunds.total"
-                    :page-size="pageSizes"
-                    :current-page.sync="currentPage"
-                    @current-change="handleCurrentChange"
-                  >
-                  </el-pagination>
-                </div>
               </div>
             </div>
           </div>
@@ -184,9 +156,7 @@
 </template>
 
 <script>
-import slugify from "slugify";
 
-slugify.extend({ Đ: "D", đ: "d" });
 export default {
   layout: "default",
   filters: {
@@ -208,13 +178,7 @@ export default {
   },
   data() {
     return {
-      dataFundsShop: null,
-      dataFundsCustomers: null,
-      dataFundsShopOrgi: null,
-      dataFundsCustomersOrig: null,
-      resultSearch: null,
       dataFunds: {
-        total: 0,
         entities: [
           {
             rank: 1,
@@ -233,168 +197,26 @@ export default {
         ]
       },
 
-      searchText: "",
       tabActive: 1,
-      athletesDetail: null,
-      athletesData: null,
-      swiperAthletesOptions: {
-        slidesPerView: 5,
-        spaceBetween: 15,
-        a11y: true,
-        keyboardControl: true,
-        grabCursor: true,
-        // centeredSlides: true,
-        paginationClickable: true,
-        navigation: {
-          nextEl: ".swiper-btn-next",
-          prevEl: ".swiper-btn-prev"
-        },
-        breakpoints: {
-          320: {
-            slidesPerView: 1
-          },
-
-          768: {
-            slidesPerView: 2
-          },
-          1024: {
-            slidesPerView: 3
-          },
-          1280: {
-            slidesPerView: 4
-          }
-        }
-      },
-      currentPage: 1,
-      pageSizes: 10,
-      pageCount: 7
     };
   },
   computed: {
-    totalDataFunds() {
-      return this.dataFunds.total;
-    },
-    totalTalen() {
-      return this.athletesData ? this.athletesData.total : 0;
-    }
+
   },
 
   mounted() {
-    this.changePageCount();
-    window.addEventListener("resize", this.changePageCount);
   },
   destroyed() {
-    window.removeEventListener("resize", this.changePageCount);
   },
   methods: {
-    getActiveTab() {
-      const param = this.$route.params ? this.$route.params.tabIndex : 1;
-      this.tabActive = param || 1;
-    },
-    changePageCount() {
-      const screenWidth = window.screen.width;
-      if (screenWidth < 480) {
-        this.pageCount = 5;
-      } else {
-        this.pageCount = 7;
-      }
-    },
-    mapDataFunds(key) {
-     return this.dataFunds.entities
-    },
 
     setTabActive(index) {
       this.tabActive = index;
-      this.searchText = "";
       this.currentPage = 1;
-      this.loadDataShops();
-      this.loadDataCustomers();
-    },
-    handleCurrentChange(val) {
-      this.currentPage = val;
-      if (this.searchText) {
-        const result = this.resultSearch
-          ? this.resultSearch.entities.slice(
-              (this.currentPage - 1) * this.pageSizes,
-              this.currentPage * this.pageSizes
-            )
-          : null;
-        return (this.dataFunds.entities = result);
-      }
-      this.loadDataShops();
-      this.loadDataCustomers();
-    },
-    async loadDataShops(isAll, pageSizeMax) {
-      const pageIndex = this.currentPage - 1;
-    
-      
-      this.mapDataFunds(this.tabActive);
-    },
-    async loadDataCustomers(isAll, pageSizeMax) {
-      const pageIndex = this.currentPage - 1;
-     
-      this.mapDataFunds(this.tabActive);
-    },
-    handleInputSearch() {
-      const valText = event.target.value;
-      this.searchText = valText;
-      let resultSearch = null;
-      if (this.tabActive === 1) {
-        if (valText && valText.length > 0 && this.dataFundsCustomersOrig) {
-          const formatText = slugify(valText.trim().toLowerCase());
-          const result = this.dataFundsCustomersOrig.data.filter(item => {
-            return slugify(item.name.trim().toLowerCase()).includes(formatText);
-          });
-          resultSearch = {
-            data: result,
-            total: result.length
-          };
-        } else {
-          this.currentPage = 1;
-          resultSearch = {
-            data: this.dataFundsCustomers ? this.dataFundsCustomers.data : null,
-            total: this.dataFundsCustomers ? this.dataFundsCustomers.total : 0
-          };
-        }
-      } else if (valText && valText.length > 0 && this.dataFundsShopOrgi) {
-        const formatText = slugify(valText.trim().toLowerCase());
-        const result = this.dataFundsShopOrgi.data.filter(item => {
-          return slugify(item.name.trim().toLowerCase()).includes(formatText);
-        });
-        resultSearch = {
-          data: result,
-          total: 0
-        };
-      } else {
-        this.currentPage = 1;
-        
-      }
-      this.resultSearch = {
-        entities: resultSearch.data,
-        total: resultSearch.total
-      };
-      const resultPaging = resultSearch.data
-        ? resultSearch.data.slice(
-            (this.currentPage - 1) * this.pageSizes,
-            this.currentPage * this.pageSizes
-          )
-        : null;
-      this.dataFunds = {
-        entities: resultPaging,
-        total: resultSearch.total
-      };
-    },
-    rerenderAthletes(id) {
-      const getTalenDetail = this.athletesData
-        ? this.athletesData.entities.find(it => it.id === id)
-        : null;
-      this.athletesDetail = getTalenDetail;
     }
   },
   head() {
-    return {
-      title: "Quỹ Ông Bầu -"
-    };
+   
   }
 };
 </script>
