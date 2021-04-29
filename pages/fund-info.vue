@@ -95,7 +95,7 @@
 
                 <div v-if="dataFunds.entities && dataFunds.entities.length > 0">
                   <div
-                    v-for="(item, index) in sortedCats "
+                    v-for="(item, index) in sorteddataFunds "
                     :key="index"
                     class="content-table"
                   >
@@ -192,7 +192,7 @@ export default {
     };
   },
   computed: {
-    sortedCats:function() {
+    sorteddataFunds:function() {
     return this.dataFunds.entities.sort((a,b) => {
       let modifier = 1;
       if(this.currentSortDir === 'desc') modifier = -1;
