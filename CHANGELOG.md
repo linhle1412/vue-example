@@ -1,3 +1,9 @@
+## <small>1.0.15 (2021-04-30)</small>
+
+* fix sort ([b02276d](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/b02276d))
+
+
+
 ## <small>1.0.14 (2021-04-30)</small>
 
 * fix: paging ([6e3b3b1](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/6e3b3b1))
