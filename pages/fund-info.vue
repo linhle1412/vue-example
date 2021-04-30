@@ -238,13 +238,13 @@ export default {
         if (this.tabActive == 1) {
           if (!this.customerLoaded) {
             this.isLoading = true;
-            await this.fetchRankPerson({perpage: 10000})
+            await this.fetchRankPerson({page: 0, perpage: 10000})
             this.customerLoaded = true
           }
         } else {
           if (!this.shopLoaded) {
             this.isLoading = true;
-            await this.fetchRankStore({perpage: 10000})
+            await this.fetchRankStore({page: 0, perpage: 10000})
             this.shopLoaded = true
           }
         }
