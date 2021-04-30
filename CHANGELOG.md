@@ -1,3 +1,12 @@
+## <small>1.0.13 (2021-04-30)</small>
+
+* add list rank ([3a20cb6](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/3a20cb6))
+* fix all ([be82e92](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/be82e92))
+* fix css danh sach tai nang ([b78487a](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/b78487a))
+* next pre bai viet ([34b9c5c](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/34b9c5c))
+
+
+
 ## <small>1.0.12 (2021-04-29)</small>
 
 * fix: pagination ([f809f57](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/f809f57))
