@@ -1,9 +1,22 @@
-body {
-  font-family: "Roboto Condensed", monospace
+html.wf-robotocondensed-n4-active.wf-robotocondensed-n7-active {
+  body {
+    font-family: "Roboto Condensed", monospace
+  }
+
 }
 
 .logo img {
   max-width: 100%;
+}
+.logo {
+  height: 200px;
+  &.logo-background {
+    background-image: url('~assets/images/slogan-larger.svg');
+    background-size: contain;
+    background-position: center;
+    padding-bottom: 55%;
+    background-repeat: no-repeat;
+  }
 }
 
 a {
@@ -393,7 +406,7 @@ footer {
     }
   }
 
-  @media only screen and (max-width: 550px) {
+  @media only screen and (max-width: 768px) {
     .card-row {
       display: none;
     }

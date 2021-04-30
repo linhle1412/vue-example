@@ -135,7 +135,7 @@ export default {
 .fund-box .title-line-box:after {
   content: "";
   position: absolute;
-  height: 6px;
+  height: 8px;
   width: 100%;
   top: 50%;
   left: 0;
