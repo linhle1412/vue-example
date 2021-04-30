@@ -89,8 +89,10 @@ export default {
       interval: null
     };
   },
-  mounted() {
+  created() {
     this.$store.dispatch('fetchFund')
+  },
+  mounted() {
     this.interval = setInterval(() => {
       this.$store.dispatch('fetchFund')
     }, 5000);

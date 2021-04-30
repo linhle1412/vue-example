@@ -210,7 +210,7 @@ export default {
         data = data.filter((d) => this.normalizeee(d[this.tabActive === 1 ? 'fullname' : 'name']).includes(this.normalizeee(this.searchKey)))
       }
       if (this.sortBy == 'amount') {
-        data = data.sort((a, b) => a.amount >= b.amount ? this.sortValue === 'asc' ? -1 : 1 : this.sortValue === 'asc' ? 1 : -1)
+        data = data.sort((a, b) => parseInt(a.amount) >= parseInt(b.amount) ? this.sortValue === 'asc' ? -1 : 1 : this.sortValue === 'asc' ? 1 : -1)
       } else if (this.sortBy == 'updated_at') {
         data = data.sort((a, b) => new Date(a.updated_at).getTime() >= new Date(b.updated_at).getTime() ? this.sortValue === 'asc' ? -1 : 1 : this.sortValue === 'asc' ? 1 : -1)
       }
