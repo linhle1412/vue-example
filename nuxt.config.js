@@ -17,20 +17,6 @@ export default {
         href: "https://fonts.gstatic.com"
       },
       {
-        rel: "stylesheet",
-        href:
-          "https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
-      },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap"
-      },
-      {
-        rel: "stylesheet",
-        href:
-          "https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
-      },
-      {
         rel: "prefetch",
         as: "font",
         type: "font/woff",
@@ -72,11 +58,14 @@ export default {
     'nuxt-webfontloader'
   ],
   webfontloader: {
+    fontactive: (name, fvd) => {
+      console.log('font active', name)
+    },
     google: {
       families: [
-        'Yeseva+One:400:vietnamese',
-        'Roboto+Condensed:400,700:vietnamese',
-        'Oswald:500:vietnamese'
+        'Yeseva+One:400:vietnamese&display=swap',
+        'Roboto+Condensed:400,700:vietnamese&display=swap',
+        'Oswald:500:vietnamese&display=swap'
       ]
     }
   },

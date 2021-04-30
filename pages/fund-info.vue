@@ -4,8 +4,8 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-12 mx-auto py-5">
-            <div class="logo text-center mb-4">
-              <img src="~/assets/images/slogan-larger.svg" alt="" />
+            <div class="logo logo-background text-center mb-4">
+              <!-- <img src="~/assets/images/slogan-larger.svg" alt="" /> -->
             </div>
             <div class="page-title text-center">
               Bảng vinh danh đóng góp
@@ -142,7 +142,7 @@
                                 v-if="tabActive === 1"
                                 class="col-md-12 col-lg-3 text-lg-center"
                               >
-                                {{ new Date() | date }}
+                                {{ new Date(item.updated_at) | date }}
                               </div>
                               <div
                                 class="col-md-12 total-money"
@@ -212,7 +212,7 @@ export default {
       if (this.sortBy == 'amount') {
         data = data.sort((a, b) => a.amount >= b.amount ? this.sortValue === 'asc' ? -1 : 1 : this.sortValue === 'asc' ? 1 : -1)
       } else if (this.sortBy == 'updated_at') {
-        // data = data.sort((a, b) => new Date(a.updated_at).getTime() >= new Date(b.updated_at).getTime() ? this.sortValue === 'asc' ? -1 : 1 : this.sortValue === 'asc' ? 1 : -1)
+        data = data.sort((a, b) => new Date(a.updated_at).getTime() >= new Date(b.updated_at).getTime() ? this.sortValue === 'asc' ? -1 : 1 : this.sortValue === 'asc' ? 1 : -1)
       }
       return data
     },
@@ -289,6 +289,7 @@ export default {
 .section-fullscreen {
   width: 100%;
 }
+
 .w-10 {
   width: 16%;
   @media (min-width: 992px) {
