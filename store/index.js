@@ -31,8 +31,8 @@ const store = () =>
 			talentDetail: null,
 			sponsorships: [],
 			contribute: [],
-			rankPersons: [],
-			rankStores: [],
+			shops: [],
+			customers: [],
 		}),
 		mutations: {
 			SET_TALENTS(state, data) {
@@ -52,11 +52,11 @@ const store = () =>
 			SET_CONTRIBUTE(state, data) {
 				state.contribute = data
 			},
-			SET_RANK_PERSONS(state, data) {
-				state.rankPersons = data
+			SET_SHOPS(state, data) {
+				state.shops = data
 			},
-			SET_RANK_STORE(state, data) {
-				state.rankStores = data
+			SET_CUSTOMERS(state, data) {
+				state.customers = data
 			},
 		},
 		actions: {
@@ -99,32 +99,18 @@ const store = () =>
 
 			async fetchRankPerson({ commit }, params) {
 				try {
-					// let res = await api.get('fund/summary')
-					commit('SET_RANK_PERSONS', [
-						{
-							name: 'Linh Lê',
-							code: '0963254380',
-							created_at: new Date(),
-							amount: 100000
-						},
-						{
-							name: 'Phúc Hồng',
-							code: '0934324213',
-							created_at: new Date(),
-							amount: 500000
-						}
-					])
-					return 10
+					let res = await api.get('fund/customer' + buildQuery(params))
+					commit('SET_CUSTOMERS', res.data)
+					return res.total
 				} catch (e) {
 					throw e
 				}
 			},
 			async fetchRankStore({ commit }, params) {
 				try {
-					// let res = await api.get('fund/summary')
-					commit('SET_RANK_STORE', [
-					])
-					return 10
+					let res = await api.get('fund/shop' + buildQuery(params))
+					commit('SET_SHOPS', res.data)
+					return res.total
 				} catch (e) {
 					throw e
 				}

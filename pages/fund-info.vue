@@ -19,7 +19,7 @@
                         <div
                           class="tab tab-customer"
                           :class="{ active: tabActive === 1 }"
-                          @click.prevent="setTabActive(1)"
+                          @click="setTabActive(1)"
                         >
                           Cá nhân
                         </div>
@@ -27,7 +27,7 @@
                         <div
                           class="tab tab-store"
                           :class="{ active: tabActive === 2 }"
-                          @click.prevent="setTabActive(2)"
+                          @click="setTabActive(2)"
                         >
                           Cửa hàng
                         </div>
@@ -38,7 +38,8 @@
                         <i class="fa fa-search" aria-hidden="true"></i>
                         <b-input
                           id="search_text"
-                          
+                          v-model="searchKey"
+                          @input="onSearch"
                         />
                       </div>
                     </div>
@@ -51,12 +52,12 @@
                       <div class="row">
                         <div 
                           v-if="tabActive === 1"
-                         class="col-3"
+                         class="col-4"
                          >Thành viên
                          </div>
                          <div 
                           v-if="tabActive === 2"
-                         class="col-4"
+                         class="col-8"
                          >Thành viên
                          </div>
                         <div
@@ -67,34 +68,51 @@
                         </div>
                         <div
                           v-if="tabActive === 1"
-                          class="col-3 text-lg-center"
+                          class="col-3 text-lg-center p-0"
                         >
                           <span class="pl-9x"
                             >Ngày đóng góp
-                            <i class="fa fa-sort" aria-hidden="true"></i
-                          ></span>
+                          <div class="btn-sort" @click="onSort('updated_at')"><img src="~/assets/images/sort.png" alt=""></div>
+                          </span>
                         </div>
-                        <div
-                          v-if="tabActive === 2"
-                          class="col-4 text-lg-center"
+                      
+                        <div class="text-lg-right pl-0"
+                        :class="{
+                          'col-3': tabActive === 1,
+                          'col-4': tabActive === 2
+                        }"
                         >
-                          <span class="pl-9x"
-                            >Ngày đóng góp
-                            <i class="fa fa-sort" aria-hidden="true"></i
-                          ></span>
-                        </div>
-                        <div class="col-4 text-lg-right">
-                          Số tiền đóng góp <i class="fa fa-sort" aria-hidden="true"></i>
+                          Số tiền đóng góp 
+                          <div class="btn-sort" @click="onSort('amount')"><img src="~/assets/images/sort.png" alt=""></div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                <div v-if="dataFunds.entities && dataFunds.entities.length > 0">
+                <div class="head-title-table d-lg-none">
+                  <div class="d-flex">
+                      <div
+                        class="col-6 text-lg-center p-0"
+                      >
+                        <span  v-if="tabActive === 1" class="pl-9x"
+                          >Ngày đóng góp
+                        <div class="btn-sort" @click="onSort('updated_at')"><img src="~/assets/images/sort.png" alt=""></div>
+                        </span>
+                      </div>
+                    
+                      <div class="text-right col-6 p-0">
+                        Số tiền đóng góp 
+                        <div class="btn-sort" @click="onSort('amount')"><img src="~/assets/images/sort.png" alt=""></div>
+                      </div>
+                  </div>
+                </div>
+                <div v-if="isLoading" class="table-loading">
+                  <div class="table-loading-row" v-for="index in 10" :key="index"></div>
+                </div>
+                <div v-else-if="dataFunds && dataFunds.length > 0">
                   <div
-                    v-for="(item, index) in dataFunds.entities"
-                    :key="index"
+                    v-for="(item) in dataPaging"
+                    :key="item.id + '-' + item.index"
                     class="content-table"
                   >
                     <div class="w-10">
@@ -104,38 +122,36 @@
                       <div class="name-box">
                         <div class="row items-center">
                           <div class="col">
-                            <div class="row">
+                            <div class="row align-items-center">
                               <div
-                                class="'col-md-12 name-customer"
+                                class="col-md-12 name-customer"
                                 :class="{
-                                  'col-lg-3': tabActive === 1,
-                                  'col-lg-4': tabActive === 2
+                                  'col-lg-4': tabActive === 1,
+                                  'col-lg-8': tabActive === 2
                                 }"
                               >
-                                {{ item.name }}
+                                {{ tabActive ===1 ? item.fullname : item.name }}
                               </div>
                               <div
                                 v-if="tabActive === 1"
                                 class="col-md-12 col-lg-2 text-lg-center"
                               >
-                                {{ item.code }}
+                                {{ item.phone }}
                               </div>
                               <div
                                 v-if="tabActive === 1"
                                 class="col-md-12 col-lg-3 text-lg-center"
                               >
-                                {{ item.date }}
+                                {{ new Date() | date }}
                               </div>
                               <div
-                                v-if="tabActive === 2"
-                                class="col-md-12 col-lg-4 text-lg-center"
+                                class="col-md-12 total-money"
+                                :class="{
+                                  'col-lg-3': tabActive === 1,
+                                  'col-lg-4': tabActive === 2
+                                }"
                               >
-                                {{ item.date }}
-                              </div>
-                              <div
-                                class="col-md-12 col-lg-4 total-money"
-                              >
-                                {{ item.total | money }}₫
+                                {{ item.amount | money }}₫
                               </div>
                             </div>
                           </div>
@@ -144,6 +160,13 @@
                     </div>
                   </div>
                 </div>
+                <div v-else class="text-center my-5">Không có dữ liệu</div>
+                <pagination
+                  v-if="dataFunds && dataFunds.length > 0"
+                  v-model="pagination.page"
+                  :page-count="pageCount"
+                  :page-range="6">
+                </pagination>
               </div>
             </div>
           </div>
@@ -156,50 +179,52 @@
 </template>
 
 <script>
+import {mapState, mapActions} from 'vuex'
+// import debounce from 'debounce';
 
 export default {
   layout: "default",
-  filters: {
-    formatPrice(value) {
-      const valueFormat = new Intl.NumberFormat("vi-VN").format(value);
-      return valueFormat + "₫";
-    }
-  },
-  async fetch() {
-    this.getActiveTab();
-  
-    this.mapDataFunds(this.tabActive);
-   
-    this.athletesDetail = this.athletesData
-      ? this.athletesData.entities[0]
-      : null;
-  },
   data() {
     return {
-      dataFunds: {
-        entities: [
-          {
-            rank: 1,
-            name: "Steve",
-            code: "0962xxxx68",
-            date: "22/06/2021",
-            total: 592000
-          },
-          {
-            rank: 2,
-            name: "Nghĩa Đinh",
-            code: "0345xxxx03",
-            date: "22/06/2021",
-            total: 307000
-          }
-        ]
-      },
-
+      isLoading: true,
       tabActive: 1,
+      searchKey: '',
+      sortBy: '',
+      sortValue: 'asc',
+      pagination: {
+        page: 1,
+        perpage: 10,
+      },
+      customerLoaded: false,
+      shopLoaded: false
     };
   },
   computed: {
+    ...mapState(['shops', 'customers']),
+    pageCount() {
+      return Math.ceil(this.dataFunds.length / this.pagination.perpage)
+    },
+    dataFunds() {
+      let data = this.tabActive === 1 ? this.customers : this.shops
+      if (this.searchKey) {
+        data = data.filter((d) => this.normalizeee(d[this.tabActive === 1 ? 'fullname' : 'name']).includes(this.normalizeee(this.searchKey)))
+      }
+      if (this.sortBy == 'amount') {
+        data = data.sort((a, b) => a.amount >= b.amount ? this.sortValue === 'asc' ? -1 : 1 : this.sortValue === 'asc' ? 1 : -1)
+      } else if (this.sortBy == 'updated_at') {
+        // data = data.sort((a, b) => new Date(a.updated_at).getTime() >= new Date(b.updated_at).getTime() ? this.sortValue === 'asc' ? -1 : 1 : this.sortValue === 'asc' ? 1 : -1)
+      }
+      return data
+    },
+    dataPaging() {
+      let start = (this.pagination.page - 1) * this.pagination.perpage
+      let end = start + this.pagination.perpage
+      return this.dataFunds.slice(start, end)
+    }
+  },
 
+  created() {
+    this.setTabActive(1)
   },
 
   mounted() {
@@ -207,15 +232,56 @@ export default {
   destroyed() {
   },
   methods: {
-
+    ...mapActions(['fetchRankPerson', 'fetchRankStore']),
+    async fetchData() {
+      try {
+        if (this.tabActive == 1) {
+          if (!this.customerLoaded) {
+            this.isLoading = true;
+            await this.fetchRankPerson({perpage: 10000})
+            this.customerLoaded = true
+          }
+        } else {
+          if (!this.shopLoaded) {
+            this.isLoading = true;
+            await this.fetchRankStore({perpage: 10000})
+            this.shopLoaded = true
+          }
+        }
+      } catch(e) {
+        console.log(e)
+      }
+      this.isLoading = false;
+    },
+    onSearch() {
+      this.page = 1
+    },
+    onSort(key) {
+      this.sortValue = this.sortValue === 'asc' ? 'desc' : 'asc'
+      this.sortBy = key;
+    },
     setTabActive(index) {
       this.tabActive = index;
-      this.currentPage = 1;
+      this.searchKey = ''
+      this.pagination.page = 1;
+      this.fetchData()
+    },
+    normalizeee(str) {
+      if (str) {
+        str += '';
+        str = str.trim();
+        str = str.toLowerCase();
+        str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, 'a');
+        str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, 'e');
+        str = str.replace(/ì|í|ị|ỉ|ĩ/g, 'i');
+        str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, 'o');
+        str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, 'u');
+        str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, 'y');
+        str = str.replace(/đ/g, 'd');
+      }
+      return str;
     }
   },
-  head() {
-   
-  }
 };
 </script>
 
@@ -246,7 +312,7 @@ export default {
   }
 }
 .infor-fund-table {
-  min-height: 70rem;
+  min-height: 57rem;
   padding: 3rem 24px;
   background: #f5f5f5;
   border-radius: 16px;
@@ -260,7 +326,7 @@ export default {
 .tab {
   width: 148px;
   padding: 10px 34px;
-  font-size: 19px;
+  font-size: 17px;
   font-weight: bold;
   font-family: "Roboto Condensed", sans-serif;
   letter-spacing: 0;
@@ -287,17 +353,34 @@ export default {
 .head-title-table {
   padding: 20px 0 16px 0;
   font-family: "Roboto Condensed", sans-serif;
-  font-size: 18px;
+  font-size: 17px;
+  .btn-sort {
+    width: 24px;
+    height: 24px;
+    border: 1px solid;
+    outline: none;
+    padding: 0;
+    display: inline-block;
+    text-align: center;
+    line-height: 19px;
+    cursor: pointer;
+    img {
+      max-width: 100%;
+      width: 16px;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
 }
 .total-money {
   color: #ffcb05;
   font-family: "Roboto Condensed", sans-serif;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 600;
   margin-top: 0.4rem;
   @media (min-width: 992px) {
     text-align: right;
-    font-size: 18px;
     margin-top: 0;
   }
 }
@@ -339,6 +422,7 @@ export default {
   font-size: 14px;
   font-family: "Yeseva One", sans-serif;
   font-weight: normal;
+  padding-right: 0;
   @media (min-width: 992px) {
     font-size: 18px;
   }
