@@ -209,6 +209,7 @@ ul {
   align-items: center;
   justify-content: center;
   margin-top: 30px;
+  padding: 0;
 }
 .paginate-prev, .paginate-next {
   width: 30px;
@@ -222,6 +223,9 @@ ul {
 }
 .page-item {
   margin: 0 5px;
+  @media screen and(max-width: 500px) {
+    margin: 0 3px;
+  }
   a{
     width: 30px;
     height: 30px;
@@ -231,6 +235,10 @@ ul {
     justify-content: center;
     font-size: 12px;
     font-weight: 500;
+    @media screen and(max-width: 500px) {
+      width: 25px;
+      height: 25px
+    }
   }
   &.active, &:hover {
     a {
