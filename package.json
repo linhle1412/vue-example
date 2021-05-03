@@ -9,7 +9,8 @@
     "debounce": "^1.2.1",
     "nuxt": "^2.15.3",
     "nuxt-webfontloader": "^1.1.0",
-    "slugify": "^1.5.0"
+    "slugify": "^1.5.0",
+    "vue-pdf": "^4.2.0"
   },
   "devDependencies": {
     "fibers": "^5.0.0",

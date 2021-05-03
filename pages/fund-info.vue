@@ -21,7 +21,7 @@
                           :class="{ active: tabActive === 1 }"
                           @click="setTabActive(1)"
                         >
-                          Cá nhân
+                          Cá nhân / Tổ chức
                         </div>
 
                         <div
@@ -325,16 +325,13 @@ export default {
   }
 }
 .tab {
-  width: 148px;
   padding: 10px 34px;
   font-size: 17px;
   font-weight: bold;
   font-family: "Roboto Condensed", sans-serif;
   letter-spacing: 0;
   text-align: center;
-  //   &.tab-store {
-  //     margin: 0 24px;
-  //   }
+  flex: 1;
   &:hover {
     cursor: pointer;
   }
@@ -356,18 +353,15 @@ export default {
   font-family: "Roboto Condensed", sans-serif;
   font-size: 17px;
   .btn-sort {
-    width: 24px;
-    height: 24px;
-    border: 1px solid;
     outline: none;
     padding: 0;
     display: inline-block;
     text-align: center;
-    line-height: 19px;
+    line-height: 20px;
     cursor: pointer;
     img {
       max-width: 100%;
-      width: 16px;
+      width: 14px;
     }
     &:focus {
       outline: none;
@@ -380,6 +374,7 @@ export default {
   font-size: 20px;
   font-weight: 600;
   margin-top: 0.4rem;
+  padding-left: 0;
   @media (min-width: 992px) {
     text-align: right;
     margin-top: 0;
