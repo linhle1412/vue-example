@@ -1,3 +1,9 @@
+## <small>1.0.17 (2021-05-03)</small>
+
+* fix favicon & title ([1f75abf](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/1f75abf))
+
+
+
 ## <small>1.0.16 (2021-05-03)</small>
 
 * fix sth ([104b1d1](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/104b1d1))
