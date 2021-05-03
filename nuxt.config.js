@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "Quỹ từ thiện",
+    title: "Quỹ Phát triển tài năng Việt",
     htmlAttrs: {
       lang: "en"
     },
@@ -61,9 +61,6 @@ export default {
     'nuxt-webfontloader'
   ],
   webfontloader: {
-    fontactive: (name, fvd) => {
-      console.log('font active', name)
-    },
     google: {
       families: [
         'Yeseva+One:400:vietnamese&display=swap',
