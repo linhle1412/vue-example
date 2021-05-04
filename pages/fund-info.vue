@@ -325,7 +325,7 @@ export default {
   }
 }
 .tab {
-  padding: 10px 34px;
+  padding: 10px;
   font-size: 17px;
   font-weight: bold;
   font-family: "Roboto Condensed", sans-serif;
@@ -374,10 +374,10 @@ export default {
   font-size: 20px;
   font-weight: 600;
   margin-top: 0.4rem;
-  padding-left: 0;
   @media (min-width: 992px) {
     text-align: right;
     margin-top: 0;
+    padding-left: 0;
   }
 }
 
