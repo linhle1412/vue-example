@@ -1,3 +1,9 @@
+## <small>1.0.18 (2021-05-04)</small>
+
+* change env to prod ([8f7b967](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/8f7b967))
+
+
+
 ## <small>1.0.17 (2021-05-03)</small>
 
 * fix favicon & title ([1f75abf](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/1f75abf))
