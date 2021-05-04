@@ -1,3 +1,9 @@
+## <small>1.0.19 (2021-05-04)</small>
+
+* fix footer ([194a3a8](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/194a3a8))
+
+
+
 ## <small>1.0.18 (2021-05-04)</small>
 
 * change env to prod ([8f7b967](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/8f7b967))
