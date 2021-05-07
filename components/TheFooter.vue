@@ -1,12 +1,12 @@
 <template>
   <footer class="app-footer text-semi-bold">
     <!-- <b-modal v-model="modalShow">
-      <iframe :src="'~/assets/images/sample.pdf'" ></iframe>
+      <vue-pdf :src="pdfLink" ></vue-pdf>
     </b-modal> -->
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-lg-6 col-12">
-          <h4 class="block-heading">Về chúng tôi</h4>
+          <h4 class="block-heading" >Về chúng tôi</h4>
           <ul>
             <li class="mt-2" >
               <a
@@ -54,17 +54,18 @@ export default {
   data() {
     return {
       modalShow: false,
-      modalLink: ''
+      modalLink: '',
+      // pdfLink : require('~/assets/images/sample.pdf')
     }
   },
   mounted() {
     // PDFJS.getDocument()
   },
   methods: {
-    openModal(link) {
-      this.modalLink = link
-      this.modalShow = true
-    }
+    // openModal(link) {
+    //   this.modalLink = link
+    //   this.modalShow = true
+    // }
   }
 };
 </script>
