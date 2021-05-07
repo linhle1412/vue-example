@@ -1,40 +1,15 @@
 <template>
   <footer class="app-footer text-semi-bold">
-    <!-- <b-modal v-model="modalShow">
-      <vue-pdf :src="pdfLink" ></vue-pdf>
-    </b-modal> -->
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-lg-6 col-12">
           <h4 class="block-heading" >Về chúng tôi</h4>
           <ul>
-            <li class="mt-2" >
-              <a
-                href="https://drive.google.com/file/d/1u4UuL7NfYHgN5X0c5g527VVz2-aiBNFX/view?usp=sharing"
-                class="link"
-                target="_blank"
-                >Quyết định công nhận Quỹ</a
-              >
-            </li>
-            <li class="mt-2" >
-              <a
-                href="https://drive.google.com/file/d/10uBvIY73u0_b1e9vpv4h3Pi9BzOKEuni/view?usp=sharing"
-                class="link"
-                target="_blank"
-                >Quyết định thành lập Quỹ</a
-              >
-            </li>
-            <li class="mt-2">
-              <a
-                href="https://drive.google.com/file/d/1pFvjcXAoTR-NXC6nJ9ydE113T71D35bG/view?usp=sharing"
-                class="link"
-                target="_blank"
-                >Điều lệ Quỹ</a
-              >
+            <li class="mt-2" v-for="(menu, index) in menus" :key='index'>
+              <MenuPDF :id='menu.id' :name='menu.name' :link='menu.link' />
             </li>
           </ul>
         </div>
-
         <div class="col-12 col-lg-6">
           <p class="d-i-block mt-2">
             Copyright © 2021 Quỹ phát triển tài năng Việt. All rights reserved.
@@ -47,25 +22,46 @@
 
 <script>
 
+import MenuPDF from "@/components/MenuPDF";
+
+// var loadingTask = pdf.createLoadingTask('/pdf/pdf_3.pdf');
+
 export default {
-  name: "AppFooter",
+  name: "AppFooter", 
   components: {
+    MenuPDF
   },
   data() {
     return {
-      modalShow: false,
-      modalLink: '',
-      // pdfLink : require('~/assets/images/sample.pdf')
+      // src: loadingTask,
+      // numPages: undefined,
+      menus: [
+        {
+          id: 'modal-1',
+          name: 'Quyết định công nhận Quỹ',
+          link: '/pdf/pdf_1.pdf',
+          page: 1
+        },
+        {
+          id: 'modal-2',
+          name: 'Quyết định thành lập Quỹ',
+          link: '/pdf/pdf_2.pdf',
+          page: 2
+        },
+        {
+          id: 'modal-3',
+          name: 'Điều lệ Quỹ',
+          link: '/pdf/pdf_3.pdf',
+          page: 12
+        }
+      ]
     }
   },
   mounted() {
-    // PDFJS.getDocument()
+
   },
   methods: {
-    // openModal(link) {
-    //   this.modalLink = link
-    //   this.modalShow = true
-    // }
+    
   }
 };
 </script>
