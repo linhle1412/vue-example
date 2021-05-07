@@ -1,3 +1,48 @@
+## <small>1.0.19 (2021-05-04)</small>
+
+* fix footer ([194a3a8](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/194a3a8))
+
+
+
+## <small>1.0.18 (2021-05-04)</small>
+
+* change env to prod ([8f7b967](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/8f7b967))
+
+
+
+## <small>1.0.17 (2021-05-03)</small>
+
+* fix favicon & title ([1f75abf](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/1f75abf))
+
+
+
+## <small>1.0.16 (2021-05-03)</small>
+
+* fix sth ([104b1d1](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/104b1d1))
+
+
+
+## <small>1.0.15 (2021-04-30)</small>
+
+* fix sort ([b02276d](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/b02276d))
+
+
+
+## <small>1.0.14 (2021-04-30)</small>
+
+* fix: paging ([6e3b3b1](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/6e3b3b1))
+
+
+
+## <small>1.0.13 (2021-04-30)</small>
+
+* add list rank ([3a20cb6](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/3a20cb6))
+* fix all ([be82e92](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/be82e92))
+* fix css danh sach tai nang ([b78487a](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/b78487a))
+* next pre bai viet ([34b9c5c](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/34b9c5c))
+
+
+
 ## <small>1.0.12 (2021-04-29)</small>
 
 * fix: pagination ([f809f57](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/f809f57))

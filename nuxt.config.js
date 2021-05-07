@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "Quỹ từ thiện",
+    title: "Quỹ Phát triển tài năng Việt",
     htmlAttrs: {
       lang: "en"
     },
@@ -43,7 +43,10 @@ export default {
   css: ["@/assets/scss/app.scss"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ["~plugins/filters.js"],
+  plugins: [
+    "~plugins/filters.js",
+    { src: '~/plugins/vue-pdf.js', ssr: false },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -58,9 +61,6 @@ export default {
     'nuxt-webfontloader'
   ],
   webfontloader: {
-    fontactive: (name, fvd) => {
-      console.log('font active', name)
-    },
     google: {
       families: [
         'Yeseva+One:400:vietnamese&display=swap',
@@ -70,7 +70,14 @@ export default {
     }
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    extend(config, ctx) {
+      config.module.rules.push({
+        test: /\.pdf$/,
+        use: 'url-loader'
+      })
+    }
+  },
 
   router: {
     extendRoutes(routes, resolve) {
