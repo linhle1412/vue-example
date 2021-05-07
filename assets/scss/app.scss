@@ -1,9 +1,22 @@
-body {
-  font-family: "Roboto Condensed", monospace
+html.wf-robotocondensed-n4-active.wf-robotocondensed-n7-active {
+  body {
+    font-family: "Roboto Condensed", monospace
+  }
+
 }
 
 .logo img {
   max-width: 100%;
+}
+.logo {
+  height: 200px;
+  &.logo-background {
+    background-image: url('~assets/images/slogan-larger.svg');
+    background-size: contain;
+    background-position: center;
+    padding-bottom: 55%;
+    background-repeat: no-repeat;
+  }
 }
 
 a {
@@ -12,6 +25,37 @@ a {
   &:hover {
     text-decoration: none;
   }
+}
+
+@keyframes placeHolderShimmer{
+  0%{
+      background-position: -1000px 0
+  }
+  100%{
+      background-position: 1000px 0
+  }
+}
+
+.animated-background {
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 100% 104px;
+  height: 96px;
+  position: relative;
+}
+
+.table-loading {
+  .table-loading-row {
+    height: 56px;
+    margin-top: 8px;
+    @extend .animated-background;
+  }
+
 }
 
 .is-loading {
@@ -362,7 +406,7 @@ footer {
     }
   }
 
-  @media only screen and (max-width: 550px) {
+  @media only screen and (max-width: 768px) {
     .card-row {
       display: none;
     }

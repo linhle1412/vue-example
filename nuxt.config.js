@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "Quỹ từ thiện",
+    title: "Quỹ Phát triển tài năng Việt",
     htmlAttrs: {
       lang: "en"
     },
@@ -15,20 +15,6 @@ export default {
       {
         rel: "preconnect",
         href: "https://fonts.gstatic.com"
-      },
-      {
-        rel: "stylesheet",
-        href:
-          "https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
-      },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap"
-      },
-      {
-        rel: "stylesheet",
-        href:
-          "https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
       },
       {
         rel: "prefetch",
@@ -57,7 +43,10 @@ export default {
   css: ["@/assets/scss/app.scss"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ["~plugins/filters.js"],
+  plugins: [
+    "~plugins/filters.js",
+    { src: '~/plugins/vue-pdf.js', ssr: false },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -74,9 +63,9 @@ export default {
   webfontloader: {
     google: {
       families: [
-        'Yeseva+One:400:vietnamese',
-        'Roboto+Condensed:400,700:vietnamese',
-        'Oswald:500:vietnamese'
+        'Yeseva+One:400:vietnamese&display=swap',
+        'Roboto+Condensed:400,700:vietnamese&display=swap',
+        'Oswald:500:vietnamese&display=swap'
       ]
     }
   },

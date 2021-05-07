@@ -3,10 +3,9 @@
     <div class="bg-leaf-banner-bottom">
       <div class="container">
         <div class="row">
-          <div class="col-lg-7 col-md-12 mx-auto py-5">
-            <div class="logo text-center mb-4">
-              <img src="~/assets/images/slogan-larger.svg" alt="" />
-            </div>
+          <div class="col-lg-8 col-md-12 mx-auto py-5">
+            <div class="logo logo-background text-center mb-4"></div>
+            
             <div class="page-title text-center">
               Danh sách tài năng đã nhận tài trợ
             </div>
@@ -125,7 +124,7 @@ export default {
 // }
 
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 768px) {
   .table-head {
     display: none;
   }

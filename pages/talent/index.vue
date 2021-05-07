@@ -4,8 +4,10 @@
       <div class="container">
         <div class="row">
           <div class="col-12 py-5">
-            <div class="logo text-center mb-4">
-              <img src="~/assets/images/slogan-larger.svg" alt="" />
+            <div class="row justify-content-center">
+              <div class="col-lg-8 col-md-12">
+                <div class="logo logo-background text-center mb-4"></div>
+              </div>
             </div>
             <div class='page-title text-center'>
                 Thông tin các tài năng
@@ -19,8 +21,8 @@
                   <div class="talent-list-content">
                     <div class="talent-list-title">
                       <NuxtLink :to="'/tai-nang/' +  talent.slug">
-                      <img width="30px" src="~/assets/images/medal-icon.png" alt="" />
-                      {{talent.title}}
+                        <img width="30px" src="~/assets/images/medal-icon.png" alt="" />
+                        {{talent.title}}
                       </NuxtLink>
                     </div>
                     <div class="talent-list-des">

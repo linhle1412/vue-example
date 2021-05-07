@@ -89,8 +89,10 @@ export default {
       interval: null
     };
   },
-  mounted() {
+  created() {
     this.$store.dispatch('fetchFund')
+  },
+  mounted() {
     this.interval = setInterval(() => {
       this.$store.dispatch('fetchFund')
     }, 5000);
@@ -135,7 +137,7 @@ export default {
 .fund-box .title-line-box:after {
   content: "";
   position: absolute;
-  height: 6px;
+  height: 8px;
   width: 100%;
   top: 50%;
   left: 0;
