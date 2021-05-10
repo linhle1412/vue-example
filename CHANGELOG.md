@@ -1,3 +1,9 @@
+## <small>1.0.21 (2021-05-10)</small>
+
+* fix: change file pdf ([b6f8568](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/b6f8568))
+
+
+
 ## <small>1.0.20 (2021-05-10)</small>
 
 * change footer ([241c8ee](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/241c8ee))
