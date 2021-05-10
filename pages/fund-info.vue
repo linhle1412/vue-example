@@ -173,8 +173,7 @@
         </div>
       </div>
     </div>
-    <div class='banner-bottom'>
-    </div>
+    <div class="banner-bottom"></div>
   </div>
 </template>
 
