@@ -1,3 +1,12 @@
+## <small>1.0.20 (2021-05-10)</small>
+
+* change footer ([241c8ee](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/241c8ee))
+* menuPDF ([0c93fda](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/0c93fda))
+* sort form ([0d9f706](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/0d9f706))
+* sort form ([1596622](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/1596622))
+
+
+
 ## <small>1.0.19 (2021-05-04)</small>
 
 * fix footer ([194a3a8](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/194a3a8))
