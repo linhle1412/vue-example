@@ -5,8 +5,8 @@
         <div class="col-md-6 col-lg-6 col-12">
           <h4 class="block-heading" >Về chúng tôi</h4>
           <ul>
-            <li class="mt-2" v-for="(menu, index) in menus" :key='index'>
-              <MenuPDF :id='menu.id' :name='menu.name' :link='menu.link' />
+            <li class="mt-2" v-for="(menu, index) in menus" :key='index' @click="showModal(menu)">
+              {{menu.name}}
             </li>
           </ul>
         </div>
@@ -16,25 +16,34 @@
           </p>
         </div>
       </div>
+      <b-modal id="modal" :title="menuSelected && menuSelected.name" hide-footer size="lg">
+        <vue-pdf :src="menuSelected && menuSelected.link" @num-pages="numPages = $event"></vue-pdf>
+        <div v-if="numPages > 1" >
+          <div v-for="(pageNum, index) in numPages" :key="index" style="border-top: 1px solid #aaa">
+            <vue-pdf
+              :key="pageNum"
+              :src=" menuSelected.link"
+              :page="pageNum"
+              v-if="pageNum > 1"
+            ></vue-pdf>
+          </div>
+        </div>
+      </b-modal>
     </div>
   </footer>
 </template>
 
 <script>
 
-import MenuPDF from "@/components/MenuPDF";
-
-// var loadingTask = pdf.createLoadingTask('/pdf/pdf_3.pdf');
 
 export default {
   name: "AppFooter", 
   components: {
-    MenuPDF
   },
   data() {
     return {
-      // src: loadingTask,
-      // numPages: undefined,
+      menuSelected: null,
+      numPages: 0,
       menus: [
         {
           id: 'modal-1',
@@ -61,16 +70,23 @@ export default {
 
   },
   methods: {
-    
+    showModal(menu) {
+      this.menuSelected = Object.assign(menu);
+      this.$bvModal.show('modal')
+    }
   }
 };
 </script>
-
+<style lang="scss">
+  .modal-body {
+    padding: 0;
+  }
+</style>
 <style lang="scss" scoped>
 .social-icon {
   width: 4rem;
 }
-// ul li {
-//   cursor: pointer;
-// }
+ul li {
+  cursor: pointer;
+}
 </style>
