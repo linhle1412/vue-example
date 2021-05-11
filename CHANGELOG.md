@@ -1,3 +1,9 @@
+## <small>1.0.23 (2021-05-11)</small>
+
+* contribute moom ([1317c25](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/1317c25))
+
+
+
 ## <small>1.0.22 (2021-05-11)</small>
 
 * change file pdf ([5821303](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/5821303))
