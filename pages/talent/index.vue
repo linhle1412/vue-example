@@ -38,6 +38,7 @@
               </div>
               <pagination
                 v-model="page"
+                v-if="!talents"
                 :page-count="pageCount"
                 :page-range="3">
               </pagination>
