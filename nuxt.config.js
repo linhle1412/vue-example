@@ -98,6 +98,12 @@ export default {
           case "fund-info":
             r.path = "/thong-tin-quy";
             break;
+          case "success":
+            r.path = "/cam-on";
+            break;
+          case "fail":
+            r.path = "/that-bai";
+            break;
           default:
             break;
         }

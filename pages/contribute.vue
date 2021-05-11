@@ -128,13 +128,15 @@
                         >
                       </div>
                     </div>
-                    <!-- <div class="group-radio">
+                    <div class="group-radio">
                       <div class="custom-control custom-radio">
                         <input
                           type="radio"
                           class="custom-control-input"
                           id="contribution-2"
                           name="contribution"
+                          v-model="form.method"
+                          value="momo"
                         />
                         <label class="custom-control-label" for="contribution-2"
                           ><img
@@ -151,6 +153,8 @@
                           class="custom-control-input"
                           id="contribution-3"
                           name="contribution"
+                          v-model="form.method"
+                          value="zalo-pay"
                         />
                         <label class="custom-control-label" for="contribution-3"
                           ><img
@@ -161,7 +165,7 @@
                           Ví ZaloPay</label
                         >
                       </div>
-                    </div> -->
+                    </div>
                   </div>
                 </div>
                 <div class="text-center mt-4">
@@ -340,19 +344,27 @@ export default {
         this.$store
           .dispatch("createContribute", this.form)
           .then(res => {
-            this.isLoading = false
-            this.isSubmitted = true
-            this.isSuccess = true
-            this.clearForm()
+            console.log(this.form);
+            if(this.form.method === 'cash'){
+              this.isLoading = false
+              this.isSubmitted = true
+              this.isSuccess = true
+              this.clearForm()
+            }else{
+              this.isLoading = false
+              this.isSubmitted = true
+              this.isSuccess = true
+              this.clearForm()
+              window.open(res.pay_url);
+            }
           })
           .catch(e => {
-            this.isLoading = false
-            this.isSubmitted = true
-            this.isSuccess = false
-            this.clearForm()
+              this.isLoading = false
+              this.isSubmitted = true
+              this.isSuccess = false
+              this.clearForm()
           });
       };
-     
     }
   }
 };
