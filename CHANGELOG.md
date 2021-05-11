@@ -1,3 +1,9 @@
+## <small>1.0.22 (2021-05-11)</small>
+
+* change file pdf ([5821303](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/5821303))
+
+
+
 ## <small>1.0.21 (2021-05-10)</small>
 
 * fix: change file pdf ([b6f8568](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/b6f8568))
