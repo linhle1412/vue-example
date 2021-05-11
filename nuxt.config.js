@@ -99,7 +99,7 @@ export default {
             r.path = "/thong-tin-quy";
             break;
           case "success":
-            r.path = "/cam-on";
+            r.path = "/thank-you";
             break;
           case "fail":
             r.path = "/that-bai";

@@ -351,10 +351,10 @@ export default {
               this.isSuccess = true
               this.clearForm()
             }else{
-              this.isLoading = false
-              this.isSubmitted = true
-              this.isSuccess = true
-              this.clearForm()
+              // this.isLoading = false
+              // this.isSubmitted = true
+              // this.isSuccess = true
+              // this.clearForm()
               window.open(res.pay_url);
             }
           })
