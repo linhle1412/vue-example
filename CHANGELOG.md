@@ -1,3 +1,9 @@
+## <small>1.0.24 (2021-05-11)</small>
+
+* fix redirect ([66a03ca](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/66a03ca))
+
+
+
 ## <small>1.0.23 (2021-05-11)</small>
 
 * contribute moom ([1317c25](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/1317c25))
