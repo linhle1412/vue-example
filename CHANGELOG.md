@@ -1,3 +1,10 @@
+## <small>1.0.25 (2021-05-12)</small>
+
+* fix momo in mobile ([d26fda4](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/d26fda4))
+* fix momo in mobile ([defd515](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/defd515))
+
+
+
 ## <small>1.0.24 (2021-05-11)</small>
 
 * fix redirect ([66a03ca](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/66a03ca))
