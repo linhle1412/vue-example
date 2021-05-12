@@ -352,7 +352,6 @@ export default {
         if (!this.form.email) delete this.form.email;
         this.isLoading = true;
         this.$store.dispatch("createContribute", this.form).then(res => {
-          console.log(this.form);
           if (this.form.method === "cash") {
             this.isLoading = false;
             this.isSubmitted = true;
@@ -373,13 +372,13 @@ export default {
               window.open(res.pay_url);
             }
           }
+        })
+        .catch(e => {
+          this.isLoading = false;
+          this.isSubmitted = true;
+          this.isSuccess = false;
+          this.clearForm();
         });
-        // .catch(e => {
-        //   this.isLoading = false;
-        //   this.isSubmitted = true;
-        //   this.isSuccess = false;
-        //   this.clearForm();
-        // });
       }
     }
   }
