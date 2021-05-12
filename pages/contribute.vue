@@ -169,42 +169,51 @@
                   </div>
                 </div>
                 <div class="text-center mt-4">
-                  <button @click="checkForm" :class="isLoading ? 'is-loading' : ''">Gửi đóng góp</button>
+                  <button
+                    @click="checkForm"
+                    :class="isLoading ? 'is-loading' : ''"
+                  >
+                    Gửi đóng góp
+                  </button>
                 </div>
               </div>
             </div>
             <div v-else-if="!isSuccess" class="form-contribute form-result">
               <div class="img-form text-center">
-                <img src="~/assets/images/img-fail.png" alt="">
+                <img src="~/assets/images/img-fail.png" alt="" />
               </div>
               <div class="title-form text-center">
                 Thanh toán không thành công
               </div>
               <div class="content-form text-center mb-5">
                 Rất tiếc giao dịch của bạn chưa thành công.<br />
-                Vui lòng kiểm tra lại thao tác và  thực hiện tại
+                Vui lòng kiểm tra lại thao tác và thực hiện tại
               </div>
-              <div class="btn-defaut text-center my-3" @click="isSubmitted = false">
+              <div
+                class="btn-defaut text-center my-3"
+                @click="isSubmitted = false"
+              >
                 <a>Đóng góp lại</a>
               </div>
             </div>
             <div v-else class="form-contribute form-result">
               <div class="img-form text-center">
-                <img src="~/assets/images/img-success.png" alt="">
+                <img src="~/assets/images/img-success.png" alt="" />
               </div>
               <div class="title-form text-center">
                 Thanh toán thành công
               </div>
               <div class="content-form text-center mb-5">
                 Cảm ơn bạn đã góp vào Quỹ Phát Triển Tài Năng Việt. <br />
-                Hành động nhỏ - Ý nghĩa lớn của bạn đã giúp cho các tài năng <br/>
+                Hành động nhỏ - Ý nghĩa lớn của bạn đã giúp cho các tài năng
+                <br />
                 mở rộng cơ hội trong tương lai
               </div>
               <!-- <div class="btn-defaut text-center my-3" @click="isSubmitted = false">
                 <a>Đóng</a>
               </div> -->
-                <div class="btn-defaut text-center mb-4">
-                <NuxtLink to="/thong-tin-quy" class='text-uppercase'>
+              <div class="btn-defaut text-center mb-4">
+                <NuxtLink to="/thong-tin-quy" class="text-uppercase">
                   Thông tin quỹ
                 </NuxtLink>
               </div>
@@ -252,7 +261,7 @@ export default {
           required: false,
           label: "email",
           validate: value => {
-            if (!value) return true
+            if (!value) return true;
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
           },
           error: ""
@@ -335,36 +344,42 @@ export default {
         note: "",
         type: "personal",
         method: "cash"
-      }
+      };
     },
+
     checkForm() {
       if (this.validate(this.form, this.rules)) {
-        if (!this.form.email) delete this.form.email
+        if (!this.form.email) delete this.form.email;
         this.isLoading = true;
-        this.$store
-          .dispatch("createContribute", this.form)
-          .then(res => {
-            console.log(this.form);
-            if(this.form.method === 'cash'){
-              this.isLoading = false
-              this.isSubmitted = true
-              this.isSuccess = true
-              this.clearForm()
-            }else{
-              // this.isLoading = false
-              // this.isSubmitted = true
-              // this.isSuccess = true
-              // this.clearForm()
+        this.$store.dispatch("createContribute", this.form).then(res => {
+          if (this.form.method === "cash") {
+            this.isLoading = false;
+            this.isSubmitted = true;
+            this.isSuccess = true;
+            this.clearForm();
+          } else {
+            // this.isLoading = false
+            // this.isSubmitted = true
+            // this.isSuccess = true
+            // this.clearForm()
+            if (
+              /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+                navigator.userAgent
+              )
+            ) {
+              window.open(res.deeplink);
+            } else {
               window.open(res.pay_url);
             }
-          })
-          .catch(e => {
-              this.isLoading = false
-              this.isSubmitted = true
-              this.isSuccess = false
-              this.clearForm()
-          });
-      };
+          }
+        })
+        .catch(e => {
+          this.isLoading = false;
+          this.isSubmitted = true;
+          this.isSuccess = false;
+          this.clearForm();
+        });
+      }
     }
   }
 };
@@ -385,10 +400,10 @@ export default {
   &.form-result .title-form {
     margin-bottom: 15px;
   }
-  .img-form{
+  .img-form {
     width: 85px;
     margin: 20px auto 30px auto;
-    img{
+    img {
       width: 100%;
     }
   }
