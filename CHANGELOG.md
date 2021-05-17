@@ -1,3 +1,9 @@
+## <small>1.0.26 (2021-05-17)</small>
+
+* change slogan image ([6f4e67d](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/6f4e67d))
+
+
+
 ## <small>1.0.25 (2021-05-12)</small>
 
 * fix momo in mobile ([d26fda4](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/d26fda4))
