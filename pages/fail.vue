@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-lg-7 col-md-12 mx-auto py-5">
             <div class="logo text-center mb-4">
-              <img src="~/assets/images/slogan.svg" alt="" />
+              <img src="~/assets/images/slogan.png" alt="" />
             </div>
             <div class="form-contribute">
               <div class="img-form text-center">

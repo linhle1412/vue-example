@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-lg-7 col-md-12 mx-auto py-3">
             <div class="logo text-center mb-4">
-              <img src="~/assets/images/slogan.svg" alt="" />
+              <img src="~/assets/images/slogan.png" alt="" />
             </div>
             <div v-if="!isSubmitted" class="form-contribute">
               <div class="title-form text-center">
@@ -128,7 +128,7 @@
                         >
                       </div>
                     </div>
-                    <div class="group-radio">
+                    <!-- <div class="group-radio">
                       <div class="custom-control custom-radio">
                         <input
                           type="radio"
@@ -165,7 +165,7 @@
                           Ví ZaloPay</label
                         >
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
                 <div class="text-center mt-4">
@@ -357,21 +357,22 @@ export default {
             this.isSubmitted = true;
             this.isSuccess = true;
             this.clearForm();
-          } else {
-            // this.isLoading = false
-            // this.isSubmitted = true
-            // this.isSuccess = true
-            // this.clearForm()
-            if (
-              /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-                navigator.userAgent
-              )
-            ) {
-              window.open(res.deeplink);
-            } else {
-              window.open(res.pay_url);
-            }
-          }
+          } 
+          // else {
+          //   // this.isLoading = false
+          //   // this.isSubmitted = true
+          //   // this.isSuccess = true
+          //   // this.clearForm()
+          //   if (
+          //     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          //       navigator.userAgent
+          //     )
+          //   ) {
+          //     window.open(res.deeplink);
+          //   } else {
+          //     window.open(res.pay_url);
+          //   }
+          // }
         })
         .catch(e => {
           this.isLoading = false;
