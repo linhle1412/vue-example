@@ -1,3 +1,9 @@
+## <small>1.0.27 (2021-05-18)</small>
+
+* fix ([45f6dd7](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/45f6dd7))
+
+
+
 ## <small>1.0.26 (2021-05-17)</small>
 
 * change slogan image ([6f4e67d](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/6f4e67d))
