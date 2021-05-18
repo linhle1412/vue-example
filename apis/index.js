@@ -1,7 +1,7 @@
 /* eslint-disable */
 import axios from "axios";
 
-const prefix = 'http://quyphattrientainangviet.vn/api.';
+const prefix = 'https://tnv.eyeteam.vn/api.';
 
 const client = axios.create({
   baseURL: prefix,
