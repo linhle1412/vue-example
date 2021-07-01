@@ -1,3 +1,8 @@
+## <small>1.0.29 (2021-07-01)</small>
+
+
+
+
 ## <small>1.0.28 (2021-07-01)</small>
 
 * fix: api ([e0acf74](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/e0acf74))
