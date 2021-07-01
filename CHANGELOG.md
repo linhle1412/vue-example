@@ -1,3 +1,12 @@
+## <small>1.0.41 (2021-07-01)</small>
+
+* fix: api ([e0acf74](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/e0acf74))
+* fix: package ver ([33b4906](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/33b4906))
+* Release 1.0.28 ([308bf50](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/308bf50))
+* Release 1.0.29 ([2b5e0de](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/2b5e0de))
+
+
+
 ## <small>1.0.29 (2021-07-01)</small>
 
 
