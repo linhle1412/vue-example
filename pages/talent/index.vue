@@ -38,7 +38,7 @@
               </div>
               <pagination
                 v-model="page"
-                v-if="!talents"
+                v-if="talents.length"
                 :page-count="pageCount"
                 :page-range="3">
               </pagination>
@@ -86,7 +86,7 @@ export default {
     ...mapActions(['fetchTalents']),
     getData() {
       this.fetchTalents({page: this.page - 1, perpage: this.perpage}).then((total) => {
-        this.total = total
+        this.total = total;
       })
     }
   }
