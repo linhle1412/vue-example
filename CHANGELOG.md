@@ -1,3 +1,9 @@
+## <small>1.0.42 (2021-07-27)</small>
+
+* fix paging ([3886602](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/3886602))
+
+
+
 ## <small>1.0.41 (2021-07-01)</small>
 
 * fix: api ([e0acf74](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/e0acf74))
