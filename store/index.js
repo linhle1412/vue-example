@@ -14,7 +14,7 @@ function buildQuery(params) {
   }
   let arr = [];
   for (let key of Object.keys(params)) {
-    arr.push(encodeURIComponent(key) + '=' + encodeURIComponent(params[key]));
+		arr.push(encodeURIComponent(key) + '=' + encodeURIComponent(JSON.stringify(params[key])))
   }
   return '?' + arr.join('&');
 }
@@ -28,15 +28,45 @@ const store = () =>
 			sponsored: 0,
 			remained: 0,
 			talents: [],
+			suggestions: [],
 			talentDetail: null,
 			sponsorships: [],
 			contribute: [],
 			shops: [],
 			customers: [],
+			fundInfo: {
+				'y_nghia': '',
+				'ton_chi': '',
+				'tieu_chi': '',
+				'hinh_thuc': '',
+			},
+			contactMeta: {
+				vi: {
+					address: 'xxxx Hoàng Diệu, phường 16, Quận 4, TP.HCM',
+					email: 'xxxx@gmail.com',
+					phone: 'xxxxxxxxxx',
+					bankNumber: '100000xxxxxx',
+					bankName: 'xxxxx xxx xxx',
+					bank: 'xxxxxxxx',
+					bankBranch: 'xxxxxx'
+				},
+				en: {
+					address: '331 Hoàng Diệu, phường 16, Quận 4, TP.HCM',
+					email: 'xxxx@gmail.com',
+					phone: 'xxxxxxxxxx',
+					bankNumber: '100000xxxxxx',
+					bankName: 'xxxxx xxx xxx',
+					bank: 'xxxxxxxx',
+					bankBranch: 'xxxxxx'
+				}
+			}
 		}),
 		mutations: {
 			SET_TALENTS(state, data) {
 				state.talents = data
+			},
+			SET_SUGGESTIONS(state, data) {
+				state.suggestions = data
 			},
 			SET_TALENT(state, data) {
 				state.talentDetail = data
@@ -87,6 +117,15 @@ const store = () =>
 					throw e
 				}
 			},
+			async fetchSuggestions({ commit }, params) {
+				try {
+					let res = await api.get('article/active' + buildQuery({...params, category: 'suggested_talent'}))
+					commit('SET_SUGGESTIONS', res.data)
+					return res.total
+				} catch (e) {
+					throw e
+				}
+			},
 			async fetchFund({ commit }) {
 				try {
 					let res = await api.get('fund/summary')
@@ -118,6 +157,17 @@ const store = () =>
 			async createContribute({ commit }, form) {
 				try {
 					let res = await api.post('order',form)
+					return res.data
+				} catch (e) {
+					throw e
+				}
+			},
+			async fetchContactMeta({ commit }) {
+				console.log(this.$i18n.locale)
+			},
+			async sendContact({ commit }, form) {
+				try {
+					let res = await api.post('contact',form)
 					return res.data
 				} catch (e) {
 					throw e

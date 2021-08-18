@@ -1,9 +1,9 @@
 <template>
   <div class="page-index bg-home">
-    <div class="bg-leaf">
+    <div class="bg-leaf-banner-bottom">
       <div class="container">
         <div class="row">
-          <div class="col-lg-7 col-md-12 mx-auto py-3">
+          <div class="col-lg-7 col-md-12 mx-auto py-5">
             <div class="logo text-center mb-4">
               <img src="~/assets/images/slogan.png" alt="" />
             </div>
@@ -213,7 +213,7 @@
                 <a>Đóng</a>
               </div> -->
               <div class="btn-defaut text-center mb-4">
-                <NuxtLink to="/thong-tin-quy" class="text-uppercase">
+                <NuxtLink to="/bang-vinh-danh" class="text-uppercase">
                   Thông tin quỹ
                 </NuxtLink>
               </div>

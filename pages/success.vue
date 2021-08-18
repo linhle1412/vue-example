@@ -20,7 +20,7 @@
                 mở rộng cơ hội trong tương lai
               </div>
               <div class="btn-defaut text-center mb-4">
-                <NuxtLink to="/thong-tin-quy" class='text-uppercase'>
+                <NuxtLink to="/bang-vinh-danh" class='text-uppercase'>
                   Thông tin quỹ
                 </NuxtLink>
               </div>

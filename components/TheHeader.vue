@@ -8,12 +8,25 @@
         <ul class="navbar-nav w-100 justify-content-center">
           <li class="nav-item" v-for="(item, index) in menus" :key="index">
             <NuxtLink
-              :to="item.path"
+              :to="localePath(item.path)"
               class="nav-link"
               :class="item.name == 'index' ? 'nav-home' : ''"
             >
-              {{ item.title }}
+              {{ $t('nav.'+item.title) }}
             </NuxtLink>
+          </li>
+          <li class="btn-change-lang">
+            <div>
+              <img :src="require('~/assets/images/'+$i18n.locale+'.png')" alt="">
+            </div>
+            <div class="sub-menu">
+              <a
+              href="#"
+              v-for="locale in availableLocales"
+              :key="locale.code"
+              @click.prevent.stop="$i18n.setLocale(locale.code)"><img :src="require('~/assets/images/'+locale.code+'.png')" alt=""></a>
+            </div>
+            
           </li>
         </ul>
       </b-collapse>
@@ -27,29 +40,44 @@ export default {
     return {
       menus: [
         {
-          title: "Trang chủ",
+          title: "home",
           name: "index",
           path: "/"
         },
         {
-          title: "Thông tin quỹ",
+          title: "rank",
           name: "fund",
-          path: "/thong-tin-quy"
+          path: "/bang-vinh-danh"
         },
         {
-          title: "Tài năng",
+          title: "talent",
           name: "talent",
           path: "/tai-nang"
         },
         {
-          title: "Đóng góp",
+          title: "talent_suggestion",
+          name: "talent-suggestion",
+          path: "/de-xuat-tai-nang"
+        },
+        {
+          title: "contribute",
           name: "contribute",
           path: "/dong-gop"
+        },
+        {
+          title: "fund_info",
+          name: "fund-info",
+          path: "/thong-tin-quy"
         }
       ]
     };
   },
   created() {},
+  computed: {
+    availableLocales () {
+      return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
+    }
+  },
   methods: {}
 };
 </script>
@@ -90,6 +118,50 @@ export default {
 .header .nav-link {
   padding-right: 2rem;
   padding-left: 2rem;
+  padding-bottom: 5px;
+}
+.btn-change-lang {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  position: relative;
+  img {
+    height: 25px;
+  }
+  &:hover .sub-menu{
+    -webkit-transform: rotate3d(0, 0, 0, 0deg);
+    -moz-transform: rotate3d(0, 0, 0, 0deg);
+    -o-transform: rotate3d(0, 0, 0, 0deg);
+    -ms-transform: rotate3d(0, 0, 0, 0deg);
+    transform: translateX(-50%) rotate3d(0, 0, 0, 0deg);
+  }
+}
+.sub-menu {
+  position: absolute;
+  background: #fff;
+  padding: 10px 20px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 28px 0px rgba(0, 0, 0, 0.1);
+  top: 55px;
+  z-index: 999;
+  display: block !important;
+  left: 50%;
+  width: auto;
+  white-space: nowrap;
+  -webkit-transform: rotate3d(1, 0, 0, -90deg);
+  -moz-transform: rotate3d(1, 0, 0, -90deg);
+  -o-transform: rotate3d(1, 0, 0, -90deg);
+  -ms-transform: rotate3d(1, 0, 0, -90deg);
+  transform: translateX(-50%) rotate3d(1, 0, 0, -90deg);
+  -webkit-transform-origin: 0 0 0;
+  -moz-transform-origin: 0 0 0;
+  -o-transform-origin: 0 0 0;
+  -ms-transform-origin: 0 0 0;
+  transform-origin: 0 0 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 @media only screen and (max-width: 550px) {
   .header .nav-link {

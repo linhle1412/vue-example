@@ -45,6 +45,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     "~plugins/filters.js",
+    "~plugins/plugin.js",
     { src: '~/plugins/vue-pdf.js', ssr: false },
   ],
 
@@ -58,8 +59,34 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     "bootstrap-vue/nuxt",
-    'nuxt-webfontloader'
+    'nuxt-webfontloader',
+    '@nuxtjs/i18n'
   ],
+  i18n: {
+    baseUrl: 'https://quyphattrientainangviet.vn',
+    langDir: 'langs/',
+    locales: [
+      {
+        code: 'en',
+        file: 'en.json',
+        iso: 'en-US',
+      },
+      {
+        code: 'vi',
+        file: 'vi.json',
+        iso: 'vi-VI',
+      },
+    ],
+    // defaultLocale: 'vi',
+    vuex: {
+      moduleName: 'i18n',
+      syncRouteParams: true
+    },
+    detectBrowserLanguage: {
+      useCookie: true,
+      alwaysRedirect: true,
+    }
+  },
   webfontloader: {
     google: {
       families: [
@@ -76,7 +103,8 @@ export default {
         test: /\.pdf$/,
         use: 'url-loader'
       })
-    }
+    },
+    extractCSS: true
   },
 
   router: {
@@ -95,8 +123,17 @@ export default {
           case "talent-id":
             r.path = "/tai-nang/:id";
             break;
+          case "rank":
+            r.path = "/bang-vinh-danh";
+            break;
           case "fund-info":
             r.path = "/thong-tin-quy";
+            break;
+          case "contact":
+            r.path = "/lien-he";
+            break;
+          case "suggestion":
+            r.path = "/de-xuat-tai-nang";
             break;
           case "success":
             r.path = "/thank-you";

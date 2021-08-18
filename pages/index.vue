@@ -57,9 +57,9 @@
                 </NuxtLink>
               </div>
               <div class="px-2 d-flex justify-content-center">
-                <NuxtLink to="/thong-tin-quy">
+                <NuxtLink to="/bang-vinh-danh">
                   <div class="info-group">
-                    Thông tin quỹ
+                    Bảng vinh danh
                   </div>
                 </NuxtLink>
               </div>

@@ -1,0 +1,18 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "rank": "Bảng vinh danh",
+    "talent": "Tài năng được tài trợ",
+    "talent_suggestion": "Đề xuất tài năng",
+    "contribute": "Đóng góp",
+    "fund_info": "Thông tin quỹ"
+  },
+  "contact": "Liên hệ",
+  "address": "Địa chỉ",
+  "email": "Email",
+  "phone": "Điện thoại",
+  "bank_donation": "Tài khoản quyên góp",
+  "bank": "Ngân hàng",
+  "bank_name": "Tên tài khoản",
+  "bank_branch": "Chi nhánh"
+}

@@ -15,7 +15,7 @@ html.wf-robotocondensed-n4-active.wf-robotocondensed-n7-active {
     background-image: url('~assets/images/slogan-larger.png');
     background-size: contain;
     background-position: center;
-    padding-bottom: 60%;
+    padding-bottom: 46%;
     background-repeat: no-repeat;
   }
 }
@@ -28,6 +28,10 @@ a {
   }
 }
 
+
+textarea {
+  resize: none;
+}
 @keyframes placeHolderShimmer{
   0%{
       background-position: -1000px 0
@@ -105,6 +109,7 @@ a {
   background: url("~/assets/images/pattern_fund_left.svg") left -10rem top 2rem no-repeat,
     url("~/assets/images/pattern_fund_right.svg") right -6.5rem bottom 0rem no-repeat;
   background-size: 25rem;
+  padding-bottom: 100px;
 }
 
 .btn-defaut {
@@ -112,7 +117,7 @@ a {
   a {
     background: #ffd52a;
     border: 1px solid #ffd52a;
-    padding: 10px 25px;
+    padding: 8px 25px;
     font-weight: bold;
     color: #000;
     display: inline-block;
