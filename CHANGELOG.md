@@ -1,3 +1,10 @@
+## <small>1.0.43 (2021-08-20)</small>
+
+* add suggested ([d2492d9](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/d2492d9))
+* update function ([be7be6f](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/be7be6f))
+
+
+
 ## <small>1.0.42 (2021-07-27)</small>
 
 * fix paging ([3886602](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/3886602))
