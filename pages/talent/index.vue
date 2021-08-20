@@ -9,10 +9,10 @@
         </div>
         <div class="row contact-wrapper mx-0">
           <div class="btn-tab">
-            <div :class="tab === 0 ? 'active' : ''" @click="tab = 0">Thông tin các tài năng</div>
-            <div :class="tab === 1 ? 'active' : ''" @click="tab = 1">Các tài trợ khác</div>
+            <div :class="tab === 0 ? 'active' : ''" @click="tab = 0">{{$t('talent_info')}}</div>
+            <div :class="tab === 1 ? 'active' : ''" @click="tab = 1">{{$t('other_talent')}}</div>
           </div>
-          <div v-if="!loading && !talents.length" class="text-center w-100" style="margin-top: 60px">Không có tài năng nào</div>
+          <div v-if="!loading && !talents.length" class="text-center w-100" style="margin-top: 60px">{{$t('empty_data')}}</div>
           <div class="list-talent w-100 p-0" :class="loading ? 'loading' : ''">
             <div v-for="(talent, index) in talents" :key="index" class="list-talent-content">
               <div class="talent-list-item mx-0 mb-3">
@@ -21,7 +21,7 @@
                 </div>
                 <div class="talent-list-content">
                   <div class="talent-list-title">
-                    <NuxtLink :to="localePath('/tai-nang/' +  $toSlug(talent.title_i18n[$i18n.locale])+'_'+talent.id)">
+                    <NuxtLink :to="localePath({name: 'talent-id', params: {id: $toSlug(talent.title_i18n[$i18n.locale])+'_'+talent.id}})">
                       <img width="30px" src="~/assets/images/medal-icon.png" alt="" />
                       {{talent.title_i18n[$i18n.locale]}}
                     </NuxtLink>
@@ -30,8 +30,8 @@
                     {{talent.description_i18n[$i18n.locale]}}
                   </div>
                   <div class="talent-list-btn">
-                    <NuxtLink :to="localePath('/tai-nang/' +  $toSlug(talent.title_i18n[$i18n.locale])+'_'+talent.id)">
-                      Chi tiết
+                    <NuxtLink :to="localePath({name: 'talent-id', params: {id: $toSlug(talent.title_i18n[$i18n.locale])+'_'+talent.id}})">
+                      {{$t('detail')}}
                     </NuxtLink>
                   </div>
                 </div>

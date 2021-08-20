@@ -10,7 +10,7 @@
               </div>
             </div>
             <div class="page-title text-center">
-              Bảng vinh danh đóng góp
+              {{$t('rank_title')}}
             </div>
             <div class="row">
               <div class="col-lg-8 mx-auto">
@@ -45,30 +45,30 @@
                     </div>
                     <div class="head-title-table d-none d-lg-block">
                       <div class="d-flex">
-                        <div class="w-10">Xếp hạng</div>
+                        <div class="w-10">{{$t('stt')}}</div>
                         <div class="w-90">
                           <div class="row">
                             <div v-if="tabActive === 1" class="col-4">
-                              Thành viên
+                              {{$t('member')}}
                             </div>
                             <div v-if="tabActive === 2" class="col-4">
-                              Tổ chức
+                              {{$t('organization')}}
                             </div>
                             <div v-if="tabActive === 3" class="col-8">
-                              Thành viên
+                              {{$t('member')}}
                             </div>
                             <div
                               v-if="tabActive === 1 || tabActive === 2"
                               class="col-2 text-lg-center"
                             >
-                              <span class="pl-9x">SĐT</span>
+                              <span class="pl-9x">{{$t('sdt')}}</span>
                             </div>
                             <div
                               v-if="tabActive === 1 || tabActive === 2"
                               class="col-3 text-lg-center p-0"
                             >
                               <span class="pl-9x"
-                                >Ngày đóng góp
+                                >{{$t('contribute_at')}}
                                 <div class="btn-sort" @click="onSort('updated_at')">
                                   <img src="~/assets/images/sort.png" alt="" />
                                 </div>
@@ -82,7 +82,7 @@
                                 'col-4': tabActive === 3
                               }"
                             >
-                              Số tiền đóng góp
+                              {{$t('contribute_amount')}}
                               <div class="btn-sort" @click="onSort('amount')">
                                 <img src="~/assets/images/sort.png" alt="" />
                               </div>
@@ -95,7 +95,7 @@
                       <div class="d-flex">
                         <div class="col-6 text-lg-center p-0">
                           <span v-if="tabActive === 1 || tabActive === 2" class="pl-9x"
-                            >Ngày đóng góp
+                            >{{$t('contribute_at')}}
                             <div class="btn-sort" @click="onSort('updated_at')">
                               <img src="~/assets/images/sort.png" alt="" />
                             </div>
@@ -103,7 +103,7 @@
                         </div>
 
                         <div class="text-right col-6 p-0">
-                          Số tiền đóng góp
+                          {{$t('contribute_amount')}}
                           <div class="btn-sort" @click="onSort('amount')">
                             <img src="~/assets/images/sort.png" alt="" />
                           </div>
@@ -170,7 +170,7 @@
                         </div>
                       </div>
                     </div>
-                    <div v-else class="text-center my-5">Không có dữ liệu</div>
+                    <div v-else class="text-center my-5">{{$t('empty_data')}}</div>
                     <pagination
                       v-if="dataFunds && dataFunds.length > 0"
                       v-model="currentPage"
@@ -203,11 +203,11 @@ export default {
       tabs: [
         {
           vi: 'Cá nhân',
-          en: 'Cá nhân'
+          en: 'Indiviual'
         },
         {
           vi: 'Tổ chức',
-          en: 'Tổ chức'
+          en: 'Organization'
         },
         {
           vi: 'Café Ông Bầu',
@@ -385,7 +385,7 @@ export default {
 .head-title-table {
   padding: 20px 0 16px 0;
   font-family: "Roboto Condensed", sans-serif;
-  font-size: 17px;
+  font-size: 15px;
   .btn-sort {
     outline: none;
     padding: 0;

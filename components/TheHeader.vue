@@ -47,27 +47,27 @@ export default {
         {
           title: "rank",
           name: "fund",
-          path: "/bang-vinh-danh"
+          path: "rank"
         },
         {
           title: "talent",
           name: "talent",
-          path: "/tai-nang"
+          path: "talent"
         },
         {
           title: "talent_suggestion",
           name: "talent-suggestion",
-          path: "/de-xuat-tai-nang"
+          path: "suggestion"
         },
         {
           title: "contribute",
           name: "contribute",
-          path: "/dong-gop"
+          path: "contribute"
         },
         {
           title: "fund_info",
           name: "fund-info",
-          path: "/thong-tin-quy"
+          path: "fund-info"
         }
       ]
     };
@@ -115,10 +115,11 @@ export default {
     color: #930 !important;
   }
 }
+.header .nav-item {
+}
 .header .nav-link {
-  padding-right: 2rem;
-  padding-left: 2rem;
-  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .btn-change-lang {
   display: flex;

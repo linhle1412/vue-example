@@ -5,15 +5,15 @@
         <div class="modal-content">
           <div class="modal-body text-center">
             <img src="~/assets/images/img-success.png" width="75" alt="">
-            <div class="modal-title mt-4 mb-3">Gửi thành công</div>
-            <div>Cảm ơn bạn đã gửi thông tin. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất!</div>
+            <div class="modal-title mt-4 mb-3">{{$t('send_success')}}</div>
+            <div>{{$t('thank_you')}}</div>
           </div>
           <div class="modal-footer">
             <div
               @click="$emit('close')"
               class="btn-defaut"
             >
-              <a>Xem các tài năng</a>
+              <a>{{$t('view_talent')}}</a>
             </div>
           </div>
         </div>

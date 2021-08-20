@@ -9,8 +9,8 @@
         </div>
         <div class="row contact-wrapper mx-0">
           <div class="btn-tab">
-            <div :class="tab === 0 ? 'active' : ''" @click="tab = 0">Các tài năng được đề xuất</div>
-            <div :class="tab === 1 ? 'active' : ''" @click="tab = 1">Gửi đề xuất tài năng của bạn</div>
+            <div :class="tab === 0 ? 'active' : ''" @click="tab = 0">{{$t('suggested_talent')}}</div>
+            <div :class="tab === 1 ? 'active' : ''" @click="tab = 1">{{$t('submit_suggestion')}}</div>
           </div>
           <div v-show="tab === 0" class="list-talent w-100 p-0">
             <div v-for="(talent, index) in suggestions" :key="index" class="list-talent-content">
@@ -20,7 +20,7 @@
                 </div>
                 <div class="talent-list-content">
                   <div class="talent-list-title">
-                    <NuxtLink :to="localePath('/tai-nang/' +  $toSlug(talent.title_i18n[$i18n.locale])+'_'+talent.id)">
+                    <NuxtLink :to="localePath({name: 'talent-id', params: {id: $toSlug(talent.title_i18n[$i18n.locale])+'_'+talent.id}})">
                       <img width="30px" src="~/assets/images/medal-icon.png" alt="" />
                       {{talent.title_i18n[$i18n.locale]}}
                     </NuxtLink>
@@ -29,16 +29,16 @@
                     {{talent.description_i18n[$i18n.locale]}}
                   </div>
                   <div class="talent-list-btn">
-                    <NuxtLink :to="localePath('/tai-nang/' +  $toSlug(talent.title_i18n[$i18n.locale])+'_'+talent.id)">
-                      Chi tiết
+                    <NuxtLink :to="localePath({name: 'talent-id', params: {id: $toSlug(talent.title_i18n[$i18n.locale])+'_'+talent.id}})">
+                      {{$t('detail')}}
                     </NuxtLink>
                     <div class="vote">
                       <div>
-                        <img src="~/assets/images/like.png" alt=""> Ủng hộ: {{talent.vote_count || 0}}
+                        <img src="~/assets/images/like.png" alt=""> {{$t('vote')}}: {{talent.vote_count || 0}}
                       </div>
                       <div class="mx-2">│</div>
                       <div>
-                        <img src="~/assets/images/chat.png" alt=""> Thảo luận: {{talent.comment_count || 0}}
+                        <img src="~/assets/images/chat.png" alt=""> {{$t('comment')}}: {{talent.comment_count || 0}}
                       </div>
                     </div>
                   </div>
@@ -66,7 +66,7 @@ Bằng một hành động nhỏ sẽ tạo nên những niềm tự hào to l�
               <div class="col-md-6 p-0 pl-md-2">
                 <div class="form form-contact">
                   <div class="title text-center">
-                    Thông tin về tài năng
+                    {{$t('talent_a_info')}}
                   </div>
                   <div class="floating-label">
                     <input
@@ -76,7 +76,7 @@ Bằng một hành động nhỏ sẽ tạo nên những niềm tự hào to l�
                       :class="{ error: rules.fullname.error }"
                       v-model="form.fullname"
                     />
-                    <label>TÊN CỦA TÀI NĂNG</label>
+                    <label>{{$t('talent_name')}}</label>
                     <small>{{ rules.fullname.error }}&nbsp;</small>
                   </div>
 
@@ -88,7 +88,7 @@ Bằng một hành động nhỏ sẽ tạo nên những niềm tự hào to l�
                       v-model="form.phone"
                       placeholder=" "
                     />
-                    <label>Số điện thoại *</label>
+                    <label>{{$t('phone_no')}} *</label>
                     <small>{{ rules.phone.error }}&nbsp;</small>
                   </div>
                   <div class="floating-label">
@@ -99,7 +99,7 @@ Bằng một hành động nhỏ sẽ tạo nên những niềm tự hào to l�
                       :class="{ error: rules.dateOfBirth.error }"
                       v-model="form.dateOfBirth"
                     />
-                    <label>Ngày sinh</label>
+                    <label>{{$t('birth_date')}}</label>
                     <small>{{ rules.dateOfBirth.error }} &nbsp;</small>
                   </div>
                   <div class="floating-label">
@@ -110,7 +110,7 @@ Bằng một hành động nhỏ sẽ tạo nên những niềm tự hào to l�
                       :class="{ error: rules.address.error }"
                       v-model="form.address"
                     />
-                    <label>Địa chỉ</label>
+                    <label>{{$t('address')}}</label>
                     <small>{{ rules.address.error }} &nbsp;</small>
                   </div>
                   <div class="floating-label">
@@ -127,7 +127,7 @@ Bằng một hành động nhỏ sẽ tạo nên những niềm tự hào to l�
                     <div class="select-option" v-show="filterFields.length && showOption">
                       <div v-for="(field) in filterFields" :key="field" @click="form.field = field; showOption = false">{{field}}</div>
                     </div>
-                    <label>Lĩnh vực tài năng *</label>
+                    <label>{{$t('talent_field')}} *</label>
                     <small>{{ rules.field.error }} &nbsp;</small>
                   </div>
                   <div class="floating-label">
@@ -139,14 +139,14 @@ Bằng một hành động nhỏ sẽ tạo nên những niềm tự hào to l�
                       v-model="form.note"
                       placeholder=" "
                     ></textarea>
-                    <label>Thông tin mô tả</label>
+                    <label>{{$t('note')}}</label>
                   </div>
                   <div class="text-center" style="margin-top: 30px">
                     <button
                       @click="submit"
                       :class="isLoading ? 'is-loading' : ''"
                     >
-                      Gửi thông tin
+                      {{$t('submit_suggest')}}
                     </button>
                   </div>
                 </div>
@@ -193,17 +193,17 @@ export default {
       rules: {
         fullname: {
           required: true,
-          label: "tên của bạn",
+          label: "talent_name",
           error: ""
         },
         field: {
           required: true,
-          label: "lĩnh vực tài năng",
+          label: "talent_field",
           error: ""
         },
         phone: {
           required: true,
-          label: "số điện thoại",
+          label: "phone_no",
           validate: value => {
             return value && value.length === 10 && value.indexOf("0") === 0;
           },
@@ -211,17 +211,17 @@ export default {
         },
         address: {
           required: false,
-          label: "địa chỉ",
+          label: "address",
           error: ""
         },
         dateOfBirth: {
           required: false,
-          label: "ngày sinh",
+          label: "birth_date",
           error: ""
         },
         note: {
           required: false,
-          label: "lời nhắn",
+          label: "note",
           error: ""
         },
       }
@@ -264,7 +264,7 @@ export default {
       let isValidate = true;
       for (const key of Object.keys(rules)) {
         if (rules[key].required === true && data[key] === "") {
-          rules[key].error = "Vui lòng nhập " + rules[key].label;
+          rules[key].error = this.$t("please_enter") + this.$t(rules[key].label).toLowerCase();
           isValidate = false;
           continue;
         } else {
@@ -273,7 +273,7 @@ export default {
         if (rules[key].validate) {
           if (!rules[key].validate(data[key])) {
             isValidate = false;
-            rules[key].error = "Vui lòng nhập đúng " + rules[key].label;
+            rules[key].error = this.$t("please_enter_correct") + this.$t(rules[key].label).toLowerCase();
             continue;
           } else {
             rules[key].error = "";

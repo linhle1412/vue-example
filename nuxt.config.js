@@ -86,6 +86,49 @@ export default {
     detectBrowserLanguage: {
       useCookie: true,
       alwaysRedirect: true,
+    },
+    parsePages: false,
+    pages: {
+      'talent-sponsorship': {
+        vi: '/danh-sach-tai-nang-da-nhan-tai-tro',
+        en: '/list-talents-that-are-sponsored', 
+      },
+      contribute: {
+        vi: '/dong-gop',
+        en: '/contribution', 
+      },
+      // 'talent-id': {
+      //   vi: '/tai-nang/:id',
+      //   en: '/talent/:id', 
+      // },
+      'talent/index': {
+        vi: '/tai-nang-duoc-tai-tro',
+        en: '/talents-that-are-sponsored', 
+      },
+      'talent/_id': {
+        vi: '/tai-nang/:id',
+        en: '/talent/:id',
+      },
+      rank: {
+        vi: '/bang-vinh-danh',
+        en: '/the-honors-list', 
+      },
+      'fund-info': {
+        vi: '/thong-tin-quy',
+        en: '/fund-information', 
+      },
+      suggestion: {
+        vi: '/de-xuat-tai-nang',
+        en: '/talent-suggestion', 
+      },
+      contact: {
+        vi: '/lien-he',
+        en: '/contact', 
+      },
+      partners: {
+        vi: '/doi-tac-chien-luoc',
+        en: '/strategic-partnership', 
+      },
     }
   },
   webfontloader: {
@@ -112,33 +155,6 @@ export default {
     extendRoutes(routes, resolve) {
       routes.forEach(r => {
         switch (r.name) {
-          case "talent-sponsorship":
-            r.path = "/tai-nang-nhan-tai-tro";
-            break;
-          case "contribute":
-            r.path = "/dong-gop";
-            break;
-          case "talent":
-            r.path = "/tai-nang";
-            break;
-          case "talent-id":
-            r.path = "/tai-nang/:id";
-            break;
-          case "rank":
-            r.path = "/bang-vinh-danh";
-            break;
-          case "fund-info":
-            r.path = "/thong-tin-quy";
-            break;
-          case "contact":
-            r.path = "/lien-he";
-            break;
-          case "suggestion":
-            r.path = "/de-xuat-tai-nang";
-            break;
-          case "partners":
-            r.path = "/doi-tac-chien-luoc";
-            break;
           case "success":
             r.path = "/thank-you";
             break;

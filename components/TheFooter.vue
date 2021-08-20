@@ -3,10 +3,10 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-lg-6 col-12">
-          <h5 class="block-heading mb-3" ><b>Về chúng tôi</b></h5>
+          <h5 class="block-heading mb-3" ><b>{{$t('about_us')}}</b></h5>
           <ul>
             <li class="mb-2" v-for="(menu, index) in menus" :key='index' @click="showModal(menu)">
-              {{menu.name}}
+              {{$t(menu.name)}}
             </li>
           </ul>
         </div>
@@ -14,10 +14,10 @@
           <h5 class="block-heading mb-3" style="height: 22px">  </h5>
           <ul>
             <li class="mb-2">
-              <nuxt-link :to="localePath('/doi-tac-chien-luoc')">Đối tác chiến lược</nuxt-link>
+              <nuxt-link :to="localePath('partners')">{{$t('partnership')}}</nuxt-link>
             </li>
             <li class="mb-2">
-              <nuxt-link :to="localePath('/lien-he')">Liên hệ</nuxt-link>
+              <nuxt-link :to="localePath('contact')">{{$t('contact')}}</nuxt-link>
             </li>
             <li class="mb-2">
               Copyright © 2021 Quỹ phát triển tài năng Việt. All rights reserved.
@@ -25,7 +25,7 @@
           </ul>
         </div>
       </div>
-      <b-modal id="modal" :title="menuSelected && menuSelected.name" hide-footer size="lg">
+      <b-modal id="modal" :title="menuSelected && $t(menuSelected.name)" hide-footer size="lg">
         <vue-pdf :src="menuSelected && menuSelected.link" @num-pages="numPages = $event"></vue-pdf>
         <div v-if="numPages > 1" >
           <div v-for="(pageNum, index) in numPages" :key="index" style="border-top: 1px solid #aaa">
@@ -56,19 +56,19 @@ export default {
       menus: [
         {
           id: 'modal-1',
-          name: 'Quyết định công nhận Quỹ',
+          name: 'recognition',
           link: '/pdf/pdf_1.pdf',
           page: 1
         },
         {
           id: 'modal-2',
-          name: 'Quyết định thành lập Quỹ',
+          name: "decision",
           link: '/pdf/pdf_2.pdf',
           page: 2
         },
         {
           id: 'modal-3',
-          name: 'Điều lệ Quỹ',
+          name: 'charter',
           link: '/pdf/pdf_3.pdf',
           page: 12
         }

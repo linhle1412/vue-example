@@ -9,7 +9,7 @@
             </div>
             <div class="d-flex justify-content-center">
               <div class="fund-box">
-                <div class="title-line-box">Tổng Giá Trị Quỹ</div>
+                <div class="title-line-box">{{$t('total_fund')}}</div>
                 <div class="value-fund-box text-center">
                   {{(totalFund || 0) | money}}
                 </div>
@@ -20,7 +20,7 @@
               <div class="col-12 col-sm-6">
                 <div class="d-flex justify-content-end">
                   <div class="fund-box-row">
-                    <div class="title-line-box">Đã tài trợ</div>
+                    <div class="title-line-box">{{$t('sponsored')}}</div>
                     <div class="value-fund-box text-center">
                       {{(sponsored || 0) | money}}
                     </div>
@@ -31,7 +31,7 @@
               <div class="col-12 col-sm-6">
                 <div class="d-flex justify-content-start">
                   <div class="fund-box-row">
-                    <div class="title-line-box">Quỹ còn lại</div>
+                    <div class="title-line-box">{{$t('remain_fund')}}</div>
                     <div class="value-fund-box text-center">
                       {{(remained || 0) | money}}
                     </div>
@@ -42,31 +42,31 @@
             </div>
             <div class="text-center">
               <div class='btn-sponsor'>
-                <NuxtLink :to="localePath('/tai-nang-nhan-tai-tro')">
-                    Tài năng đã nhận tài trợ
+                <NuxtLink :to="localePath('talent-sponsorship')">
+                  {{$t('sponsored_talent')}}
                 </NuxtLink>
               </div>
             </div>
             
             <div class="row justify-content-center">
               <div class="px-2 d-flex justify-content-end">
-                <NuxtLink :to="localePath('/dong-gop')">
+                <NuxtLink :to="localePath('contribute')">
                   <div class="info-group">
-                    Đóng góp
+                    {{$t('nav.contribute')}}
                   </div>
                 </NuxtLink>
               </div>
               <div class="px-2 d-flex justify-content-center">
-                <NuxtLink :to="localePath('/bang-vinh-danh')">
+                <NuxtLink :to="localePath('rank')">
                   <div class="info-group">
-                    Bảng vinh danh
+                    {{$t('nav.rank')}}
                   </div>
                 </NuxtLink>
               </div>
               <div class="px-2 d-flex justify-content-start">
-                <NuxtLink :to="localePath('/tai-nang')">
+                <NuxtLink :to="localePath('talent')">
                   <div class="info-group">
-                    Thông tin các tài năng
+                    {{$t('talent_info')}}
                   </div>
                 </NuxtLink>
               </div>

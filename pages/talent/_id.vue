@@ -10,7 +10,7 @@
               </div>
             </div>
             <div class="page-title text-center">
-              {{talentDetail.category == 'suggested_talent' ? 'Thông tin tài năng được đề xuất' : 'Thông tin tài năng'}}
+              {{talentDetail.category == 'suggested_talent' ? $t('talent_suggested_title') : $t('talent_title')}}
             </div>
             <div class="talent-detail">
               <div class="talent-detail-img">
@@ -33,12 +33,11 @@
               </div>
 
               <div class="pre-next-btn">
-                <NuxtLink class='pre-btn' v-if='prev' :to="localePath('/tai-nang/' + prev)">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i> Tài năng
-                  trước
+                <NuxtLink class='prev-btn' v-if='prev' :to="localePath({name: 'talent-id', params: {id: prev}})">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i> {{$t('prev_talent')}}
                 </NuxtLink>
-                <NuxtLink class='next-btn' v-if='next' :to="localePath('/tai-nang/' + next)">
-                  Tài năng sau
+                <NuxtLink class='next-btn' v-if='next' :to="localePath({name: 'talent-id', params: {id: next}})">
+                  {{$t('next_talent')}}
                   <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </NuxtLink>
               </div>
