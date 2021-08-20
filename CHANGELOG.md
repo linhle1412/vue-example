@@ -1,3 +1,9 @@
+## <small>1.0.45 (2021-08-20)</small>
+
+* add route locale ([34a06c2](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/34a06c2))
+
+
+
 ## <small>1.0.44 (2021-08-20)</small>
 
 * fix talent detail ([e7b6a97](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/e7b6a97))
