@@ -1,3 +1,9 @@
+## <small>1.0.44 (2021-08-20)</small>
+
+* fix talent detail ([e7b6a97](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/e7b6a97))
+
+
+
 ## <small>1.0.43 (2021-08-20)</small>
 
 * add suggested ([d2492d9](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/d2492d9))
