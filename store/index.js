@@ -14,7 +14,7 @@ function buildQuery(params) {
   }
   let arr = [];
   for (let key of Object.keys(params)) {
-		arr.push(encodeURIComponent(key) + '=' + encodeURIComponent(JSON.stringify(params[key])))
+		arr.push(encodeURIComponent(key) + '=' + (typeof params[key] === 'string' ? params[key] : encodeURIComponent(JSON.stringify(params[key]))))
   }
   return '?' + arr.join('&');
 }
@@ -91,11 +91,18 @@ const store = () =>
 					throw e
 				}
 			},
+			async fetchTalentsRelated({ commit }, params) {
+				try {
+					let res = await api.get('article/related' + buildQuery(params))
+					return res.data
+				} catch (e) {
+					throw e
+				}
+			},
 			async fetchTalentDetail({ commit }, id) {
 				try {
 					let res = await api.get('article/' + id + '/public')
 					commit('SET_TALENT', res.data)
-
 				} catch (e) {
 					throw e
 				}

@@ -1,5 +1,6 @@
 /* eslint-disable */
 import axios from "axios";
+import Cookies from 'js-cookie';
 
 const prefix = 'https://tnv.eyeteam.vn/api.';
 
@@ -16,8 +17,9 @@ client.interceptors.request.use((config) => {
 
 function getDefaultHeaders() {
   return {
+    "locale": Cookies.get('i18n_redirected') || 'vi'
     // 'Authorization': 'Bearer ' + cookieUtil.getCookie('token')
-    };
+  };
 }
 
 const api = {

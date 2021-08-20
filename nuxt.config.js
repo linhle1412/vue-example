@@ -46,6 +46,7 @@ export default {
   plugins: [
     "~plugins/filters.js",
     "~plugins/plugin.js",
+    "~plugins/util.js",
     { src: '~/plugins/vue-pdf.js', ssr: false },
   ],
 

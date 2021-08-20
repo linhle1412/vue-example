@@ -20,7 +20,7 @@
                 </div>
                 <div class="talent-list-content">
                   <div class="talent-list-title">
-                    <NuxtLink :to="localePath('/tai-nang/' +  talent.slug+'_'+talent.id)">
+                    <NuxtLink :to="localePath('/tai-nang/' +  $toSlug(talent.title_i18n[$i18n.locale])+'_'+talent.id)">
                       <img width="30px" src="~/assets/images/medal-icon.png" alt="" />
                       {{talent.title_i18n[$i18n.locale]}}
                     </NuxtLink>
@@ -29,7 +29,7 @@
                     {{talent.description_i18n[$i18n.locale]}}
                   </div>
                   <div class="talent-list-btn">
-                    <NuxtLink :to="localePath('/tai-nang/' +  talent.slug+'_'+talent.id)">
+                    <NuxtLink :to="localePath('/tai-nang/' +  $toSlug(talent.title_i18n[$i18n.locale])+'_'+talent.id)">
                       Chi tiết
                     </NuxtLink>
                     <div class="vote">
@@ -114,6 +114,23 @@ Bằng một hành động nhỏ sẽ tạo nên những niềm tự hào to l�
                     <small>{{ rules.address.error }} &nbsp;</small>
                   </div>
                   <div class="floating-label">
+                    <input
+                      class="floating-input select"
+                      type="text"
+                      placeholder=" "
+                      :class="{ error: rules.field.error }"
+                      v-model="form.field"
+                      @focus="showOption = true"
+                      @blur="onBlur"
+                    />
+                    <div class="select-dropdown" @click="showOption = !showOption">⌵</div>
+                    <div class="select-option" v-show="filterFields.length && showOption">
+                      <div v-for="(field) in filterFields" :key="field" @click="form.field = field; showOption = false">{{field}}</div>
+                    </div>
+                    <label>Lĩnh vực tài năng *</label>
+                    <small>{{ rules.field.error }} &nbsp;</small>
+                  </div>
+                  <div class="floating-label">
                     <textarea
                       name="contribute-message"
                       id="contribute-message"
@@ -168,11 +185,20 @@ export default {
         address: "",
         dateOfBirth: "",
         note: "",
+        field: ''
       },
+      fields: ["Bóng chuyền","Bóng rổ","Bóng đá","Bóng bàn","Cầu lông","Quần vợt/Tennis","Điền kinh","Quyền anh","Xe đạp","Đấu kiếm","Golf","Thể dục dụng cụ","Judo","Karate","Taekwondo","Cử tạ","Đấu vật","Kiến trúc","Điêu khắc","Hội họa","Âm nhạc","Văn chương","Sân khấu","Điện ảnh","Múa","Nhiếp ảnh","Đồ họa"],
+      filterFields: [],
+      showOption: false,
       rules: {
         fullname: {
           required: true,
           label: "tên của bạn",
+          error: ""
+        },
+        field: {
+          required: true,
+          label: "lĩnh vực tài năng",
           error: ""
         },
         phone: {
@@ -208,6 +234,7 @@ export default {
     },
   },
   mounted() {
+    this.filterFields = this.fields.slice(0)
   },
   watch: {
     page: {
@@ -215,10 +242,16 @@ export default {
       handler(val) {
         this.getData();
       }
+    },
+    'form.field'(nVal, oVal) {
+      this.filterFields = this.fields.filter((f) => this.normalizeee(f).includes(this.normalizeee(nVal)))
     }
   },
   methods: {
     ...mapActions(['fetchSuggestions']),
+    onBlur(){
+      setTimeout(() => {this.showOption = false}, 0)
+    },
     getData() {
       this.fetchSuggestions({
         page: this.page - 1,
@@ -256,7 +289,8 @@ export default {
         email: "",
         note: "",
         dateOfBirth: '',
-        address: ''
+        address: '',
+        field: ''
       };
     },
 
@@ -274,36 +308,28 @@ export default {
           this.clearForm();
         });
       }
+    },
+    normalizeee(str) {
+      if (str) {
+        str += '';
+        str = str.trim();
+        str = str.toLowerCase();
+        str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, 'a');
+        str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, 'e');
+        str = str.replace(/ì|í|ị|ỉ|ĩ/g, 'i');
+        str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, 'o');
+        str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, 'u');
+        str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, 'y');
+        str = str.replace(/đ/g, 'd');
+      }
+      return str
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.btn-tab {
-  display: flex;
-  width: 100%;
-  border-radius: 15px;
-  overflow: hidden;
-  font-family: "Yeseva One", sans-serif;
-  margin-bottom: 20px;
-  div {
-    flex: 1;
-    border: 1px solid #fff;
-    padding: 8px 25px;
-    font-weight: bold;
-    color: #000;
-    cursor: pointer;
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-    &.active {
-      background: #ffd52a;
-      border-color:#ffd52a;
-    }
-  }
-}
+
 .contact-wrapper {
   background: #f5f5f5;
   border-radius: 20px;
@@ -406,8 +432,39 @@ textarea.floating-input {
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
   }
+  .select-option {
+    max-height: 200px;
+    overflow: auto;
+    position: absolute;
+    background: #fff;
+    z-index: 1;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 0 16px -2px #ddd;
+    border-radius: 0 0 8px 8px;
+    padding: 10px 0;
+    div {
+      cursor: pointer;
+      padding: 5px 15px;
+      color: #666;
+      &:hover {
+        color: #222;
+      }
+    }
+  }
+  .select-dropdown {
+    position: absolute;
+    right: 0;
+    top: -10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+  }
 }
-
+.floating-input.select:focus ~ .select-option {
+  display: block;
+}
 .floating-input:focus ~ label,
 .floating-input:not(:placeholder-shown) ~ label {
   top: -18px;

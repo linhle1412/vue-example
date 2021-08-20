@@ -31,13 +31,13 @@
                 </div>
                 <div v-html="talentDetail.content_i18n[$i18n.locale]"></div>
               </div>
-              
+
               <div class="pre-next-btn">
-                <NuxtLink class='pre-btn' v-if='previousTalen()' :to="'/tai-nang/' + previousTalen()">
+                <NuxtLink class='pre-btn' v-if='prev' :to="localePath('/tai-nang/' + prev)">
                   <i class="fa fa-angle-left" aria-hidden="true"></i> Tài năng
                   trước
                 </NuxtLink>
-                <NuxtLink class='next-btn' v-if='nextTalen()' :to="'/tai-nang/' + nextTalen()">
+                <NuxtLink class='next-btn' v-if='next' :to="localePath('/tai-nang/' + next)">
                   Tài năng sau
                   <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </NuxtLink>
@@ -58,7 +58,9 @@ export default {
   components: {},
   data() {
     return {
-      talentDetail: this.$store.state.talentDetail
+      talentDetail: this.$store.state.talentDetail,
+      next: '',
+      prev: '',
     };
   },
   async fetch({ store, params, redirect, query }) {
@@ -76,12 +78,12 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.talentDetail.description
+          content: this.talentDetail.description_i18n[this.$i18n.locale]
         },
         {
           hid: "og:title",
           property: "og:title",
-          content: this.talentDetail.title
+          content: this.talentDetail.title_i18n[this.$i18n.locale]
         },
         {
           hid: "og:url",
@@ -91,7 +93,7 @@ export default {
         {
           hid: "og:description",
           property: "og:description",
-          content: this.talentDetail.description
+          content: this.talentDetail.description_i18n[this.$i18n.locale]
         },
         {
           hid: "og:type",
@@ -110,23 +112,38 @@ export default {
     ...mapState(["talents"])
   },
   created() {
-    this.fetchTalents()
+   
   },
-  mounted() {},
+  async mounted() {
+    try {
+      let data = await this.fetchTalentsRelated({
+        article_id: this.talentDetail.id,
+        category: this.talentDetail.category
+      })
+      if (this.talentDetail.id === '') {
+
+      }
+      if (data) {
+        for (const t of data) {
+          if (t.id < this.talentDetail.id) {
+            this.next = this.$toSlug(t.title_i18n[this.$i18n.locale]) + '_' + t.id
+          } else {
+            this.prev = this.$toSlug(t.title_i18n[this.$i18n.locale]) + '_' + t.id
+          }
+        }
+      }
+
+    } catch (e) {
+
+    }
+   
+  },
   methods: {
-    ...mapActions(["fetchTalents"]),
+    ...mapActions(["fetchTalentsRelated"]),
     nextTalen() {
-     let index = this.talents.findIndex((t) => t.id == this.talentDetail.id)
-     if (index != -1 ) {
-      return this.talents[index + 1] && this.talents[index + 1].slug
-     } 
       return ''
     },
     previousTalen() {
-     let index = this.talents.findIndex((t) => t.id == this.talentDetail.id)
-     if (index <= this.talents.length ) {
-      return this.talents[index - 1] && this.talents[index - 1].slug
-     } 
       return ''
     }
   }
@@ -174,9 +191,9 @@ export default {
     float: right;
   }
   a {
-    color: #000;
+    color: #333;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
     font-family: "Roboto Condensed", sans-serif;
     &:hover {
       text-decoration: none;
