@@ -21,19 +21,13 @@
                         <div class="col-sm-12 col-md-7">
                           <div class="d-flex">
                             <div
-                              class="tab tab-customer"
-                              :class="{ active: tabActive === 1 }"
-                              @click="setTabActive(1)"
+                              class="tab"
+                              v-for="(tab, index) in tabs"
+                              :key="index"
+                              :class="{ active: tabActive === (index + 1) }"
+                              @click="setTabActive(index + 1)"
                             >
-                              Cá nhân / Tổ chức
-                            </div>
-
-                            <div
-                              class="tab tab-store"
-                              :class="{ active: tabActive === 2 }"
-                              @click="setTabActive(2)"
-                            >
-                              Café Ông Bầu
+                              {{tab[$i18n.locale]}}
                             </div>
                           </div>
                         </div>
@@ -57,17 +51,20 @@
                             <div v-if="tabActive === 1" class="col-4">
                               Thành viên
                             </div>
-                            <div v-if="tabActive === 2" class="col-8">
+                            <div v-if="tabActive === 2" class="col-4">
+                              Tổ chức
+                            </div>
+                            <div v-if="tabActive === 3" class="col-8">
                               Thành viên
                             </div>
                             <div
-                              v-if="tabActive === 1"
+                              v-if="tabActive === 1 || tabActive === 2"
                               class="col-2 text-lg-center"
                             >
                               <span class="pl-9x">SĐT</span>
                             </div>
                             <div
-                              v-if="tabActive === 1"
+                              v-if="tabActive === 1 || tabActive === 2"
                               class="col-3 text-lg-center p-0"
                             >
                               <span class="pl-9x"
@@ -81,8 +78,8 @@
                             <div
                               class="text-lg-right pl-0"
                               :class="{
-                                'col-3': tabActive === 1,
-                                'col-4': tabActive === 2
+                                'col-3': tabActive === 1 || tabActive === 2,
+                                'col-4': tabActive === 3
                               }"
                             >
                               Số tiền đóng góp
@@ -97,7 +94,7 @@
                     <div class="head-title-table d-lg-none">
                       <div class="d-flex">
                         <div class="col-6 text-lg-center p-0">
-                          <span v-if="tabActive === 1" class="pl-9x"
+                          <span v-if="tabActive === 1 || tabActive === 2" class="pl-9x"
                             >Ngày đóng góp
                             <div class="btn-sort" @click="onSort('updated_at')">
                               <img src="~/assets/images/sort.png" alt="" />
@@ -137,22 +134,22 @@
                                   <div
                                     class="col-md-12 name-customer"
                                     :class="{
-                                      'col-lg-4': tabActive === 1,
-                                      'col-lg-8': tabActive === 2
+                                      'col-lg-4': tabActive === 1 || tabActive === 2,
+                                      'col-lg-8': tabActive === 3
                                     }"
                                   >
                                     {{
-                                      tabActive === 1 ? item.fullname : item.name
+                                      tabActive === 1 || tabActive === 2 ? item.fullname : item.name
                                     }}
                                   </div>
                                   <div
-                                    v-if="tabActive === 1"
+                                    v-if="tabActive === 1 || tabActive === 2"
                                     class="col-md-12 col-lg-2 text-lg-center"
                                   >
                                     {{ item.phone }}
                                   </div>
                                   <div
-                                    v-if="tabActive === 1"
+                                    v-if="tabActive === 1 || tabActive === 2"
                                     class="col-md-12 col-lg-3 text-lg-center"
                                   >
                                     {{ new Date(item.updated_at) | date }}
@@ -160,8 +157,8 @@
                                   <div
                                     class="col-md-12 total-money"
                                     :class="{
-                                      'col-lg-3': tabActive === 1,
-                                      'col-lg-4': tabActive === 2
+                                      'col-lg-3': tabActive === 1 || tabActive === 2,
+                                      'col-lg-4': tabActive === 3
                                     }"
                                   >
                                     {{ item.amount | money }}₫
@@ -203,6 +200,20 @@ export default {
     return {
       isLoading: true,
       tabActive: 1,
+      tabs: [
+        {
+          vi: 'Cá nhân',
+          en: 'Cá nhân'
+        },
+        {
+          vi: 'Tổ chức',
+          en: 'Tổ chức'
+        },
+        {
+          vi: 'Café Ông Bầu',
+          en: 'Café Ông Bầu',
+        },
+      ],
       searchKey: "",
       sortBy: "",
       sortValue: "desc",
@@ -224,14 +235,24 @@ export default {
   computed: {
     ...mapState(["shops", "customers"]),
     dataFunds() {
-      let data = this.tabActive === 1 ? this.customers : this.shops;
+      let data = this.tabActive === 1  || this.tabActive === 2 ? this.customers : this.shops;
       return data;
     },
     pageCount() {
       return Math.ceil(this.totalPage / this.pagination.perpage)
     },
     query() {
-      return {...this.pagination, filters: this.filters, orders: this.orders}
+      let _filters = [...this.filters]
+
+      if (this.tabActive == 1 || this.tabActive == 2) {
+        _filters = [...this.filters, {
+          rule: 'type',
+          op: '=',
+          value: this.tabActive == 1 ? 'personal' : 'organization'
+        }]
+      }
+      return {...this.pagination, filters: _filters, orders: this.orders}
+      
     }
   },
 
@@ -253,7 +274,7 @@ export default {
     async fetchData() {
       this.isLoading = true;
       try {
-        if (this.tabActive == 1) {
+        if (this.tabActive == 1 || this.tabActive == 2) {
           this.totalPage = await this.fetchRankPerson(this.query);
         } else {
           this.totalPage = await this.fetchRankStore(this.query);
@@ -265,7 +286,7 @@ export default {
     },
     onSearch: debounce(async function() {
       this.currentPage = 1
-      if (this.tabActive == 1) {
+      if (this.tabActive == 1 || this.tabActive == 2) {
         this.filters = [{
           rule: 'fullname',
           op: 'like',
@@ -298,21 +319,6 @@ export default {
       this.currentPage = 1;
       this.fetchData();
     },
-    normalizeee(str) {
-      if (str) {
-        str += "";
-        str = str.trim();
-        str = str.toLowerCase();
-        str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
-        str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
-        str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
-        str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
-        str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
-        str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
-        str = str.replace(/đ/g, "d");
-      }
-      return str;
-    }
   }
 };
 </script>
@@ -357,13 +363,12 @@ export default {
   }
 }
 .tab {
-  padding: 10px;
+  padding: 6px 15px;
   font-size: 17px;
   font-weight: bold;
   font-family: "Roboto Condensed", sans-serif;
   letter-spacing: 0;
   text-align: center;
-  flex: 1;
   &:hover {
     cursor: pointer;
   }
@@ -371,13 +376,10 @@ export default {
     background-color: #ffcb05;
   }
   @media (max-width: 992px) {
-    width: 50%;
-    max-width: 14.8rem;
-    padding: 8px 24px;
+    // width: 50%;
+    // max-width: 14.8rem;
+    // padding: 8px 24px;
     font-size: 16px;
-    &.tab-store {
-      margin-left: 14px;
-    }
   }
 }
 .head-title-table {
@@ -654,12 +656,13 @@ export default {
 }
 .search-bar {
   position: relative;
+  margin-top: -5px;
   i {
     position: absolute;
     top: 50%;
     left: 5px;
     transform: translate(0%, -50%);
-    font-size: 22px;
+    font-size: 20px;
   }
   #search_text {
     width: 100%;

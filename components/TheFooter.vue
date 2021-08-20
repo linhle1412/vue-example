@@ -3,17 +3,26 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-lg-6 col-12">
-          <h4 class="block-heading" >Về chúng tôi</h4>
+          <h5 class="block-heading mb-3" ><b>Về chúng tôi</b></h5>
           <ul>
-            <li class="mt-2" v-for="(menu, index) in menus" :key='index' @click="showModal(menu)">
+            <li class="mb-2" v-for="(menu, index) in menus" :key='index' @click="showModal(menu)">
               {{menu.name}}
             </li>
           </ul>
         </div>
         <div class="col-12 col-lg-6">
-          <p class="d-i-block mt-2">
-            Copyright © 2021 Quỹ phát triển tài năng Việt. All rights reserved.
-          </p>
+          <h5 class="block-heading mb-3" style="height: 22px">  </h5>
+          <ul>
+            <li class="mb-2">
+              <nuxt-link :to="localePath('/doi-tac-chien-luoc')">Đối tác chiến lược</nuxt-link>
+            </li>
+            <li class="mb-2">
+              <nuxt-link :to="localePath('/lien-he')">Liên hệ</nuxt-link>
+            </li>
+            <li class="mb-2">
+              Copyright © 2021 Quỹ phát triển tài năng Việt. All rights reserved.
+            </li>
+          </ul>
         </div>
       </div>
       <b-modal id="modal" :title="menuSelected && menuSelected.name" hide-footer size="lg">
@@ -88,5 +97,6 @@ export default {
 }
 ul li {
   cursor: pointer;
+  font-size: 16px;
 }
 </style>

@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-7 col-md-12 mx-auto py-5">
-            <div class="logo text-center mb-4">
+            <div class="logo logo-small text-center mb-5">
               <img src="~/assets/images/slogan.png" alt="" />
             </div>
             <div v-if="!isSubmitted" class="form-contribute">

@@ -42,7 +42,7 @@
             </div>
             <div class="text-center">
               <div class='btn-sponsor'>
-                <NuxtLink to="/tai-nang-nhan-tai-tro">
+                <NuxtLink :to="localePath('/tai-nang-nhan-tai-tro')">
                     Tài năng đã nhận tài trợ
                 </NuxtLink>
               </div>
@@ -50,21 +50,21 @@
             
             <div class="row justify-content-center">
               <div class="px-2 d-flex justify-content-end">
-                <NuxtLink to="/dong-gop">
+                <NuxtLink :to="localePath('/dong-gop')">
                   <div class="info-group">
                     Đóng góp
                   </div>
                 </NuxtLink>
               </div>
               <div class="px-2 d-flex justify-content-center">
-                <NuxtLink to="/bang-vinh-danh">
+                <NuxtLink :to="localePath('/bang-vinh-danh')">
                   <div class="info-group">
                     Bảng vinh danh
                   </div>
                 </NuxtLink>
               </div>
               <div class="px-2 d-flex justify-content-start">
-                <NuxtLink to="/tai-nang">
+                <NuxtLink :to="localePath('/tai-nang')">
                   <div class="info-group">
                     Thông tin các tài năng
                   </div>

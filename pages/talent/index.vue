@@ -20,7 +20,7 @@
                   </div>
                   <div class="talent-list-content">
                     <div class="talent-list-title">
-                      <NuxtLink :to="'/tai-nang/' +  talent.slug">
+                      <NuxtLink :to="localePath('/tai-nang/' +  talent.slug+'_'+talent.id)">
                         <img width="30px" src="~/assets/images/medal-icon.png" alt="" />
                         {{talent.title}}
                       </NuxtLink>
@@ -29,7 +29,7 @@
                       {{talent.description}}
                     </div>
                     <div class="talent-list-btn">
-                      <NuxtLink :to="'/tai-nang/' +  talent.slug">
+                      <NuxtLink :to="localePath('/tai-nang/' +  talent.slug+'_'+talent.id)">
                         Chi tiết
                       </NuxtLink>
                     </div>
@@ -97,76 +97,6 @@ export default {
 
 .list-talent-content{
     font-family: "Roboto Condensed", sans-serif;
-}
-.list-talent {
-  background: #f5f5f5;
-  padding: 25px;
-  border-radius: 1rem;
-}
-
-.talent-list-content{
-    padding: 15px;
-    background: #fff;
-    margin: 0;
-    border-radius: 15px;
-    flex: 1;
-    overflow: hidden;
-}
-.talent-list-item {
-  display: flex;
-  @media only screen and (max-width: 500px) {
-    flex-direction: column;
-    background: #fff;
-    border-radius: 15px;
-  }
-
-}
-.talent-list-img {
-  flex: 0 0 190px;
-  margin-right: 15px;
-  >div {
-    padding-bottom: 100%;
-    background-size: cover;
-    background-position: center;
-    border-radius: 15px;
-  }
-  @media only screen and (max-width: 500px) {
-    margin-right: 0;
-  }
-}
-.talent-list-title {
-  a{
-    color: #000;
-  }
-  text-transform: uppercase;
-  font-weight: bold;
-  margin-bottom: 15px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  img {
-    background: #ffcb05;
-    width: 25px;
-    margin-right: 10px;
-  }
-}
-.talent-list-des {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  margin-bottom: 15px;
-}
-.talent-list-btn{
-    a {
-      color: #000;
-      border-bottom: 1px solid;
-      font-weight: bold;
-      &:hover {
-        text-decoration: none;
-      }
-    }
 }
 
 </style>

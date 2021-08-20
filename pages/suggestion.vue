@@ -7,46 +7,67 @@
             <div class="logo logo-background text-center"></div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="row contact-wrapper mx-0">
-              <div class="btn-tab">
-                <div :class="tab === 0 ? 'active' : ''" @click="tab = 0">Các tài năng được đề xuất</div>
-                <div :class="tab === 1 ? 'active' : ''" @click="tab = 1">Gửi đề xuất tài năng của bạn</div>
-              </div>
-              <div v-show="tab === 0" class="list-talent">
-                <div v-for="(talent, index) in suggestions" :key="index" class="list-talent-content">
-                <div class="talent-list-item mx-0 mb-3">
-                  <div class="talent-list-img">
-                    <div v-bind:style="{'background-image': 'url('+ talent.image.small + ')'}"></div>
+        <div class="row contact-wrapper mx-0">
+          <div class="btn-tab">
+            <div :class="tab === 0 ? 'active' : ''" @click="tab = 0">Các tài năng được đề xuất</div>
+            <div :class="tab === 1 ? 'active' : ''" @click="tab = 1">Gửi đề xuất tài năng của bạn</div>
+          </div>
+          <div v-show="tab === 0" class="list-talent w-100 p-0">
+            <div v-for="(talent, index) in suggestions" :key="index" class="list-talent-content">
+              <div class="talent-list-item mx-0 mb-3">
+                <div class="talent-list-img">
+                  <div v-bind:style="{'background-image': 'url('+ talent.image.small + ')'}"></div>
+                </div>
+                <div class="talent-list-content">
+                  <div class="talent-list-title">
+                    <NuxtLink :to="localePath('/tai-nang/' +  talent.slug+'_'+talent.id)">
+                      <img width="30px" src="~/assets/images/medal-icon.png" alt="" />
+                      {{talent.title_i18n[$i18n.locale]}}
+                    </NuxtLink>
                   </div>
-                  <div class="talent-list-content">
-                    <div class="talent-list-title">
-                      <NuxtLink :to="'/tai-nang/' +  talent.slug">
-                        <img width="30px" src="~/assets/images/medal-icon.png" alt="" />
-                        {{talent.title_i18n[$i18n.locale]}}
-                      </NuxtLink>
-                    </div>
-                    <div class="talent-list-des">
-                      {{talent.description_i18n[$i18n.locale]}}
-                    </div>
-                    <div class="talent-list-btn">
-                      <NuxtLink :to="'/tai-nang/' +  talent.slug">
-                        Chi tiết
-                      </NuxtLink>
+                  <div class="talent-list-des">
+                    {{talent.description_i18n[$i18n.locale]}}
+                  </div>
+                  <div class="talent-list-btn">
+                    <NuxtLink :to="localePath('/tai-nang/' +  talent.slug+'_'+talent.id)">
+                      Chi tiết
+                    </NuxtLink>
+                    <div class="vote">
+                      <div>
+                        <img src="~/assets/images/like.png" alt=""> Ủng hộ: {{talent.vote_count || 0}}
+                      </div>
+                      <div class="mx-2">│</div>
+                      <div>
+                        <img src="~/assets/images/chat.png" alt=""> Thảo luận: {{talent.comment_count || 0}}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-                <pagination
-                  v-model="page"
-                  :page-count="pageCount"
-                  :page-range="6"
-                >
-                </pagination>
+            </div>
+            <pagination
+              v-model="page"
+              v-if="suggestions.length"
+              :page-count="pageCount"
+              :page-range="6"
+            >
+            </pagination>
+          </div>
+          <div v-show="tab === 1" class="col-12 ">
+            <div class="row">
+              <div class="col-md-6 p-0 pr-md-2 mb-md-0 mb-3">
+                <div class="form-contact">
+Là một người dân Việt Nam, chắc hẳn không ai quên được giây phút vỡ òa cảm xúc khi Văn Thanh ghi bàn thắng quyết định đưa đội tuyển bóng đá U23 Vietnam vào trận chung kết U23 Châu Á 2018 tại Thường Châu, hoặc giây phút Ánh Viên rơi nước mắt hát quốc ca khi nhận 8 Huy Chương Vàng SEAGAME 2017 đã tạo nên những kỳ tích, đem lại niềm tự hào vô bờ bến cho đất nước.
+Nhưng có mấy ai biết được những tài năng này đã từng trải qua những giai đoạn khó khăn bế tắc, có lúc tưởng chừng như bỏ cuộc… nhưng họ đã may mắn khi nhận được những động viên, hỗ trợ kịp thời  của rất nhiều người để giúp họ vượt qua khó khăn, nỗ lực tỏa sáng đem lại những khoảnh khắc vui sướng tột cùng, thắp lên niềm tự hào dân tộc của hàng triệu người dân Việt Nam.
+Quỹ Phát Triển Tài Năng Việt ra đời trao cho tất cả chúng ta cơ hội được là một phần của sự chiến thắng, niềm tự hào dân tộc bằng một cách rất dễ dàng: chỉ cần một đóng góp nhỏ như khi mua một ly cà phê Ông Bầu là bạn đã đóng góp 1,000đ vào Quỹ, hoặc vào website của Quỹ để chọn Tài năng và đóng góp trực tiếp bằng tiền mặt, hiện vật,…
+Bằng một hành động nhỏ sẽ tạo nên những niềm tự hào to lớn cho đất nước. Đã có hàng triệu người tham gia đóng góp vào Quỹ Phát Triển Tài Năng Việt… còn bạn thì sao?
+                </div>
               </div>
-              <div v-show="tab === 1" class="col-md-6 col-12 form-contact">
-                <div class="form">
+              <div class="col-md-6 p-0 pl-md-2">
+                <div class="form form-contact">
+                  <div class="title text-center">
+                    Thông tin về tài năng
+                  </div>
                   <div class="floating-label">
                     <input
                       class="floating-input"
@@ -55,7 +76,7 @@
                       :class="{ error: rules.fullname.error }"
                       v-model="form.fullname"
                     />
-                    <label>TÊN CỦA BẠN</label>
+                    <label>TÊN CỦA TÀI NĂNG</label>
                     <small>{{ rules.fullname.error }}&nbsp;</small>
                   </div>
 
@@ -73,13 +94,24 @@
                   <div class="floating-label">
                     <input
                       class="floating-input"
-                      type="email"
+                      type="text"
                       placeholder=" "
-                      :class="{ error: rules.email.error }"
-                      v-model="form.email"
+                      :class="{ error: rules.dateOfBirth.error }"
+                      v-model="form.dateOfBirth"
                     />
-                    <label>Email</label>
-                    <small>{{ rules.email.error }} &nbsp;</small>
+                    <label>Ngày sinh</label>
+                    <small>{{ rules.dateOfBirth.error }} &nbsp;</small>
+                  </div>
+                  <div class="floating-label">
+                    <input
+                      class="floating-input"
+                      type="text"
+                      placeholder=" "
+                      :class="{ error: rules.address.error }"
+                      v-model="form.address"
+                    />
+                    <label>Địa chỉ</label>
+                    <small>{{ rules.address.error }} &nbsp;</small>
                   </div>
                   <div class="floating-label">
                     <textarea
@@ -90,7 +122,7 @@
                       v-model="form.note"
                       placeholder=" "
                     ></textarea>
-                    <label>Lời nhắn</label>
+                    <label>Thông tin mô tả</label>
                   </div>
                   <div class="text-center" style="margin-top: 30px">
                     <button
@@ -103,10 +135,9 @@
                 </div>
               </div>
             </div>
-
           </div>
-         
         </div>
+        
       </div>
     </div>
     <popup-success v-if="isSuccess" @close="isSuccess = false"></popup-success>
@@ -134,7 +165,8 @@ export default {
       form: {
         fullname: "",
         phone: "",
-        email: "",
+        address: "",
+        dateOfBirth: "",
         note: "",
       },
       rules: {
@@ -151,13 +183,14 @@ export default {
           },
           error: ""
         },
-        email: {
+        address: {
           required: false,
-          label: "email",
-          validate: value => {
-            if (!value) return true;
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-          },
+          label: "địa chỉ",
+          error: ""
+        },
+        dateOfBirth: {
+          required: false,
+          label: "ngày sinh",
           error: ""
         },
         note: {
@@ -169,13 +202,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(['contactMeta', 'suggestions']),
+    ...mapState(['suggestions']),
     pageCount() {
       return Math.ceil(this.total / this.perpage);
     },
-    contactInfo() {
-      return this.contactMeta[this.$i18n.locale]
-    }
   },
   mounted() {
   },
@@ -225,6 +255,8 @@ export default {
         phone: "",
         email: "",
         note: "",
+        dateOfBirth: '',
+        address: ''
       };
     },
 
@@ -482,6 +514,7 @@ textarea.floating-input {
   background: #fff;
   border-radius: 15px;
   padding: 30px;
+  height: 100%;
   @media screen and (max-width: 550px) {
     padding: 15px;
   }
@@ -489,6 +522,7 @@ textarea.floating-input {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 30px;
+    text-transform: uppercase;
   }
 }
 .contact-item {
@@ -515,78 +549,5 @@ textarea.floating-input {
 
   }
 }
-
-.list-talent {
-  background: #f5f5f5;
-  padding: 25px;
-  border-radius: 1rem;
-  width: 100%;
-  .talent-list-content{
-    padding: 15px;
-    background: #fff;
-    margin: 0;
-    border-radius: 15px;
-    flex: 1;
-    overflow: hidden;
-  }
-  .talent-list-item {
-    display: flex;
-    @media only screen and (max-width: 500px) {
-      flex-direction: column;
-      background: #fff;
-      border-radius: 15px;
-    }
-
-  }
-  .talent-list-img {
-    flex: 0 0 175px;
-    margin-right: 15px;
-    >div {
-      padding-bottom: 100%;
-      background-size: cover;
-      background-position: center;
-      border-radius: 15px;
-    }
-    @media only screen and (max-width: 500px) {
-      margin-right: 0;
-    }
-  }
-  .talent-list-title {
-    a{
-      color: #000;
-    }
-    text-transform: uppercase;
-    font-weight: bold;
-    margin-bottom: 15px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    img {
-      background: #ffcb05;
-      width: 25px;
-      margin-right: 10px;
-    }
-  }
-  .talent-list-des {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    margin-bottom: 15px;
-  }
-  .talent-list-btn{
-    a {
-      color: #000;
-      border-bottom: 1px solid;
-      font-weight: bold;
-      &:hover {
-        text-decoration: none;
-      }
-    }
-  }
-}
-
-
 
 </style>

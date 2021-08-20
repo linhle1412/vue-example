@@ -29,6 +29,8 @@ const store = () =>
 			remained: 0,
 			talents: [],
 			suggestions: [],
+			informations: [],
+			partners: [],
 			talentDetail: null,
 			sponsorships: [],
 			contribute: [],
@@ -40,26 +42,7 @@ const store = () =>
 				'tieu_chi': '',
 				'hinh_thuc': '',
 			},
-			contactMeta: {
-				vi: {
-					address: 'xxxx Hoàng Diệu, phường 16, Quận 4, TP.HCM',
-					email: 'xxxx@gmail.com',
-					phone: 'xxxxxxxxxx',
-					bankNumber: '100000xxxxxx',
-					bankName: 'xxxxx xxx xxx',
-					bank: 'xxxxxxxx',
-					bankBranch: 'xxxxxx'
-				},
-				en: {
-					address: '331 Hoàng Diệu, phường 16, Quận 4, TP.HCM',
-					email: 'xxxx@gmail.com',
-					phone: 'xxxxxxxxxx',
-					bankNumber: '100000xxxxxx',
-					bankName: 'xxxxx xxx xxx',
-					bank: 'xxxxxxxx',
-					bankBranch: 'xxxxxx'
-				}
-			}
+			contactMeta: null,
 		}),
 		mutations: {
 			SET_TALENTS(state, data) {
@@ -67,6 +50,12 @@ const store = () =>
 			},
 			SET_SUGGESTIONS(state, data) {
 				state.suggestions = data
+			},
+			SET_INFORMATIONS(state, data) {
+				state.informations = data
+			},
+			SET_PARTNERS(state, data) {
+				state.partners = data
 			},
 			SET_TALENT(state, data) {
 				state.talentDetail = data
@@ -88,6 +77,9 @@ const store = () =>
 			SET_CUSTOMERS(state, data) {
 				state.customers = data
 			},
+			SET_CONTACT_META(state, data) {
+				state.contactMeta = data
+			},
 		},
 		actions: {
 			async fetchTalents({ commit }, params) {
@@ -99,9 +91,9 @@ const store = () =>
 					throw e
 				}
 			},
-			async fetchTalentDetail({ commit }, slug) {
+			async fetchTalentDetail({ commit }, id) {
 				try {
-					let res = await api.get('article/slug/' + slug)
+					let res = await api.get('article/' + id + '/public')
 					commit('SET_TALENT', res.data)
 
 				} catch (e) {
@@ -119,9 +111,25 @@ const store = () =>
 			},
 			async fetchSuggestions({ commit }, params) {
 				try {
-					let res = await api.get('article/active' + buildQuery({...params, category: 'suggested_talent'}))
+					let res = await api.get('article/active' + buildQuery({...params, filters: [{rule: 'category', op: '=', value: 'suggested_talent'}]}))
 					commit('SET_SUGGESTIONS', res.data)
 					return res.total
+				} catch (e) {
+					throw e
+				}
+			},
+			async fetchInformations({ commit }) {
+				try {
+					let res = await api.get('article/active' + buildQuery({perpage: 50, filters: [{rule: 'category', op: '=', value: 'information'}]}))
+					commit('SET_INFORMATIONS', res.data)
+				} catch (e) {
+					throw e
+				}
+			},
+			async fetchPartners({ commit }) {
+				try {
+					let res = await api.get('article/active' + buildQuery({perpage: 50, filters: [{rule: 'category', op: '=', value: 'partner'}]}))
+					commit('SET_PARTNERS', res.data)
 				} catch (e) {
 					throw e
 				}
@@ -163,7 +171,12 @@ const store = () =>
 				}
 			},
 			async fetchContactMeta({ commit }) {
-				console.log(this.$i18n.locale)
+				try {
+					let res = await api.get('meta/contact')
+					commit('SET_CONTACT_META', res.data.meta_value)
+				} catch (e) {
+					throw e
+				}
 			},
 			async sendContact({ commit }, form) {
 				try {

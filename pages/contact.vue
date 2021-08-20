@@ -21,7 +21,7 @@
                       {{$t('address')}}
                     </div>
                     <div class="contact-item-text">
-                      <div>{{contactInfo.address}}</div>
+                      <div>{{contactInfo.address && contactInfo.address[$i18n.locale]}}</div>
                     </div>
                   </div>
                 </div>
@@ -32,8 +32,8 @@
                       {{$t('contact')}}
                     </div>
                     <div class="contact-item-text">
-                      <div>{{$t('email')}}: {{contactInfo.email}}</div>
-                      <div>{{$t('phone')}}: {{contactInfo.phone}}</div>
+                      <div>{{$t('email')}}: {{contactInfo.email && contactInfo.email[$i18n.locale]}}</div>
+                      <div>{{$t('phone')}}: {{contactInfo.phone && contactInfo.phone[$i18n.locale]}}</div>
                     </div>
                   </div>
                 </div>
@@ -44,17 +44,17 @@
                       {{$t('bank_donation')}}
                     </div>
                     <div class="contact-item-text">
-                      <div>{{contactInfo.bankNumber}}</div>
-                      <div>{{$t('bank_name')}}: {{contactInfo.bankName}}</div>
-                      <div>{{$t('bank')}}: {{contactInfo.bank}}</div>
-                      <div>{{$t('bank_branch')}}: {{contactInfo.bankBranch}}</div>
+                      <div>{{contactInfo.bankNo && contactInfo.bankNo[$i18n.locale]}}</div>
+                      <div>{{$t('bank_name')}}: {{contactInfo.bankName && contactInfo.bankName[$i18n.locale]}}</div>
+                      <div>{{$t('bank')}}: {{contactInfo.bank && contactInfo.bank[$i18n.locale]}}</div>
+                      <div>{{$t('bank_branch')}}: {{contactInfo.bankBranch && contactInfo.bankBranch[$i18n.locale]}}</div>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-md-6 col-12 form-contact">
                 <div class="title text-center">
-                  GỬI YÊU CẦU LIÊN HỆ
+                  Gửi yêu cầu liên hệ
                 </div>
                 <div class="form">
                   <div class="floating-label">
@@ -134,6 +134,7 @@ export default {
   layout: "default",
   data() {
     return {
+      contactInfo: this.$store.state.contactMeta || {},
       isSubmitted: false,
       isSuccess: false,
       isLoading: false,
@@ -174,17 +175,17 @@ export default {
       }
     };
   },
-  computed: {
-    ...mapState(['contactMeta']),
-    contactInfo() {
-      return this.contactMeta[this.$i18n.locale]
+  async fetch({ store, params, redirect, query }) {
+    try {
+      await store.dispatch('fetchContactMeta')
+    } catch (e) {
     }
   },
+  computed: {
+  },
   mounted() {
-    this.fetchContactMeta();
   },
   methods: {
-    ...mapActions(['fetchContactMeta']),
     validate(data, rules) {
       let isValidate = true;
       for (const key of Object.keys(rules)) {
@@ -453,6 +454,7 @@ textarea.floating-input {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 30px;
+    text-transform: uppercase;
   }
 }
 .contact-item {

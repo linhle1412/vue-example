@@ -3,35 +3,19 @@
     <div class="bg-leaf-banner-bottom">
       <div class="container">
         <div class="row">
-          <div class="col-lg-7 col-md-12 mx-auto py-5">
-            <div class="logo text-center mb-4">
+          <div class="col-12 py-5 mb-3">
+            <div class="logo logo-small text-center">
               <img src="~/assets/images/slogan.png" alt="" />
             </div>
-           
           </div>
           <div class="col-lg-9 mx-auto">
-            <div class="info-item">
-              <div class="info-item-title"><span>Ý nghĩa</span></div>
-              <div class="info-item-content">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit quis architecto molestias deleniti ad recusandae delectus, aperiam doloremque tempora dignissimos perspiciatis quae ipsa, atque voluptas accusantium repudiandae maiores mollitia distinctio.
-              </div>
-            </div>
-            <div class="info-item">
-              <div class="info-item-title"><span>Ý nghĩa</span></div>
-              <div class="info-item-content">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit quis architecto molestias deleniti ad recusandae delectus, aperiam doloremque tempora dignissimos perspiciatis quae ipsa, atque voluptas accusantium repudiandae maiores mollitia distinctio.
-              </div>
-            </div>
-            <div class="info-item">
-              <div class="info-item-title"><span>Ý nghĩa</span></div>
-              <div class="info-item-content">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit quis architecto molestias deleniti ad recusandae delectus, aperiam doloremque tempora dignissimos perspiciatis quae ipsa, atque voluptas accusantium repudiandae maiores mollitia distinctio.
-              </div>
-            </div>
-            <div class="info-item">
-              <div class="info-item-title"><span>Ý nghĩa</span></div>
-              <div class="info-item-content">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit quis architecto molestias deleniti ad recusandae delectus, aperiam doloremque tempora dignissimos perspiciatis quae ipsa, atque voluptas accusantium repudiandae maiores mollitia distinctio.
+            <div class="info-item" v-for="(item, index) in informations" :key="index">
+              <div class="info-item-title"><span>{{item.title_i18n[$i18n.locale]}}</span></div>
+              <div class="info-item-content row" >
+                <div class="col-md-8" v-html="item.content_i18n[$i18n.locale]"></div>
+                <div class="col-md-4">
+                  <div class="image" v-bind:style="{'background-image': 'url('+ item.image.medium + ')'}"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -46,13 +30,13 @@ export default {
   layout: "default",
   async fetch({ store, params, redirect, query }) {
     try {
-      
+      await store.dispatch('fetchInformations')
     } catch (e) {
     }
   },
   data() {
     return {
-      fundInfo: this.$store.state.fundInfo,
+      informations: this.$store.state.informations,
     };
   },
   methods: {
@@ -98,6 +82,17 @@ export default {
   }
   .info-item-content {
     color: #444;
+    &>div:first-child {
+      @media screen and (max-width: 768px) {
+        margin-bottom: 20px;
+      }
+    }
+    .image {
+      border-radius: 15px;
+      padding-bottom: 70%;   
+      background-position: center;
+      background-size: cover;   
+    }
   }
 }
 </style>

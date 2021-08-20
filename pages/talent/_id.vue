@@ -10,7 +10,7 @@
               </div>
             </div>
             <div class="page-title text-center">
-              Thông tin các tài năng
+              {{talentDetail.category == 'suggested_talent' ? 'Thông tin tài năng được đề xuất' : 'Thông tin tài năng'}}
             </div>
             <div class="talent-detail">
               <div class="talent-detail-img">
@@ -27,10 +27,11 @@
                     src="~/assets/images/medal-icon.png"
                     alt=""
                   />
-                  {{ talentDetail.title }}
+                  {{ talentDetail.title_i18n[[$i18n.locale]] }}
                 </div>
-                <div v-html="talentDetail.content"></div>
+                <div v-html="talentDetail.content_i18n[$i18n.locale]"></div>
               </div>
+              
               <div class="pre-next-btn">
                 <NuxtLink class='pre-btn' v-if='previousTalen()' :to="'/tai-nang/' + previousTalen()">
                   <i class="fa fa-angle-left" aria-hidden="true"></i> Tài năng
@@ -62,8 +63,7 @@ export default {
   },
   async fetch({ store, params, redirect, query }) {
     try {
-      // const id = params.id.split('-')[0]
-      const id = params.id;
+      const id = params.id.split('_')[ params.id.split('_').length - 1]
       await store.dispatch("fetchTalentDetail", id);
     } catch (e) {
       redirect("/not-found");

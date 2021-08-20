@@ -135,6 +135,9 @@ export default {
           case "suggestion":
             r.path = "/de-xuat-tai-nang";
             break;
+          case "partners":
+            r.path = "/doi-tac-chien-luoc";
+            break;
           case "success":
             r.path = "/thank-you";
             break;
