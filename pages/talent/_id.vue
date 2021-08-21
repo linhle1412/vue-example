@@ -31,7 +31,19 @@
                 </div>
                 <div v-html="talentDetail.content_i18n[$i18n.locale]"></div>
               </div>
-
+              <div v-if="talentDetail.category == 'suggested_talent'" class="mt-5 w-100">
+                <div class="voting-wrapper">
+                  <div>
+                    <img src="~/assets/images/icon-vote.png" alt="">
+                    <div class="vote-count">{{talentDetail.vote_count}}</div>
+                    <div>Lượt ủng hộ</div>
+                  </div>
+                  <div>
+                    <div class="btn-defaut"><a>Ủng hộ tài năng</a></div>
+                  </div>
+                </div>
+                <comment-box :comments="comments" @submit="sendCmt"></comment-box>
+              </div>
               <div class="pre-next-btn">
                 <NuxtLink class='prev-btn' v-if='prev' :to="localePath({name: 'talent-id', params: {id: prev}})">
                   <i class="fa fa-angle-left" aria-hidden="true"></i> {{$t('prev_talent')}}
@@ -51,10 +63,13 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import CommentBox from '../../components/CommentBox.vue';
 
 export default {
   layout: "default",
-  components: {},
+  components: {
+    CommentBox
+  },
   data() {
     return {
       talentDetail: this.$store.state.talentDetail,
@@ -73,6 +88,7 @@ export default {
   head() {
     return {
       title: this.talentDetail.title,
+      comments: this.talentDetail.comments,
       meta: [
         {
           hid: "description",
@@ -108,10 +124,21 @@ export default {
     };
   },
   computed: {
-    ...mapState(["talents"])
+    ...mapState(["talents"]),
   },
   created() {
-   
+    this.comments = [
+      {
+        avatar: 'https://i2.wp.com/www.primatimes.com/wp-content/uploads/2020/06/myAvatar-2.png?fit=500%2C500&ssl=1',
+        fullname: 'Linh lee',
+        content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis deleniti quae hic quaerat molestiae neque minus saepe nesciunt doloribus provident alias nisi maiores cumque error veniam, distinctio ullam cupiditate laboriosam.'
+      },
+      {
+        avatar: 'https://i2.wp.com/www.primatimes.com/wp-content/uploads/2020/06/myAvatar-2.png?fit=500%2C500&ssl=1',
+        fullname: 'Linh lee',
+        content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis deleniti quae hic quaerat molestiae neque minus saepe nesciunt doloribus provident alias nisi maiores cumque error veniam, distinctio ullam cupiditate laboriosam.'
+      }
+    ]
   },
   async mounted() {
     try {
@@ -138,18 +165,65 @@ export default {
    
   },
   methods: {
-    ...mapActions(["fetchTalentsRelated"]),
+    ...mapActions(["fetchTalentsRelated", "sendComment"]),
     nextTalen() {
       return ''
     },
     previousTalen() {
       return ''
+    },
+    async sendCmt(value) {
+      try {
+        await this.sendComment({
+          id: this.talentDetail.id,
+          content: value
+        })
+      } catch (e) {
+
+      }
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.voting-wrapper {
+  display: flex;
+  width: 100%;
+  margin-bottom: 50px;
+  img {
+    width: 50px;
+  }
+  .vote-count {
+    font-size: 50px;
+    font-family: "Yeseva One", sans-serif;
+  }
+  .btn-defaut a {
+    padding: 15px 50px;
+  }
+  &>div {
+    flex: 1;
+    border-radius: 20px;
+    background: #fff;
+    height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    &:first-child {
+      margin-right: 20px
+    }
+  }
+  @media screen and (max-width: 500px) {
+    display: block;
+    &>div {
+      &:first-child {
+        margin-right: 0;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
 .talent-detail-img {
   padding: 15px;
   background-color: #fff;
@@ -175,6 +249,9 @@ export default {
     width: 40px;
     margin-right: 10px;
   }
+}
+.talent-detail-content {
+  min-height: 220px;
 }
 .talent-detail {
   background: #f5f5f5;

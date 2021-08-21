@@ -24,6 +24,10 @@ Vue.use(Vuex);
 const store = () =>
 	new Vuex.Store({
 		state: () => ({
+			user: {
+				'avatar': '',
+				'fullname': ''
+			},
 			totalFund: 0,
 			sponsored: 0,
 			remained: 0,
@@ -188,6 +192,16 @@ const store = () =>
 			async sendContact({ commit }, form) {
 				try {
 					let res = await api.post('contact',form)
+					return res.data
+				} catch (e) {
+					throw e
+				}
+			},
+			async sendComment({ commit }, form) {
+				try {
+					let res = await api.post(`article/${form.id}/comment`,{
+						content: form.content
+					})
 					return res.data
 				} catch (e) {
 					throw e
