@@ -184,6 +184,10 @@ textarea {
 
 .btn-defaut {
   cursor: pointer;
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }
   a {
     background: #ffd52a;
     border: 1px solid #ffd52a;

@@ -54,7 +54,7 @@
               </div>
               <div class="col-md-6 col-12 form-contact">
                 <div class="title text-center">
-                  Gửi yêu cầu liên hệ
+                  {{$t('send_contact')}}
                 </div>
                 <div class="form">
                   <div class="floating-label">
@@ -62,11 +62,11 @@
                       class="floating-input"
                       type="text"
                       placeholder=" "
-                      :class="{ error: rules.fullname.error }"
-                      v-model="form.fullname"
+                      :class="{ error: rules.name.error }"
+                      v-model="form.name"
                     />
-                    <label>TÊN CỦA BẠN</label>
-                    <small>{{ rules.fullname.error }}&nbsp;</small>
+                    <label>{{$t('your_name')}}</label>
+                    <small>{{ rules.name.error }}&nbsp;</small>
                   </div>
 
                   <div class="floating-label">
@@ -77,7 +77,7 @@
                       v-model="form.phone"
                       placeholder=" "
                     />
-                    <label>Số điện thoại *</label>
+                    <label>{{$t('phone_no')}} *</label>
                     <small>{{ rules.phone.error }}&nbsp;</small>
                   </div>
                   <div class="floating-label">
@@ -97,17 +97,17 @@
                       id="contribute-message"
                       rows="3"
                       class="floating-input"
-                      v-model="form.note"
+                      v-model="form.message"
                       placeholder=" "
                     ></textarea>
-                    <label>Lời nhắn</label>
+                    <label>{{$t('message')}}</label>
                   </div>
                   <div class="text-center" style="margin-top: 30px">
                     <button
                       @click="submit"
                       :class="isLoading ? 'is-loading' : ''"
                     >
-                      Gửi thông tin
+                      {{$t('send_info')}}
                     </button>
                   </div>
                 </div>
@@ -119,7 +119,7 @@
         </div>
       </div>
     </div>
-    <popup-success v-if="isSuccess" @close="isSuccess = false"></popup-success>
+    <popup-success v-if="!isSuccess" @close="isSuccess = false"></popup-success>
     <div class='banner-bottom'>
     </div>
   </div>
@@ -136,16 +136,16 @@ export default {
     return {
       contactInfo: this.$store.state.contactMeta || {},
       isSubmitted: false,
-      isSuccess: false,
+      isSuccess: true,
       isLoading: false,
       form: {
-        fullname: "",
+        name: "",
         phone: "",
         email: "",
-        note: "",
+        message: "",
       },
       rules: {
-        fullname: {
+        name: {
           required: true,
           label: "tên của bạn",
           error: ""
@@ -167,7 +167,7 @@ export default {
           },
           error: ""
         },
-        note: {
+        message: {
           required: false,
           label: "lời nhắn",
           error: ""
@@ -190,7 +190,7 @@ export default {
       let isValidate = true;
       for (const key of Object.keys(rules)) {
         if (rules[key].required === true && data[key] === "") {
-          rules[key].error = "Vui lòng nhập " + rules[key].label;
+          rules[key].error = this.$t("please_enter") + this.$t(rules[key].label).toLowerCase();
           isValidate = false;
           continue;
         } else {
@@ -199,7 +199,7 @@ export default {
         if (rules[key].validate) {
           if (!rules[key].validate(data[key])) {
             isValidate = false;
-            rules[key].error = "Vui lòng nhập đúng " + rules[key].label;
+            rules[key].error = this.$t("please_enter_correct") + this.$t(rules[key].label).toLowerCase();
             continue;
           } else {
             rules[key].error = "";
@@ -210,10 +210,10 @@ export default {
     },
     clearForm() {
       this.form = {
-        fullname: "",
+        name: "",
         phone: "",
         email: "",
-        note: "",
+        message: "",
       };
     },
 
@@ -222,13 +222,12 @@ export default {
         this.isLoading = true;
         this.$store.dispatch("sendContact", this.form).then(res => {
           this.isLoading = false;
+          this.isSuccess = true;
           this.clearForm();
         })
         .catch(e => {
           this.isLoading = false;
-          this.isSubmitted = true;
-          this.isSuccess = false;
-          this.clearForm();
+          this.$toast.error(e)
         });
       }
     }

@@ -47,6 +47,9 @@ export default {
     "~plugins/filters.js",
     "~plugins/plugin.js",
     "~plugins/util.js",
+    "~plugins/api.js",
+    "~/plugins/i18n.js",
+    { src: '~/plugins/fb-sdk.js', ssr: false },
     { src: '~/plugins/vue-pdf.js', ssr: false },
   ],
 
@@ -61,8 +64,18 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     "bootstrap-vue/nuxt",
     'nuxt-webfontloader',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@nuxtjs/axios',
+    '@nuxtjs/toast',
+    'cookie-universal-nuxt',
   ],
+  toast: {
+    position: 'bottom-right',
+    duration: 3000
+  },
+  axios: {
+    baseURL: 'https://tnv.eyeteam.vn', // Used as fallback if no runtime config is provided
+  },
   i18n: {
     baseUrl: 'https://quyphattrientainangviet.vn',
     langDir: 'langs/',

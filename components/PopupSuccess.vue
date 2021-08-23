@@ -10,7 +10,7 @@
           </div>
           <div class="modal-footer">
             <div
-              @click="$emit('close')"
+              @click="viewTalent"
               class="btn-defaut"
             >
               <a>{{$t('view_talent')}}</a>
@@ -27,6 +27,10 @@ export default {
     
   },
   methods: {
+    viewTalent() {
+      this.$emit('close')
+      this.$router.push(this.localePath({name: 'talent'}))
+    },
     clickBg(event) {
       if (event.target.className === 'modal') {
         this.$emit('close')

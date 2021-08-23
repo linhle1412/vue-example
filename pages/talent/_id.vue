@@ -36,10 +36,13 @@
                   <div>
                     <img src="~/assets/images/icon-vote.png" alt="">
                     <div class="vote-count">{{talentDetail.vote_count}}</div>
-                    <div>Lượt ủng hộ</div>
+                    <div>{{$t('num_vote')}}</div>
                   </div>
                   <div>
-                    <div class="btn-defaut"><a>Ủng hộ tài năng</a></div>
+                    <div v-if="!isLogin" class="d-flex justify-content-center align-items-center h-100">
+                      <facebook-login>{{$t('require_login_vote')}}</facebook-login>
+                    </div>
+                    <div v-else class="btn-defaut" @click="voteTalent"><a>{{$t('vote_talent')}}</a></div>
                   </div>
                 </div>
                 <comment-box :comments="comments" @submit="sendCmt"></comment-box>
@@ -64,15 +67,18 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import CommentBox from '../../components/CommentBox.vue';
+import FacebookLogin from '../../components/FacebookLogin.vue';
 
 export default {
   layout: "default",
   components: {
-    CommentBox
+    CommentBox,
+    FacebookLogin
   },
   data() {
     return {
       talentDetail: this.$store.state.talentDetail,
+      comments: this.$store.state.talentDetail.comments,
       next: '',
       prev: '',
     };
@@ -84,11 +90,15 @@ export default {
     } catch (e) {
       redirect("/not-found");
     }
+    try {
+      await store.dispatch('checkToken')
+    } catch (e) {
+
+    }
   },
   head() {
     return {
       title: this.talentDetail.title,
-      comments: this.talentDetail.comments,
       meta: [
         {
           hid: "description",
@@ -124,21 +134,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["talents"]),
-  },
-  created() {
-    this.comments = [
-      {
-        avatar: 'https://i2.wp.com/www.primatimes.com/wp-content/uploads/2020/06/myAvatar-2.png?fit=500%2C500&ssl=1',
-        fullname: 'Linh lee',
-        content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis deleniti quae hic quaerat molestiae neque minus saepe nesciunt doloribus provident alias nisi maiores cumque error veniam, distinctio ullam cupiditate laboriosam.'
-      },
-      {
-        avatar: 'https://i2.wp.com/www.primatimes.com/wp-content/uploads/2020/06/myAvatar-2.png?fit=500%2C500&ssl=1',
-        fullname: 'Linh lee',
-        content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis deleniti quae hic quaerat molestiae neque minus saepe nesciunt doloribus provident alias nisi maiores cumque error veniam, distinctio ullam cupiditate laboriosam.'
-      }
-    ]
+    ...mapState(["talents", "isLogin"]),
   },
   async mounted() {
     try {
@@ -165,21 +161,26 @@ export default {
    
   },
   methods: {
-    ...mapActions(["fetchTalentsRelated", "sendComment"]),
-    nextTalen() {
-      return ''
-    },
-    previousTalen() {
-      return ''
+    ...mapActions(["fetchTalentsRelated", "sendComment", "vote"]),
+    async voteTalent() {
+      try {
+        await this.vote(this.talentDetail.id)
+        this.talentDetail.vote_count += 1;
+        this.$toast.success(this.$t('vote_success'))
+      } catch(e) {
+        this.$toast.error(e)
+      }
     },
     async sendCmt(value) {
       try {
-        await this.sendComment({
+        var data = await this.sendComment({
           id: this.talentDetail.id,
           content: value
         })
+        this.comments.unshift(data)
+        this.$toast.success(this.$t('comment_success'))
       } catch (e) {
-
+        this.$toast.error(e)
       }
     }
   }
@@ -205,7 +206,7 @@ export default {
     flex: 1;
     border-radius: 20px;
     background: #fff;
-    height: 230px;
+    height: 210px;
     display: flex;
     align-items: center;
     justify-content: center;

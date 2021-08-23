@@ -65,90 +65,96 @@ Bằng một hành động nhỏ sẽ tạo nên những niềm tự hào to l�
               </div>
               <div class="col-md-6 p-0 pl-md-2">
                 <div class="form form-contact">
-                  <div class="title text-center">
-                    {{$t('talent_a_info')}}
+                  <div v-if="!isLogin" class="d-flex justify-content-center align-items-center h-100">
+                    <facebook-login ><div v-html="$t('require_login_suggestion')"></div></facebook-login>
                   </div>
-                  <div class="floating-label">
-                    <input
-                      class="floating-input"
-                      type="text"
-                      placeholder=" "
-                      :class="{ error: rules.fullname.error }"
-                      v-model="form.fullname"
-                    />
-                    <label>{{$t('talent_name')}}</label>
-                    <small>{{ rules.fullname.error }}&nbsp;</small>
-                  </div>
-
-                  <div class="floating-label">
-                    <input
-                      class="floating-input"
-                      :class="{ error: rules.phone.error }"
-                      type="text"
-                      v-model="form.phone"
-                      placeholder=" "
-                    />
-                    <label>{{$t('phone_no')}} *</label>
-                    <small>{{ rules.phone.error }}&nbsp;</small>
-                  </div>
-                  <div class="floating-label">
-                    <input
-                      class="floating-input"
-                      type="text"
-                      placeholder=" "
-                      :class="{ error: rules.dateOfBirth.error }"
-                      v-model="form.dateOfBirth"
-                    />
-                    <label>{{$t('birth_date')}}</label>
-                    <small>{{ rules.dateOfBirth.error }} &nbsp;</small>
-                  </div>
-                  <div class="floating-label">
-                    <input
-                      class="floating-input"
-                      type="text"
-                      placeholder=" "
-                      :class="{ error: rules.address.error }"
-                      v-model="form.address"
-                    />
-                    <label>{{$t('address')}}</label>
-                    <small>{{ rules.address.error }} &nbsp;</small>
-                  </div>
-                  <div class="floating-label">
-                    <input
-                      class="floating-input select"
-                      type="text"
-                      placeholder=" "
-                      :class="{ error: rules.field.error }"
-                      v-model="form.field"
-                      @focus="showOption = true"
-                      @blur="onBlur"
-                    />
-                    <div class="select-dropdown" @click="showOption = !showOption">⌵</div>
-                    <div class="select-option" v-show="filterFields.length && showOption">
-                      <div v-for="(field) in filterFields" :key="field" @click="form.field = field; showOption = false">{{field}}</div>
+                  <div v-else>
+                    <div class="title text-center">
+                      {{$t('talent_a_info')}}
                     </div>
-                    <label>{{$t('talent_field')}} *</label>
-                    <small>{{ rules.field.error }} &nbsp;</small>
+                    <div class="floating-label">
+                      <input
+                        class="floating-input"
+                        type="text"
+                        placeholder=" "
+                        :class="{ error: rules.name.error }"
+                        v-model="form.name"
+                      />
+                      <label>{{$t('talent_name')}}</label>
+                      <small>{{ rules.name.error }}&nbsp;</small>
+                    </div>
+
+                    <div class="floating-label">
+                      <input
+                        class="floating-input"
+                        :class="{ error: rules.phone.error }"
+                        type="tel"
+                        v-model="form.phone"
+                        placeholder=" "
+                      />
+                      <label>{{$t('phone_no')}} *</label>
+                      <small>{{ rules.phone.error }}&nbsp;</small>
+                    </div>
+                    <div class="floating-label">
+                      <input
+                        class="floating-input"
+                        type="text"
+                        :class="{ error: rules.date_of_birth.error }"
+                        v-model="form.date_of_birth"
+                        placeholder=" "
+                      />
+                      <label>{{$t('birth_date')}}</label>
+                      <small>{{ rules.date_of_birth.error }} &nbsp;</small>
+                    </div>
+                    <div class="floating-label">
+                      <input
+                        class="floating-input"
+                        type="text"
+                        placeholder=" "
+                        :class="{ error: rules.address.error }"
+                        v-model="form.address"
+                      />
+                      <label>{{$t('address')}}</label>
+                      <small>{{ rules.address.error }} &nbsp;</small>
+                    </div>
+                    <div class="floating-label">
+                      <input
+                        class="floating-input select"
+                        type="text"
+                        placeholder=" "
+                        :class="{ error: rules.field.error }"
+                        v-model="form.field"
+                        @focus="showOption = true"
+                        @blur="onBlur"
+                      />
+                      <div class="select-dropdown" @click="showOption = !showOption">⌵</div>
+                      <div class="select-option" v-show="filterFields.length && showOption">
+                        <div v-for="(field) in filterFields" :key="field" @click="form.field = field; showOption = false">{{field}}</div>
+                      </div>
+                      <label>{{$t('talent_field')}} *</label>
+                      <small>{{ rules.field.error }} &nbsp;</small>
+                    </div>
+                    <div class="floating-label">
+                      <textarea
+                        name="contribute-message"
+                        id="contribute-message"
+                        rows="3"
+                        class="floating-input"
+                        v-model="form.description"
+                        placeholder=" "
+                      ></textarea>
+                      <label>{{$t('note')}}</label>
+                    </div>
+                    <div class="text-center" style="margin-top: 30px">
+                      <button
+                        @click="submit"
+                        :class="isLoading ? 'is-loading' : ''"
+                      >
+                        {{$t('submit_suggest')}}
+                      </button>
+                    </div>
                   </div>
-                  <div class="floating-label">
-                    <textarea
-                      name="contribute-message"
-                      id="contribute-message"
-                      rows="3"
-                      class="floating-input"
-                      v-model="form.note"
-                      placeholder=" "
-                    ></textarea>
-                    <label>{{$t('note')}}</label>
-                  </div>
-                  <div class="text-center" style="margin-top: 30px">
-                    <button
-                      @click="submit"
-                      :class="isLoading ? 'is-loading' : ''"
-                    >
-                      {{$t('submit_suggest')}}
-                    </button>
-                  </div>
+              
                 </div>
               </div>
             </div>
@@ -165,11 +171,18 @@ Bằng một hành động nhỏ sẽ tạo nên những niềm tự hào to l�
 
 <script>
 import { mapState, mapActions, mapGetters } from "vuex";
+import FacebookLogin from '../components/FacebookLogin.vue';
 import PopupSuccess from '../components/PopupSuccess.vue';
 
 export default {
-  components: { PopupSuccess },
+  components: { PopupSuccess, FacebookLogin },
   layout: "default",
+  async fetch({ store, params, redirect, query }) {
+    try {
+      await store.dispatch('checkToken')
+    } catch (e) {
+    }
+  },
   data() {
     return {
       isSubmitted: false,
@@ -180,18 +193,18 @@ export default {
       perpage: 3,
       total: 0,
       form: {
-        fullname: "",
+        name: "",
         phone: "",
         address: "",
-        dateOfBirth: "",
-        note: "",
+        date_of_birth: "",
+        description: "",
         field: ''
       },
       fields: ["Bóng chuyền","Bóng rổ","Bóng đá","Bóng bàn","Cầu lông","Quần vợt/Tennis","Điền kinh","Quyền anh","Xe đạp","Đấu kiếm","Golf","Thể dục dụng cụ","Judo","Karate","Taekwondo","Cử tạ","Đấu vật","Kiến trúc","Điêu khắc","Hội họa","Âm nhạc","Văn chương","Sân khấu","Điện ảnh","Múa","Nhiếp ảnh","Đồ họa"],
       filterFields: [],
       showOption: false,
       rules: {
-        fullname: {
+        name: {
           required: true,
           label: "talent_name",
           error: ""
@@ -214,21 +227,21 @@ export default {
           label: "address",
           error: ""
         },
-        dateOfBirth: {
+        date_of_birth: {
           required: false,
           label: "birth_date",
           error: ""
         },
-        note: {
+        description: {
           required: false,
-          label: "note",
+          label: "description",
           error: ""
         },
       }
     };
   },
   computed: {
-    ...mapState(['suggestions']),
+    ...mapState(['suggestions', 'isLogin']),
     pageCount() {
       return Math.ceil(this.total / this.perpage);
     },
@@ -245,12 +258,32 @@ export default {
     },
     'form.field'(nVal, oVal) {
       this.filterFields = this.fields.filter((f) => this.normalizeee(f).includes(this.normalizeee(nVal)))
+    },
+    'form.date_of_birth'(nVal, oVal) {
+      if (/\D\/$/.test(nVal)) nVal = nVal.substr(0, nVal.length - 3);
+      var values = nVal.split('/').map(function(v) {
+        return v.replace(/\D/g, '')
+      });
+      if (values[0]) values[0] = this.checkValue(values[0], 12);
+      if (values[1]) values[1] = this.checkValue(values[1], 31);
+      var output = values.map(function(v, i) {
+        return v.length == 2 && i < 2 ? v + ' / ' : v;
+      });
+      this.form.date_of_birth = output.join('').substr(0, 14);
     }
   },
   methods: {
     ...mapActions(['fetchSuggestions']),
+    checkValue(str, max) {
+      if (str.charAt(0) !== '0' || str == '00') {
+        var num = parseInt(str);
+        if (isNaN(num) || num <= 0 || num > max) num = 1;
+        str = num > parseInt(max.toString().charAt(0)) && num.toString().length == 1 ? '0' + num : num.toString();
+      };
+      return str;
+    },
     onBlur(){
-      setTimeout(() => {this.showOption = false}, 0)
+      setTimeout(() => {this.showOption = false}, 100)
     },
     getData() {
       this.fetchSuggestions({
@@ -284,11 +317,10 @@ export default {
     },
     clearForm() {
       this.form = {
-        fullname: "",
+        name: "",
         phone: "",
-        email: "",
-        note: "",
-        dateOfBirth: '',
+        description: "",
+        date_of_birth: '',
         address: '',
         field: ''
       };
@@ -297,15 +329,14 @@ export default {
     submit() {
       if (this.validate(this.form, this.rules)) {
         this.isLoading = true;
-        this.$store.dispatch("sendContact", this.form).then(res => {
+        this.$store.dispatch("sendSuggestion", this.form).then(res => {
           this.isLoading = false;
+          this.isSuccess = true;
           this.clearForm();
         })
         .catch(e => {
           this.isLoading = false;
-          this.isSubmitted = true;
-          this.isSuccess = false;
-          this.clearForm();
+          this.$toast.error(e)
         });
       }
     },

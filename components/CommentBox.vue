@@ -1,15 +1,23 @@
 <template>
   <div>
     <div class="comment-submit">
-      <img :src="user.avatar || require('~/assets/images/avatar-default.png')" alt=""/>
-      <div class="comment-input">
-        <input type="text" v-model="inputValue" @keyup.enter="submit" placeholder="Bình luận...">
-        <div class="btn-defaut" @click="submit"><a>Gửi</a></div>
+      <div class="avatar">
+        <img :src="user.avatar || require('~/assets/images/avatar-default.png')" alt=""/>
       </div>
+      <div style="flex: 1">
+        <div class="comment-input">
+          <input :disabled="!isLogin" type="text" v-model="inputValue" @keyup.enter="submit" :placeholder="$t('fill_comment')">
+          <div :class="!isLogin ? 'disabled' : ''" class="btn-defaut" @click="submit"><a>{{$t('send')}}</a></div>
+        </div>
+        <div v-if="!isLogin" class="require-login mt-1 pl-3">{{$t('require_login_cmt')}}</div>
+      </div>
+      
     </div>
     <div class="comment-list">
-      <div v-for="(cmt, index) in comments" :key="index" class="comment-item">
-        <img :src="cmt.avatar || require('~/assets/images/avatar-default.png')" alt=""/>
+      <div v-for="(cmt) in comments" :key="cmt.id" class="comment-item">
+        <div class="avatar">
+          <img :src="(cmt.avatar && cmt.avatar.thumbnail )|| require('~/assets/images/avatar-default.png')" alt=""/>
+        </div>
         <div style="flex: 1" class="pl-2">
           <div class="comment-name">{{cmt.fullname}}</div>
           <div class="comment-content">{{cmt.content}}</div>
@@ -35,7 +43,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(["user"]),
+    ...mapState(["user", "isLogin"]),
   },
   methods: {
     submit() {
@@ -48,17 +56,30 @@ export default {
 
 <style lang="scss" scoped>
 img {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   object-fit: cover;
   object-position: center;
+}
+.avatar {
+  width: 45px;
+  height: 45px;
+  background-image: url('~assets/images/avatar-default.png');
+  background-size: cover;
+}
+.btn-defaut a {
+ height: 37px;
+}
+.require-login {
+  font-size: 12px;
+  color: #666;
 }
 .comment-submit {
   display: flex;
   .comment-input {
     margin-left: 10px;
     border: 1px solid #e5e5e5;
-    height: 50px;
+    height: 45px;
     background: transparent;
     display: flex;
     flex: 1;
@@ -84,7 +105,7 @@ img {
     font-weight: bold;
     margin-bottom: 5px;
     font-size: 15px;
-    margin-top: -5px;
+    margin-top: -3px;
   }
   .comment-content {
     font-size: 14px;
