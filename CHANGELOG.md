@@ -1,3 +1,9 @@
+## <small>1.0.48 (2021-08-23)</small>
+
+* tiny png ([d992f27](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/d992f27))
+
+
+
 ## <small>1.0.47 (2021-08-23)</small>
 
 * fix sth ([e226523](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/e226523))
