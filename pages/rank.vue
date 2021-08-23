@@ -484,7 +484,7 @@ export default {
   width: 100%;
   height: 220px;
   margin-top: 4rem;
-  background: url(/images/funds/bg_kid.png) center bottom no-repeat;
+  background: url(/images/funds/bg_kid.jpg) center bottom no-repeat;
   background-size: cover;
   @media (min-width: 580px) {
     &:after {
