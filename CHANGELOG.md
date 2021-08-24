@@ -1,3 +1,9 @@
+## <small>1.0.49 (2021-08-24)</small>
+
+* fix login fb ([6340b7f](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/6340b7f))
+
+
+
 ## <small>1.0.48 (2021-08-23)</small>
 
 * tiny png ([d992f27](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/d992f27))
