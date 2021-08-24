@@ -96,23 +96,35 @@ export default {
 </style>
 <style lang="scss" scoped>
 .header {
-  height: 72px;
-  nav {
-    position: fixed;
-    top: 0;
-    z-index: 2;
-    width: 100%;
-    background: #fff;
-    padding: 1rem;
-    box-shadow: 0 0.4rem 2rem rgb(0 0 0 / 18%);
-    border-bottom: 2px solid #ffcb05;
-  }
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 0.4rem 2rem rgb(0 0 0 / 18%);
+  border-bottom: 2px solid #ffcb05;
 }
 .header ul li a {
   text-transform: uppercase;
   color: #000 !important;
+  padding: 15px 20px;
   &:hover{
     color: #930 !important;
+  }
+}
+.navbar-collapse {
+  @media screen and (max-width: 768px) {
+    position: absolute;
+    width: 100%;
+    top: 50px;
+    left: 0px;
+    background: rgb(255, 255, 255);
+    padding: 10px 0;
+    li {
+      a {
+        padding: 8px 20px !important;
+      }
+    }
   }
 }
 .header .nav-item {
@@ -120,6 +132,9 @@ export default {
 .header .nav-link {
   padding-left: 20px;
   padding-right: 20px;
+  @media screen and (max-width: 1110px) {
+    font-size: 14px;
+  }
 }
 .btn-change-lang {
   display: flex;
@@ -136,18 +151,26 @@ export default {
     -ms-transform: rotate3d(0, 0, 0, 0deg);
     transform: translateX(-50%) rotate3d(0, 0, 0, 0deg);
   }
+  @media screen and (max-width: 768px) {
+    padding: 10px 20px;
+    .sub-menu {
+      left: 40px;
+      top: 55px;
+    }
+  }
 }
 .sub-menu {
   position: absolute;
   background: #fff;
-  padding: 10px 20px;
+  padding: 15px 0;
+  text-align: center;
   border-radius: 15px;
   box-shadow: 0px 0px 28px 0px rgba(0, 0, 0, 0.1);
-  top: 55px;
+  top: 60px;
   z-index: 999;
   display: block !important;
   left: 50%;
-  width: auto;
+  width: 73px;
   white-space: nowrap;
   -webkit-transform: rotate3d(1, 0, 0, -90deg);
   -moz-transform: rotate3d(1, 0, 0, -90deg);
@@ -164,11 +187,7 @@ export default {
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
-@media only screen and (max-width: 550px) {
-  .header .nav-link {
-    padding-right: 0;
-    padding-left: 0;
-  }
+@media only screen and (max-width: 768px) {
   .header .navbar-light .navbar-toggler{
       border-color: transparent;
       padding-left: 0;
