@@ -1,3 +1,9 @@
+## <small>1.0.50 (2021-08-24)</small>
+
+* fix reponsive ([ca2c52f](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/ca2c52f))
+
+
+
 ## <small>1.0.49 (2021-08-24)</small>
 
 * fix login fb ([6340b7f](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/6340b7f))
