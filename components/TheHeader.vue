@@ -95,6 +95,13 @@ export default {
 }
 </style>
 <style lang="scss" scoped>
+ 
+.navbar {
+  padding: 0 1rem;
+  @media screen and (max-width: 991px) {
+    padding: 0.5rem 1rem;
+  }
+}
 .header {
   position: sticky;
   top: 0;
@@ -107,7 +114,7 @@ export default {
 .header ul li a {
   text-transform: uppercase;
   color: #000 !important;
-  padding: 15px 20px;
+  padding: 20px;
   &:hover{
     color: #930 !important;
   }
@@ -141,15 +148,12 @@ export default {
   align-items: center;
   padding: 0 20px;
   position: relative;
+  cursor: pointer;
   img {
     height: 25px;
   }
   &:hover .sub-menu{
-    -webkit-transform: rotate3d(0, 0, 0, 0deg);
-    -moz-transform: rotate3d(0, 0, 0, 0deg);
-    -o-transform: rotate3d(0, 0, 0, 0deg);
-    -ms-transform: rotate3d(0, 0, 0, 0deg);
-    transform: translateX(-50%) rotate3d(0, 0, 0, 0deg);
+    display: block;
   }
   @media screen and (max-width: 768px) {
     padding: 10px 20px;
@@ -168,24 +172,11 @@ export default {
   box-shadow: 0px 0px 28px 0px rgba(0, 0, 0, 0.1);
   top: 60px;
   z-index: 999;
-  display: block !important;
+  display: none;
   left: 50%;
+  transform: translateX(-50%);
   width: 73px;
   white-space: nowrap;
-  -webkit-transform: rotate3d(1, 0, 0, -90deg);
-  -moz-transform: rotate3d(1, 0, 0, -90deg);
-  -o-transform: rotate3d(1, 0, 0, -90deg);
-  -ms-transform: rotate3d(1, 0, 0, -90deg);
-  transform: translateX(-50%) rotate3d(1, 0, 0, -90deg);
-  -webkit-transform-origin: 0 0 0;
-  -moz-transform-origin: 0 0 0;
-  -o-transform-origin: 0 0 0;
-  -ms-transform-origin: 0 0 0;
-  transform-origin: 0 0 0;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
 }
 @media only screen and (max-width: 768px) {
   .header .navbar-light .navbar-toggler{
