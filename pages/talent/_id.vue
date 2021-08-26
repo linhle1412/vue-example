@@ -16,7 +16,7 @@
               <div class="talent-detail-img">
                 <div
                   v-bind:style="{
-                    'background-image': 'url(' + talentDetail.image.small + ')'
+                    'background-image': 'url(' + (talentDetail.image && talentDetail.image.small || require('~/assets/images/default-talent.jpg')) + ')'
                   }"
                 ></div>
               </div>
@@ -128,7 +128,7 @@ export default {
         {
           hid: "og:image",
           property: "og:image",
-          content: this.talentDetail.image.small
+          content: this.talentDetail.image && this.talentDetail.image.small
         }
       ]
     };

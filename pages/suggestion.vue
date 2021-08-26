@@ -16,7 +16,7 @@
             <div v-for="(talent, index) in suggestions" :key="index" class="list-talent-content">
               <div class="talent-list-item mx-0 mb-3">
                 <div class="talent-list-img">
-                  <div v-bind:style="{'background-image': 'url('+ talent.image.small + ')'}"></div>
+                  <div v-bind:style="{'background-image': 'url('+ (talent.image && talent.image.small || require('~/assets/images/default-talent.jpg')) + ')'}"></div>
                 </div>
                 <div class="talent-list-content">
                   <div class="talent-list-title">
