@@ -12,16 +12,14 @@
                 <img src="~/assets/images/img-success.png" alt="">
               </div>
               <div class="title-form text-center">
-                Thanh toán thành công
+                {{$t('payment_success')}}
               </div>
-              <div class="content-form text-center">
-                Cảm ơn bạn đã góp vào Quỹ Phát Triển Tài Năng Việt. <br />
-                Hành động nhỏ - Ý nghĩa lớn của bạn đã giúp cho các tài năng <br/>
-                mở rộng cơ hội trong tương lai
+              <div class="content-form text-center" v-html="$t('contribute_success')">
+                
               </div>
               <div class="btn-defaut text-center mb-4">
-                <NuxtLink to="/bang-vinh-danh" class='text-uppercase'>
-                  Thông tin quỹ
+                <NuxtLink :to="localePath('fund-info')" class='text-uppercase'>
+                  {{$t('nav.fund_info')}}
                 </NuxtLink>
               </div>
             </div>

@@ -70,5 +70,17 @@
   "message": "Message",
   "send_info" :"Send",
   "your_name": "FULL NAME",
-  "send_contact": "SEND A REQUEST"
+  "send_contact": "SEND A REQUEST",
+  "payment_success": "Payment success",
+  "payment_failed": "Payment failed",
+  "try_contribute": "Try again",
+  "contribute_form": "Contribution form",
+  "contribute_type": "Contribution type",
+  "send_contribute": "Submit a donation",
+  "cod": "Bank transfer/ Donation at the counter",
+  "contribute_name": "PERSONAL NAME / ORGANIZATION",
+  "contribute_title": "CONTRIBUTING TO VIETNAM TALENT DEVELOPMENT FUND",
+  "contribute_success": "Thank you for your donation to Viet Talent Development Fund.<br /> Through this donation, you have given the Viet Talents more opportunities to shine in the future.",
+  "contribute_fail": "Sorry, your transaction has not been successful.<br />Please double check the operation and try again",
+  "suggest_content": "As a Vietnamese citizen, surely no one will forget the emotional moment when Van Thanh scored the decisive goal to bring the ‘Vietnam national under-23 football team’ to the final of ‘2018 AFC U-23 Championship’ in Changzhou, or the moment when Anh Vien cried while singing the national anthem after receiving 8 SEAGAME 2017 Gold Medals, which was a miracle bringing boundless pride to our country. However, not many people know that before gaining such great accomplishments, these talents have gone through difficult and deadlocked periods to an extent that they almost gave up… but fortunately, they were able to overcome these difficulties by receiving timely encouragement and support from people around them and therefore, bringing extreme joy to our country and lighting up the national pride inside millions of Vietnamese people. Vietnam Talent Development Fund was founded in order to give all of us the opportunity to be a part of victory bringing pride to our nation in an effortless way: by buying just one cup of Ong Bau café, you have contributed 1,000 VND to the Fund, or by donating directly in cash, artifacts, … to your chosen talents on the Fund’s website. Your small action will help developing more talents and bringing pride to our country. Millions of people have contributed to the Vietnam Talent Development Fund… how about you?"
 }
