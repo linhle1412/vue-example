@@ -1,3 +1,9 @@
+## <small>1.0.53 (2021-08-26)</small>
+
+* fix default image ([b9b0c3b](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/b9b0c3b))
+
+
+
 ## <small>1.0.52 (2021-08-26)</small>
 
 * update lang ([2ca0cfe](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/2ca0cfe))
