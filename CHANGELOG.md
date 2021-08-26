@@ -1,3 +1,9 @@
+## <small>1.0.52 (2021-08-26)</small>
+
+* update lang ([2ca0cfe](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/2ca0cfe))
+
+
+
 ## <small>1.0.51 (2021-08-25)</small>
 
 * fix lang & home ([1144b3e](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/1144b3e))
