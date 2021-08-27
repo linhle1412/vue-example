@@ -62,7 +62,7 @@
               </div>
               <div class="col-md-6 p-0 pl-md-2">
                 <div class="form form-contact">
-                  <div v-if="isLogin" class="d-flex justify-content-center align-items-center h-100">
+                  <div v-if="!isLogin" class="d-flex justify-content-center align-items-center h-100">
                     <facebook-login ><div v-html="$t('require_login_suggestion')"></div></facebook-login>
                   </div>
                   <div v-else>
