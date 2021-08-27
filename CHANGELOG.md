@@ -1,3 +1,9 @@
+## <small>1.0.54 (2021-08-27)</small>
+
+* fix bug ([5ac248d](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/5ac248d))
+
+
+
 ## <small>1.0.53 (2021-08-26)</small>
 
 * fix default image ([b9b0c3b](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/b9b0c3b))
