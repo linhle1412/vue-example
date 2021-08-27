@@ -64,7 +64,10 @@ export default {
     display: flex;
     span {
       margin: 0 20px;
-      margin-top: -20px;
+      transform: translateY(-50%);
+      @media screen and (max-width: 500px) {
+        font-size: 22px
+      }
     }
     &::after, &::before {
       content: '';

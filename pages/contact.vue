@@ -119,7 +119,7 @@
         </div>
       </div>
     </div>
-    <popup-success v-if="!isSuccess" @close="isSuccess = false"></popup-success>
+    <popup-success v-if="isSuccess" @close="isSuccess = false"></popup-success>
     <div class='banner-bottom'>
     </div>
   </div>
@@ -136,7 +136,7 @@ export default {
     return {
       contactInfo: this.$store.state.contactMeta || {},
       isSubmitted: false,
-      isSuccess: true,
+      isSuccess: false,
       isLoading: false,
       form: {
         name: "",
@@ -223,6 +223,7 @@ export default {
         this.$store.dispatch("sendContact", this.form).then(res => {
           this.isLoading = false;
           this.isSuccess = true;
+          this.isSubmitted = true;
           this.clearForm();
         })
         .catch(e => {
