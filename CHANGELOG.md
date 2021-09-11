@@ -1,3 +1,9 @@
+## <small>1.0.56 (2021-09-11)</small>
+
+* fix bug ([493174c](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/493174c))
+
+
+
 ## <small>1.0.55 (2021-08-27)</small>
 
 * fix sth ([e3f43b3](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/e3f43b3))

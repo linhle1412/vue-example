@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.55",
+  "version": "1.0.56",
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/i18n": "^7.0.2",
