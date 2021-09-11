@@ -14,4 +14,4 @@ export default  ({ app }, inject) => {
     str = str.replace(/-+$/g, '');
     return str;
   })
-}
+} 

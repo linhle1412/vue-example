@@ -1,5 +1,5 @@
 <template>
-  <div class="page-index bg-home">
+  <div class="page-index bg-home bg-fund-info">
     <div class="bg-leaf-banner-bottom">
       <div class="container">
         <div class="row">

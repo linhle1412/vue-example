@@ -1,14 +1,14 @@
 <template>
-  <div class="page-index bg-home">
-    <div class="bg-leaf-banner-bottom">
+  <div class="page-index bg-home  bg-fund-info">
+    <div class="bg-leaf-banner-bottom bolder">
       <div class="container">
         <div class="row">
           <div class="col-12 py-5 mb-3">
             <div class="logo logo-small text-center">
-              <img src="~/assets/images/slogan.png" alt="" />
+              <img src="~/assets/images/slogan.png" class="thumb" alt="" />
             </div>
           </div>
-          <div class="col-lg-9 mx-auto">
+          <div class="col-lg-8 mx-auto">
             <div class="info-item" v-for="(item, index) in informations" :key="index">
               <div class="info-item-title"><span>{{item.title_i18n[$i18n.locale]}}</span></div>
               <div class="info-item-content row" >

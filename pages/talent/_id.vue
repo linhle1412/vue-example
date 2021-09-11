@@ -1,6 +1,6 @@
 <template>
   <div class="page-index bg-form">
-    <div class="bg-leaf-banner-bottom">
+    <div class="bg-leaf-banner-bottom" :class="talentDetail.category == 'suggested_talent' ? 'with-bottom' : ''">
       <div class="container">
         <div class="row">
           <div class="col-12 py-5">

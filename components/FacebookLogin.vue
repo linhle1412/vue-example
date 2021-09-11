@@ -10,7 +10,7 @@
     </v-facebook-login>
     <div class="btn-facebook" @click="$refs['facebook-login'].$el.click()">
       <img src="~/assets/images/facebook-app-logo.png" alt="">
-      Log in in with Facebook
+      Log in with Facebook
     </div>
   </div>
 </template>

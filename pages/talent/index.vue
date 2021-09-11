@@ -22,7 +22,8 @@
                 <div class="talent-list-content">
                   <div class="talent-list-title">
                     <NuxtLink :to="localePath({name: 'talent-id', params: {id: $toSlug(talent.title_i18n[$i18n.locale])+'_'+talent.id}})">
-                      <img width="30px" src="~/assets/images/medal-icon.png" alt="" />
+                      <img v-if="tab === 0"  src="~/assets/images/medal-icon.png" alt="" />
+                      <img v-else style="height: 25px; object-fit: contain; padding: 4px;" src="~/assets/images/medal-icon-2.png" alt="" />
                       {{talent.title_i18n[$i18n.locale]}}
                     </NuxtLink>
                   </div>

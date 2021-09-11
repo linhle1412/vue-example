@@ -56,8 +56,7 @@
           <div v-show="tab === 1" class="col-12 ">
             <div class="row">
               <div class="col-md-6 p-0 pr-md-2 mb-md-0 mb-3">
-                <div class="form-contact">
-                  {{$t('suggest_content')}}
+                <div class="form-contact" v-html="$t('suggest_content')">
                 </div>
               </div>
               <div class="col-md-6 p-0 pl-md-2">

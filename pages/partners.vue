@@ -1,11 +1,11 @@
 <template>
-  <div class="page-index bg-home">
-    <div class="bg-leaf-banner-bottom">
+  <div class="page-index bg-home bg-fund-info">
+    <div class="bg-leaf-banner-bottom bolder-1">
       <div class="container">
         <div class="row">
           <div class="col-12 py-5">
             <div class="logo logo-small text-center">
-              <img src="~/assets/images/slogan.png" alt="" />
+              <img src="~/assets/images/slogan.png" class="thumb" alt="" />
             </div>
           </div>
           <div class="col-md-6" v-for="(item, index) in partners" :key="index">
@@ -55,7 +55,7 @@ export default {
   height: 100%;
   .info-item-title {
     text-transform: uppercase;
-    font-size: 24px;
+    font-size: 22px;
     font-family: "Yeseva One", sans-serif;
     margin-top: 20px;
     margin-bottom: 15px;
