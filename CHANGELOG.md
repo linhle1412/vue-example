@@ -1,3 +1,9 @@
+## <small>1.0.57 (2021-09-13)</small>
+
+* fix sth ([aaddc1a](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/aaddc1a))
+
+
+
 ## <small>1.0.56 (2021-09-11)</small>
 
 * fix bug ([493174c](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/493174c))
