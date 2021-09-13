@@ -162,7 +162,7 @@ textarea {
   flex-direction: column;
   &.bg-fund-info {
     background: url("~/assets/images/bg-info.jpg");
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;
   }
