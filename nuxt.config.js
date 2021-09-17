@@ -140,6 +140,7 @@ export default {
       useCookie: true,
       alwaysRedirect: true,
     },
+    defaultLocale: 'vi',
     parsePages: false,
     pages: {
       'talent-sponsorship': {
