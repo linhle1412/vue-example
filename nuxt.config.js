@@ -45,6 +45,11 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     "~plugins/filters.js",
+    "~plugins/plugin.js",
+    "~plugins/util.js",
+    "~plugins/api.js",
+    "~/plugins/i18n.js",
+    { src: '~/plugins/fb-sdk.js', ssr: false },
     { src: '~/plugins/vue-pdf.js', ssr: false },
   ],
 
@@ -58,8 +63,87 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     "bootstrap-vue/nuxt",
-    'nuxt-webfontloader'
+    'nuxt-webfontloader',
+    '@nuxtjs/i18n',
+    '@nuxtjs/axios',
+    '@nuxtjs/toast',
+    'cookie-universal-nuxt',
   ],
+  toast: {
+    position: 'bottom-right',
+    duration: 3000
+  },
+  axios: {
+    baseURL: 'https://tnv.eyeteam.vn', // Used as fallback if no runtime config is provided
+  },
+  i18n: {
+    baseUrl: 'https://quyphattrientainangviet.vn',
+    langDir: 'langs/',
+    locales: [
+      {
+        code: 'en',
+        file: 'en.json',
+        iso: 'en-US',
+      },
+      {
+        code: 'vi',
+        file: 'vi.json',
+        iso: 'vi-VI',
+      },
+    ],
+    // defaultLocale: 'vi',
+    vuex: {
+      moduleName: 'i18n',
+      syncRouteParams: true
+    },
+    detectBrowserLanguage: {
+      useCookie: true,
+      alwaysRedirect: true,
+    },
+    parsePages: false,
+    pages: {
+      'talent-sponsorship': {
+        vi: '/danh-sach-tai-nang-da-nhan-tai-tro',
+        en: '/list-talents-that-are-sponsored', 
+      },
+      contribute: {
+        vi: '/dong-gop',
+        en: '/contribution', 
+      },
+      // 'talent-id': {
+      //   vi: '/tai-nang/:id',
+      //   en: '/talent/:id', 
+      // },
+      'talent/index': {
+        vi: '/tai-nang-duoc-tai-tro',
+        en: '/talents-that-are-sponsored', 
+      },
+      'talent/_id': {
+        vi: '/tai-nang/:id',
+        en: '/talent/:id',
+      },
+      rank: {
+        vi: '/bang-vinh-danh',
+        en: '/the-honors-list', 
+      },
+      'fund-info': {
+        vi: '/thong-tin-quy',
+        en: '/fund-information', 
+      },
+      suggestion: {
+        vi: '/de-xuat-tai-nang',
+        en: '/talent-suggestion', 
+      },
+      contact: {
+        vi: '/lien-he',
+        en: '/contact', 
+      },
+      partners: {
+        vi: '/doi-tac-chien-luoc',
+        en: '/strategic-partnership', 
+      },
+    }
+  },
   webfontloader: {
     google: {
       families: [
@@ -76,28 +160,14 @@ export default {
         test: /\.pdf$/,
         use: 'url-loader'
       })
-    }
+    },
+    extractCSS: true
   },
 
   router: {
     extendRoutes(routes, resolve) {
       routes.forEach(r => {
         switch (r.name) {
-          case "talent-sponsorship":
-            r.path = "/tai-nang-nhan-tai-tro";
-            break;
-          case "contribute":
-            r.path = "/dong-gop";
-            break;
-          case "talent":
-            r.path = "/tai-nang";
-            break;
-          case "talent-id":
-            r.path = "/tai-nang/:id";
-            break;
-          case "fund-info":
-            r.path = "/thong-tin-quy";
-            break;
           case "success":
             r.path = "/thank-you";
             break;

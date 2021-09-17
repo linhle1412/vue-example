@@ -9,7 +9,7 @@
             </div>
             <div class="d-flex justify-content-center">
               <div class="fund-box">
-                <div class="title-line-box">Tổng Giá Trị Quỹ</div>
+                <div class="title-line-box"><span>{{$t('total_fund')}}</span></div>
                 <div class="value-fund-box text-center">
                   {{(totalFund || 0) | money}}
                 </div>
@@ -20,7 +20,7 @@
               <div class="col-12 col-sm-6">
                 <div class="d-flex justify-content-end">
                   <div class="fund-box-row">
-                    <div class="title-line-box">Đã tài trợ</div>
+                    <div class="title-line-box"><span>{{$t('sponsored')}}</span></div>
                     <div class="value-fund-box text-center">
                       {{(sponsored || 0) | money}}
                     </div>
@@ -31,7 +31,7 @@
               <div class="col-12 col-sm-6">
                 <div class="d-flex justify-content-start">
                   <div class="fund-box-row">
-                    <div class="title-line-box">Quỹ còn lại</div>
+                    <div class="title-line-box"><span>{{$t('remain_fund')}}</span></div>
                     <div class="value-fund-box text-center">
                       {{(remained || 0) | money}}
                     </div>
@@ -42,31 +42,31 @@
             </div>
             <div class="text-center">
               <div class='btn-sponsor'>
-                <NuxtLink to="/tai-nang-nhan-tai-tro">
-                    Tài năng đã nhận tài trợ
+                <NuxtLink :to="localePath('talent-sponsorship')">
+                  {{$t('sponsored_talent')}}
                 </NuxtLink>
               </div>
             </div>
             
             <div class="row justify-content-center">
               <div class="px-2 d-flex justify-content-end">
-                <NuxtLink to="/dong-gop">
+                <NuxtLink :to="localePath('contribute')">
                   <div class="info-group">
-                    Đóng góp
+                    {{$t('nav.contribute')}}
                   </div>
                 </NuxtLink>
               </div>
               <div class="px-2 d-flex justify-content-center">
-                <NuxtLink to="/thong-tin-quy">
+                <NuxtLink :to="localePath('rank')">
                   <div class="info-group">
-                    Thông tin quỹ
+                    {{$t('nav.rank')}}
                   </div>
                 </NuxtLink>
               </div>
               <div class="px-2 d-flex justify-content-start">
-                <NuxtLink to="/tai-nang">
+                <NuxtLink :to="localePath('talent')">
                   <div class="info-group">
-                    Thông tin các tài năng
+                    {{$t('talent_info')}}
                   </div>
                 </NuxtLink>
               </div>
@@ -118,32 +118,43 @@ export default {
   padding: 2rem 4rem;
   margin: 1.5rem 4rem 3rem 4rem;
   border: 1px solid #3a3a3a;
-  border-radius: 1.6rem;
+  border-radius: 20px;
   display: flex;
   justify-content: center;
   flex-basis: auto;
+  border-top-color: transparent;
 }
-.fund-box .title-line-box {
+.title-line-box {
   position: absolute;
-  top: -1.5rem;
   font-size: 28px;
-  line-height: normal;
-  padding: 0 2rem;
   font-family: "Oswald", sans-serif;
   font-weight: 500;
-  text-transform: uppercase;
-  z-index: 1;
-}
-.fund-box .title-line-box:after {
-  content: "";
-  position: absolute;
-  height: 8px;
-  width: 100%;
-  top: 50%;
+  top: 0;
   left: 0;
-  z-index: -1;
-  background-color: #ffda4a;
+  text-transform: uppercase;
+  width: 100%;
+  display: flex;
+  span {
+    margin: 0 20px;
+    margin-top: -23px;
+  }
+  &::after, &::before {
+    content: '';
+    border: 1px solid transparent;
+    border-top-color: #3a3a3a;
+  }
+  &::after {
+    border-top-right-radius: 17px;
+    flex: 1 1;
+    border-left: none;
+  }
+  &::before {
+    border-top-left-radius: 17px;
+    flex: 1 1;
+    border-right: none
+  }
 }
+
 .fund-box .value-fund-box {
   display: flex;
   font-family: "MicrobrewSoftOneD", sans-serif;
@@ -168,7 +179,8 @@ export default {
   min-width: 246px;
   position: relative;
   border: 1px solid #3a3a3a;
-  border-radius: 1.6rem;
+  border-top-color: transparent;
+  border-radius: 20px;
   display: flex;
   justify-content: center;
   flex-basis: auto;
@@ -178,24 +190,17 @@ export default {
     width: 100%;
   }
   .title-line-box{
-    position: absolute;
-    top: -18px;
     font-size: 22px;
-    line-height: normal;
-    padding: 0 1rem;
-    font-family: "Oswald", sans-serif;
-    font-weight: 500;
-    text-transform: uppercase;
-    z-index: 1;
-    &:after{
-      content: "";
-      position: absolute;
-      height: 10px;
-      width: 100%;
-      top: 50%;
-      left: 0;
-      z-index: -1;
-      background-color: #ffda4a;
+    span {
+      margin-top: -15px;
+    }
+    &::after {
+      border-top-right-radius: 17px;
+      flex: 1 1;
+    }
+    &::before {
+      border-top-left-radius: 17px;
+      flex: 1 1;
     }
   }
   .value-fund-box{
@@ -268,9 +273,6 @@ export default {
   .fund-box {
     min-width: 100%;
   }
-  .fund-box .title-line-box:after {
-    background-image: linear-gradient(to right, #f3c924, #fdda4e);
-  }
   .fund-box {
     padding: 2rem 2.5rem;
   }
@@ -286,9 +288,6 @@ export default {
   .btn-sponsor a{
     padding: 20px 5px;
     font-size: 22px;
-  }
-  .fund-box-row .title-line-box:after{
-        background-image: linear-gradient(to right, #f3c924, #fad133);
   }
 }
 </style>

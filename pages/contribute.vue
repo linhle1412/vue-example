@@ -1,16 +1,14 @@
 <template>
-  <div class="page-index bg-home">
-    <div class="bg-leaf">
+  <div class="page-index bg-home bg-fund-info">
+    <div class="bg-leaf-banner-bottom">
       <div class="container">
         <div class="row">
-          <div class="col-lg-7 col-md-12 mx-auto py-3">
-            <div class="logo text-center mb-4">
+          <div class="col-lg-7 col-md-12 mx-auto py-5">
+            <div class="logo logo-small text-center mb-5">
               <img src="~/assets/images/slogan.png" alt="" />
             </div>
             <div v-if="!isSubmitted" class="form-contribute">
-              <div class="title-form text-center">
-                Đóng góp cho <br />
-                quỹ phát triển tài năng việt
+              <div class="title-form text-center" v-html="$t('contribute_title')">
               </div>
               <div class="form">
                 <div class="floating-label">
@@ -21,7 +19,7 @@
                     :class="{ error: rules.fullname.error }"
                     v-model="form.fullname"
                   />
-                  <label>TÊN CÁ NHÂN / TỔ CHỨC</label>
+                  <label>{{$t('contribute_name')}}</label>
                   <small>{{ rules.fullname.error }}&nbsp;</small>
                 </div>
 
@@ -33,7 +31,7 @@
                     v-model="form.phone"
                     placeholder=" "
                   />
-                  <label>Số điện thoại *</label>
+                  <label>{{$t('phone_no')}} *</label>
                   <small>{{ rules.phone.error }}&nbsp;</small>
                 </div>
                 <div class="floating-label">
@@ -60,7 +58,7 @@
                     v-on:keypress="isNumber"
                   />
                   <div class="currency">VND</div>
-                  <label>Số tiền đóng góp *</label>
+                  <label>{{$t('contribute_amount')}} *</label>
                   <small>{{ rules.priceDisplay.error }}&nbsp;</small>
                 </div>
                 <div class="floating-label">
@@ -72,10 +70,10 @@
                     v-model="form.note"
                     placeholder=" "
                   ></textarea>
-                  <label>Lời nhắn</label>
+                  <label>{{$t('message')}}</label>
                 </div>
                 <div class="form-group form-radio d-flex">
-                  <label for="contribute-type">Loại đóng góp</label>
+                  <label for="contribute-type">{{$t('contribute_type')}}</label>
                   <div class="group-radio">
                     <div class="custom-control custom-radio">
                       <input
@@ -90,7 +88,7 @@
                       <label
                         class="custom-control-label"
                         for="contribute-type-1"
-                        >Cá nhân</label
+                        >{{$t('person')}}</label
                       >
                     </div>
                     <div class="custom-control custom-radio">
@@ -105,13 +103,13 @@
                       <label
                         class="custom-control-label"
                         for="contribute-type-2"
-                        >Tổ chức</label
+                        >{{$t('organization')}}</label
                       >
                     </div>
                   </div>
                 </div>
                 <div class="form-group form-radio d-flex">
-                  <label for="contribution">Hình thức đóng góp</label>
+                  <label for="contribution">{{$t('contribute_form')}}</label>
                   <div style="flex: 1">
                     <div class="group-radio mb-4">
                       <div class="custom-control custom-radio w-100">
@@ -124,7 +122,7 @@
                           value="cash"
                         />
                         <label class="custom-control-label" for="contribution-1"
-                          >Chuyển khoản/ Đóng góp tại quầy</label
+                          >{{$t('cod')}}</label
                         >
                       </div>
                     </div>
@@ -173,7 +171,7 @@
                     @click="checkForm"
                     :class="isLoading ? 'is-loading' : ''"
                   >
-                    Gửi đóng góp
+                  {{$t('send_contribute')}}
                   </button>
                 </div>
               </div>
@@ -183,17 +181,15 @@
                 <img src="~/assets/images/img-fail.png" alt="" />
               </div>
               <div class="title-form text-center">
-                Thanh toán không thành công
+                {{$t('payment_failed')}}
               </div>
-              <div class="content-form text-center mb-5">
-                Rất tiếc giao dịch của bạn chưa thành công.<br />
-                Vui lòng kiểm tra lại thao tác và thực hiện tại
+              <div class="content-form text-center mb-5" v-html="$t('contribute_fail')">
               </div>
               <div
                 class="btn-defaut text-center my-3"
                 @click="isSubmitted = false"
               >
-                <a>Đóng góp lại</a>
+                <a>{{$t('try_contribute')}}</a>
               </div>
             </div>
             <div v-else class="form-contribute form-result">
@@ -201,20 +197,16 @@
                 <img src="~/assets/images/img-success.png" alt="" />
               </div>
               <div class="title-form text-center">
-                Thanh toán thành công
+                {{$t('payment_success')}}
               </div>
-              <div class="content-form text-center mb-5">
-                Cảm ơn bạn đã góp vào Quỹ Phát Triển Tài Năng Việt. <br />
-                Hành động nhỏ - Ý nghĩa lớn của bạn đã giúp cho các tài năng
-                <br />
-                mở rộng cơ hội trong tương lai
+              <div class="content-form text-center mb-5" v-html="$t('contribute_success')">
               </div>
               <!-- <div class="btn-defaut text-center my-3" @click="isSubmitted = false">
                 <a>Đóng</a>
               </div> -->
               <div class="btn-defaut text-center mb-4">
-                <NuxtLink to="/thong-tin-quy" class="text-uppercase">
-                  Thông tin quỹ
+                <NuxtLink :to="localePath('fund-info')" class='text-uppercase'>
+                  {{$t('nav.fund_info')}}
                 </NuxtLink>
               </div>
             </div>

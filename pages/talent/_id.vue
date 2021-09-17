@@ -1,6 +1,6 @@
 <template>
   <div class="page-index bg-form">
-    <div class="bg-leaf-banner-bottom">
+    <div class="bg-leaf-banner-bottom" :class="talentDetail.category == 'suggested_talent' ? 'with-bottom' : ''">
       <div class="container">
         <div class="row">
           <div class="col-12 py-5">
@@ -10,13 +10,13 @@
               </div>
             </div>
             <div class="page-title text-center">
-              Thông tin các tài năng
+              {{talentDetail.category == 'suggested_talent' ? $t('talent_suggested_title') : $t('talent_title')}}
             </div>
             <div class="talent-detail">
               <div class="talent-detail-img">
                 <div
                   v-bind:style="{
-                    'background-image': 'url(' + talentDetail.image.small + ')'
+                    'background-image': 'url(' + (talentDetail.image && talentDetail.image.small || require('~/assets/images/default-talent.jpg')) + ')'
                   }"
                 ></div>
               </div>
@@ -27,17 +27,32 @@
                     src="~/assets/images/medal-icon.png"
                     alt=""
                   />
-                  {{ talentDetail.title }}
+                  {{ talentDetail.title_i18n[[$i18n.locale]] }}
                 </div>
-                <div v-html="talentDetail.content"></div>
+                <div v-html="talentDetail.content_i18n[$i18n.locale]"></div>
+              </div>
+              <div v-if="talentDetail.category == 'suggested_talent'" class="mt-5 w-100">
+                <div class="voting-wrapper">
+                  <div>
+                    <img src="~/assets/images/icon-vote.png" alt="">
+                    <div class="vote-count">{{talentDetail.vote_count}}</div>
+                    <div>{{$t('num_vote')}}</div>
+                  </div>
+                  <div>
+                    <div v-if="!isLogin" class="d-flex justify-content-center align-items-center h-100">
+                      <facebook-login>{{$t('require_login_vote')}}</facebook-login>
+                    </div>
+                    <div v-else class="btn-defaut" @click="voteTalent"><a>{{$t('vote_talent')}}</a></div>
+                  </div>
+                </div>
+                <comment-box :comments="comments" @submit="sendCmt"></comment-box>
               </div>
               <div class="pre-next-btn">
-                <NuxtLink class='pre-btn' v-if='previousTalen()' :to="'/tai-nang/' + previousTalen()">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i> Tài năng
-                  trước
+                <NuxtLink class='prev-btn' v-if='prev' :to="localePath({name: 'talent-id', params: {id: prev}})">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i> {{$t('prev_talent')}}
                 </NuxtLink>
-                <NuxtLink class='next-btn' v-if='nextTalen()' :to="'/tai-nang/' + nextTalen()">
-                  Tài năng sau
+                <NuxtLink class='next-btn' v-if='next' :to="localePath({name: 'talent-id', params: {id: next}})">
+                  {{$t('next_talent')}}
                   <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </NuxtLink>
               </div>
@@ -51,22 +66,34 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import CommentBox from '../../components/CommentBox.vue';
+import FacebookLogin from '../../components/FacebookLogin.vue';
 
 export default {
   layout: "default",
-  components: {},
+  components: {
+    CommentBox,
+    FacebookLogin
+  },
   data() {
     return {
-      talentDetail: this.$store.state.talentDetail
+      talentDetail: this.$store.state.talentDetail,
+      comments: this.$store.state.talentDetail.comments,
+      next: '',
+      prev: '',
     };
   },
   async fetch({ store, params, redirect, query }) {
     try {
-      // const id = params.id.split('-')[0]
-      const id = params.id;
+      const id = params.id.split('_')[ params.id.split('_').length - 1]
       await store.dispatch("fetchTalentDetail", id);
     } catch (e) {
       redirect("/not-found");
+    }
+    try {
+      await store.dispatch('checkToken')
+    } catch (e) {
+
     }
   },
   head() {
@@ -76,12 +103,12 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.talentDetail.description
+          content: this.talentDetail.description_i18n[this.$i18n.locale]
         },
         {
           hid: "og:title",
           property: "og:title",
-          content: this.talentDetail.title
+          content: this.talentDetail.title_i18n[this.$i18n.locale]
         },
         {
           hid: "og:url",
@@ -91,7 +118,7 @@ export default {
         {
           hid: "og:description",
           property: "og:description",
-          content: this.talentDetail.description
+          content: this.talentDetail.description_i18n[this.$i18n.locale]
         },
         {
           hid: "og:type",
@@ -101,39 +128,103 @@ export default {
         {
           hid: "og:image",
           property: "og:image",
-          content: this.talentDetail.image.small
+          content: this.talentDetail.image && this.talentDetail.image.small
         }
       ]
     };
   },
   computed: {
-    ...mapState(["talents"])
+    ...mapState(["talents", "isLogin"]),
   },
-  created() {
-    this.fetchTalents()
+  async mounted() {
+    try {
+      let data = await this.fetchTalentsRelated({
+        article_id: this.talentDetail.id,
+        category: this.talentDetail.category
+      })
+      if (this.talentDetail.id === '') {
+
+      }
+      if (data) {
+        for (const t of data) {
+          if (t.id < this.talentDetail.id) {
+            this.next = this.$toSlug(t.title_i18n[this.$i18n.locale]) + '_' + t.id
+          } else {
+            this.prev = this.$toSlug(t.title_i18n[this.$i18n.locale]) + '_' + t.id
+          }
+        }
+      }
+
+    } catch (e) {
+
+    }
+   
   },
-  mounted() {},
   methods: {
-    ...mapActions(["fetchTalents"]),
-    nextTalen() {
-     let index = this.talents.findIndex((t) => t.id == this.talentDetail.id)
-     if (index != -1 ) {
-      return this.talents[index + 1] && this.talents[index + 1].slug
-     } 
-      return ''
+    ...mapActions(["fetchTalentsRelated", "sendComment", "vote"]),
+    async voteTalent() {
+      try {
+        await this.vote(this.talentDetail.id)
+        this.talentDetail.vote_count += 1;
+        this.$toast.success(this.$t('vote_success'))
+      } catch(e) {
+        this.$toast.error(e)
+      }
     },
-    previousTalen() {
-     let index = this.talents.findIndex((t) => t.id == this.talentDetail.id)
-     if (index <= this.talents.length ) {
-      return this.talents[index - 1] && this.talents[index - 1].slug
-     } 
-      return ''
+    async sendCmt(value) {
+      try {
+        var data = await this.sendComment({
+          id: this.talentDetail.id,
+          content: value
+        })
+        this.comments.unshift(data)
+        this.$toast.success(this.$t('comment_success'))
+      } catch (e) {
+        this.$toast.error(e)
+      }
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.voting-wrapper {
+  display: flex;
+  width: 100%;
+  margin-bottom: 50px;
+  img {
+    width: 50px;
+  }
+  .vote-count {
+    font-size: 50px;
+    font-family: "Yeseva One", sans-serif;
+  }
+  .btn-defaut a {
+    padding: 15px 50px;
+  }
+  &>div {
+    flex: 1;
+    border-radius: 20px;
+    background: #fff;
+    height: 210px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    &:first-child {
+      margin-right: 20px
+    }
+  }
+  @media screen and (max-width: 500px) {
+    display: block;
+    &>div {
+      &:first-child {
+        margin-right: 0;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
 .talent-detail-img {
   padding: 15px;
   background-color: #fff;
@@ -160,6 +251,9 @@ export default {
     margin-right: 10px;
   }
 }
+.talent-detail-content {
+  min-height: 220px;
+}
 .talent-detail {
   background: #f5f5f5;
   padding: 25px;
@@ -174,9 +268,9 @@ export default {
     float: right;
   }
   a {
-    color: #000;
+    color: #333;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
     font-family: "Roboto Condensed", sans-serif;
     &:hover {
       text-decoration: none;

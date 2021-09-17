@@ -19,7 +19,7 @@ export default {
 
 <style lang="scss" scoped>
 .banner-bottom{
-    background: url('~/assets/images/bg_kid.png') bottom no-repeat;
+    background: url('~/assets/images/bg_kid.jpg') bottom no-repeat;
     height: 42rem;
     position: relative;
     width: 100%;

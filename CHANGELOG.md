@@ -1,3 +1,94 @@
+## <small>1.0.57 (2021-09-13)</small>
+
+* fix sth ([aaddc1a](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/aaddc1a))
+
+
+
+## <small>1.0.56 (2021-09-11)</small>
+
+* fix bug ([493174c](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/493174c))
+
+
+
+## <small>1.0.55 (2021-08-27)</small>
+
+* fix sth ([e3f43b3](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/e3f43b3))
+
+
+
+## <small>1.0.54 (2021-08-27)</small>
+
+* fix bug ([5ac248d](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/5ac248d))
+
+
+
+## <small>1.0.53 (2021-08-26)</small>
+
+* fix default image ([b9b0c3b](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/b9b0c3b))
+
+
+
+## <small>1.0.52 (2021-08-26)</small>
+
+* update lang ([2ca0cfe](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/2ca0cfe))
+
+
+
+## <small>1.0.51 (2021-08-25)</small>
+
+* fix lang & home ([1144b3e](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/1144b3e))
+
+
+
+## <small>1.0.50 (2021-08-24)</small>
+
+* fix reponsive ([ca2c52f](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/ca2c52f))
+
+
+
+## <small>1.0.49 (2021-08-24)</small>
+
+* fix login fb ([6340b7f](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/6340b7f))
+
+
+
+## <small>1.0.48 (2021-08-23)</small>
+
+* tiny png ([d992f27](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/d992f27))
+
+
+
+## <small>1.0.47 (2021-08-23)</small>
+
+* fix sth ([e226523](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/e226523))
+
+
+
+## <small>1.0.46 (2021-08-21)</small>
+
+* add commentbox ([fcff51f](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/fcff51f))
+
+
+
+## <small>1.0.45 (2021-08-20)</small>
+
+* add route locale ([34a06c2](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/34a06c2))
+
+
+
+## <small>1.0.44 (2021-08-20)</small>
+
+* fix talent detail ([e7b6a97](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/e7b6a97))
+
+
+
+## <small>1.0.43 (2021-08-20)</small>
+
+* add suggested ([d2492d9](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/d2492d9))
+* update function ([be7be6f](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/be7be6f))
+
+
+
 ## <small>1.0.42 (2021-07-27)</small>
 
 * fix paging ([3886602](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/3886602))
