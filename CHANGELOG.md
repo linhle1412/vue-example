@@ -1,3 +1,9 @@
+## <small>1.0.60 (2021-09-17)</small>
+
+* fix redirect i18n ([8b58c35](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/8b58c35))
+
+
+
 ## <small>1.0.59 (2021-09-17)</small>
 
 * fix sth ([f98bdf8](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/f98bdf8))
