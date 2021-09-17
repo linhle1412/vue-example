@@ -1,3 +1,9 @@
+## <small>1.0.59 (2021-09-17)</small>
+
+* fix sth ([f98bdf8](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/f98bdf8))
+
+
+
 ## <small>1.0.58 (2021-09-17)</small>
 
 * fix facebook ([e57ca44](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/e57ca44))
