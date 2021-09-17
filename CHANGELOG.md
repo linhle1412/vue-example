@@ -1,3 +1,9 @@
+## <small>1.0.58 (2021-09-17)</small>
+
+* fix facebook ([e57ca44](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/e57ca44))
+
+
+
 ## <small>1.0.57 (2021-09-13)</small>
 
 * fix sth ([aaddc1a](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/aaddc1a))
