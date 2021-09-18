@@ -1,3 +1,9 @@
+## <small>1.0.62 (2021-09-18)</small>
+
+* fix fb login ([b3d9017](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/b3d9017))
+
+
+
 ## <small>1.0.61 (2021-09-18)</small>
 
 * change base url ([88bf9df](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/88bf9df))
