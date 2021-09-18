@@ -47,7 +47,7 @@ export default {
       {
         hid: 'fb:app_id',
         property: 'fb:app_id',
-        content: '810401282889398'
+        content: '1109570683188671'
       },
     ],
     link: [

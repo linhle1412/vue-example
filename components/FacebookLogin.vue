@@ -19,7 +19,7 @@ import {mapActions} from 'vuex';
 export default {
   data() {
     return {
-      appId: '810401282889398'
+      appId: '1109570683188671'
     }
   },
   methods: {
