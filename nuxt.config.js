@@ -114,10 +114,10 @@ export default {
     duration: 3000
   },
   axios: {
-    baseURL: 'https://tnv.eyeteam.vn', // Used as fallback if no runtime config is provided
+    baseURL: 'https://quyphattrientainangviet.akadigital.vn', // Used as fallback if no runtime config is provided
   },
   i18n: {
-    baseUrl: 'https://quyphattrientainangviet.vn',
+    baseUrl: 'https://quyphattrientainangviet.akadigital.vn',
     langDir: 'langs/',
     locales: [
       {
