@@ -24,12 +24,20 @@
 <script>
 export default {
   props: {
-    
+    action: {
+      type: Function,
+      default: null
+    }
   },
   methods: {
     viewTalent() {
-      this.$emit('close')
-      this.$router.push(this.localePath({name: 'talent'}))
+      if (this.action != null) {
+        this.action()
+      } else {
+        this.$emit('close')
+        this.$router.push(this.localePath({name: 'talent'}))
+      }
+     
     },
     clickBg(event) {
       if (event.target.className === 'modal') {

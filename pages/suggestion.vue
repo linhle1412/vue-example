@@ -120,7 +120,7 @@
                         placeholder=" "
                         :class="{ error: rules.field.error }"
                         v-model="form.field"
-                        @focus="showOption = true"
+                        @focus="filterFields = fields.slice(0); showOption = true"
                         @blur="onBlur"
                       />
                       <div class="select-dropdown" @click="showOption = !showOption">⌵</div>
@@ -159,7 +159,7 @@
         
       </div>
     </div>
-    <popup-success v-if="isSuccess" @close="isSuccess = false"></popup-success>
+    <popup-success v-if="isSuccess" @close="isSuccess = false" :action="() => {tab = 0; isSuccess = false; }"></popup-success>
     <div class='banner-bottom'>
     </div>
   </div>
