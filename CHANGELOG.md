@@ -1,3 +1,9 @@
+## <small>1.0.63 (2021-09-19)</small>
+
+* fix feedback ([78e6641](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/78e6641))
+
+
+
 ## <small>1.0.62 (2021-09-18)</small>
 
 * fix fb login ([b3d9017](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/b3d9017))
