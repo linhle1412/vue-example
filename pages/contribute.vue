@@ -3,10 +3,12 @@
     <div class="bg-leaf-banner-bottom">
       <div class="container">
         <div class="row">
-          <div class="col-lg-7 col-md-12 mx-auto py-5">
-            <div class="logo logo-small text-center mb-5">
-              <img src="~/assets/images/slogan.png" alt="" />
+          <div class="col-12 py-5 mb-3">
+            <div class="logo logo-small text-center">
+              <img src="~/assets/images/slogan.png" class="thumb" alt="" />
             </div>
+          </div>
+          <div class="col-lg-7 col-md-12 mx-auto">
             <div v-if="!isSubmitted" class="form-contribute">
               <div class="title-form text-center" v-html="$t('contribute_title')">
               </div>

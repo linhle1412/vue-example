@@ -20,7 +20,7 @@
                 </div>
                 <div class="talent-list-content">
                   <div class="talent-list-title">
-                    <NuxtLink :to="localePath({name: 'talent-id', params: {id: $toSlug(talent.title_i18n[$i18n.locale])+'_'+talent.id}})">
+                    <NuxtLink :to="localePath({name: 'suggestion-id', params: {id: $toSlug(talent.title_i18n[$i18n.locale])+'_'+talent.id}})">
                       <img width="30px" src="~/assets/images/medal-icon.png" alt="" />
                       {{talent.title_i18n[$i18n.locale]}}
                     </NuxtLink>
@@ -29,7 +29,7 @@
                     {{talent.description_i18n[$i18n.locale]}}
                   </div>
                   <div class="talent-list-btn">
-                    <NuxtLink :to="localePath({name: 'talent-id', params: {id: $toSlug(talent.title_i18n[$i18n.locale])+'_'+talent.id}})">
+                    <NuxtLink :to="localePath({name: 'suggestion-id', params: {id: $toSlug(talent.title_i18n[$i18n.locale])+'_'+talent.id}})">
                       {{$t('detail')}}
                     </NuxtLink>
                     <div class="vote">
@@ -61,7 +61,7 @@
               </div>
               <div class="col-md-6 p-0 pl-md-2">
                 <div class="form form-contact">
-                  <div v-if="!isLogin" class="d-flex justify-content-center align-items-center h-100">
+                  <div v-if="isLogin" class="d-flex justify-content-center align-items-center h-100">
                     <facebook-login ><div v-html="$t('require_login_suggestion')"></div></facebook-login>
                   </div>
                   <div v-else>
@@ -169,7 +169,7 @@
 import { mapState, mapActions, mapGetters } from "vuex";
 import FacebookLogin from '../components/FacebookLogin.vue';
 import PopupSuccess from '../components/PopupSuccess.vue';
-
+import allFields from './fields';
 export default {
   components: { PopupSuccess, FacebookLogin },
   layout: "default",
@@ -196,7 +196,7 @@ export default {
         description: "",
         field: ''
       },
-      fields: ["Bóng chuyền","Bóng rổ","Bóng đá","Bóng bàn","Cầu lông","Quần vợt/Tennis","Điền kinh","Quyền anh","Xe đạp","Đấu kiếm","Golf","Thể dục dụng cụ","Judo","Karate","Taekwondo","Cử tạ","Đấu vật","Kiến trúc","Điêu khắc","Hội họa","Âm nhạc","Văn chương","Sân khấu","Điện ảnh","Múa","Nhiếp ảnh","Đồ họa"],
+      fields: allFields.map((a) => a[this.$i18n.locale]),
       filterFields: [],
       showOption: false,
       rules: {
@@ -325,7 +325,11 @@ export default {
     submit() {
       if (this.validate(this.form, this.rules)) {
         this.isLoading = true;
-        this.$store.dispatch("sendSuggestion", this.form).then(res => {
+        let _fields = allFields.find((a) => a[this.$i18n.locale] == this.form.field)
+        this.$store.dispatch("sendSuggestion", {
+          ...this.form,
+          field: _fields && _fields.vi || this.form.field
+        }).then(res => {
           this.isLoading = false;
           this.isSuccess = true;
           this.clearForm();

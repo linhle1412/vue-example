@@ -145,11 +145,11 @@ export default {
     pages: {
       'talent-sponsorship': {
         vi: '/danh-sach-tai-nang-da-nhan-tai-tro',
-        en: '/list-talents-that-are-sponsored', 
+        en: '/list-sponsored-talents', 
       },
       contribute: {
         vi: '/dong-gop',
-        en: '/contribution', 
+        en: '/donation', 
       },
       // 'talent-id': {
       //   vi: '/tai-nang/:id',
@@ -157,11 +157,11 @@ export default {
       // },
       'talent/index': {
         vi: '/tai-nang-duoc-tai-tro',
-        en: '/talents-that-are-sponsored', 
+        en: '/sponsored-talents', 
       },
       'talent/_id': {
-        vi: '/tai-nang/:id',
-        en: '/talent/:id',
+        vi: '/tai-nang-duoc-tai-tro/:id',
+        en: '/sponsored-talents/:id',
       },
       rank: {
         vi: '/bang-vinh-danh',
@@ -174,6 +174,10 @@ export default {
       suggestion: {
         vi: '/de-xuat-tai-nang',
         en: '/talent-suggestion', 
+      },
+      'suggestion-id': {
+        vi: '/de-xuat-tai-nang/:id',
+        en: '/talent-suggestion/:id', 
       },
       contact: {
         vi: '/lien-he',
@@ -219,6 +223,11 @@ export default {
             break;
         }
       });
+      routes.push({
+        name: 'suggestion-id',
+        path: '/de-xuat-tai-nang/:id',
+        component: resolve(__dirname, 'pages/talent/_id.vue'),
+      })
     }
   }
 };
