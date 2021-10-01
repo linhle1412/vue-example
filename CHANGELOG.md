@@ -1,3 +1,9 @@
+## <small>1.0.65 (2021-10-01)</small>
+
+* fix locale ([4450b28](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/4450b28))
+
+
+
 ## <small>1.0.64 (2021-09-29)</small>
 
 * masster ([5670132](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/5670132))
