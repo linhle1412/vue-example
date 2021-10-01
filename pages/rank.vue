@@ -55,7 +55,7 @@
                               {{$t('organization')}}
                             </div>
                             <div v-if="tabActive === 3" class="col-8">
-                              {{$t('member')}}
+                              {{$t('store')}}
                             </div>
                             <div
                               v-if="tabActive === 1 || tabActive === 2"
@@ -203,7 +203,7 @@ export default {
       tabs: [
         {
           vi: 'Cá nhân',
-          en: 'Indiviual'
+          en: 'Individual'
         },
         {
           vi: 'Tổ chức',
@@ -211,7 +211,7 @@ export default {
         },
         {
           vi: 'Café Ông Bầu',
-          en: 'Café Ông Bầu',
+          en: 'Ông Bầu Café',
         },
       ],
       searchKey: "",

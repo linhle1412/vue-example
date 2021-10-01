@@ -1,9 +1,9 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "Quỹ Phát triển tài năng Việt",
+    title: "Quỹ Phát Triển Tài Năng Việt",
     htmlAttrs: {
-      lang: "en"
+      lang: "vi"
     },
     meta: [
       { charset: "utf-8" },
@@ -12,7 +12,7 @@ export default {
       {
         hid: "og:title",
         property: "og:title",
-        content: "Quỹ Phát triển tài năng Việt"
+        content: "Quỹ Phát Triển Tài Năng Việt"
       },
       {
         hid: "og:url",
@@ -22,12 +22,12 @@ export default {
       {
         hid: "og:description",
         property: "og:description",
-        content: "Quỹ Phát triển tài năng Việt"
+        content: "Quỹ Phát Triển Tài Năng Việt"
       },
       {
         hid: "description",
         name: "description",
-        content: "Quỹ Phát triển tài năng Việt"
+        content: "Quỹ Phát Triển Tài Năng Việt"
       },
       {
         hid: "og:type",

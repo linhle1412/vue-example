@@ -10,7 +10,7 @@
               </div>
             </div>
             <div class="page-title text-center">
-              {{talentDetail.category == 'suggested_talent' ? $t('talent_suggested_title') : $t('talent_title')}}
+              {{pageTitle}}
             </div>
             <div class="talent-detail">
               <div class="talent-detail-img">
@@ -49,10 +49,11 @@
               </div>
               <div class="pre-next-btn">
                 <NuxtLink class='prev-btn' v-if='prev' :to="localePath({name: 'talent-id', params: {id: prev}})">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i> {{$t('prev_talent')}}
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  {{talentDetail.category == 'other_sponsorship' ? $t('prev') : $t('prev_talent')}}
                 </NuxtLink>
                 <NuxtLink class='next-btn' v-if='next' :to="localePath({name: 'talent-id', params: {id: next}})">
-                  {{$t('next_talent')}}
+                  {{talentDetail.category == 'other_sponsorship' ? $t('next') : $t('next_talent')}}
                   <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </NuxtLink>
               </div>
@@ -98,7 +99,7 @@ export default {
   },
   head() {
     return {
-      title: this.talentDetail.title,
+      title: this.talentDetail.title_i18n[this.$i18n.locale],
       meta: [
         {
           hid: "description",
@@ -135,6 +136,17 @@ export default {
   },
   computed: {
     ...mapState(["talents", "isLogin"]),
+    pageTitle() {
+      switch (this.talentDetail.category) {
+        case 'suggested_talent':
+          return this.$t('talent_suggested_title')
+        case 'other_sponsorship':
+          return this.$t('sponsor_info')
+        default:
+          return this.$t('talent_title')
+          break;
+      }
+    }
   },
   async mounted() {
     try {

@@ -260,8 +260,8 @@ export default {
       var values = nVal.split('/').map(function(v) {
         return v.replace(/\D/g, '')
       });
-      if (values[0]) values[0] = this.checkValue(values[0], 12);
-      if (values[1]) values[1] = this.checkValue(values[1], 31);
+      if (values[0]) values[0] = this.checkValue(values[0], 31);
+      if (values[1]) values[1] = this.checkValue(values[1], 12);
       var output = values.map(function(v, i) {
         return v.length == 2 && i < 2 ? v + ' / ' : v;
       });

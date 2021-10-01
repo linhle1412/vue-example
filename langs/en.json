@@ -1,4 +1,9 @@
 {
+  "page_title": "Vietnam Talent Development Fund",
+  "prev": "Previous",
+  "next": "Next",
+  "sponsor_info": "Sponsorship information",
+  "store": "Store",
   "nav": {
     "home": "Homepage",
     "rank": "The Honors List",
@@ -24,7 +29,6 @@
   "bank": "Bank",
   "bank_name": "Account name",
   "bank_branch": "Bank branch",
-
   "total_fund" :"Total Fund Value",
   "sponsored" :"Sponsored Value",
   "remain_fund" :"Remaining Value",
