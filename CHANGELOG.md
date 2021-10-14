@@ -1,3 +1,9 @@
+## <small>1.0.67 (2021-10-14)</small>
+
+* fix voted ([caa2457](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/caa2457))
+
+
+
 ## <small>1.0.66 (2021-10-14)</small>
 
 * fix feedback 14-10 ([79c0b9f](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/79c0b9f))
