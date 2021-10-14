@@ -181,6 +181,7 @@ export default {
         try {
           await this.vote(this.talentDetail.id)
           this.talentDetail.vote_count += 1;
+          this.talentDetail.has_voted = true;
           this.$toast.success(this.$t('vote_success'))
         } catch(e) {
           this.$toast.error(e)
