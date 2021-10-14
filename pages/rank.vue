@@ -3,10 +3,10 @@
     <div class="bg-leaf-banner-bottom">
       <div class="container">
         <div class="row">
-          <div class="col-12 py-5">
-           <div class="row justify-content-center">
-              <div class="col-lg-8 col-md-12">
-                <div class="logo logo-background text-center mb-4"></div>
+          <div class="col-12 pb-5">
+            <div class="py-5">
+              <div class="logo text-center">
+                <img src="~/assets/images/slogan.png" class="thumb" alt="" />
               </div>
             </div>
             <div class="page-title text-center">

@@ -4,8 +4,8 @@
       <div class="container">
         <div class="row">
           <div class="col-12 py-3">
-            <div class="logo text-center mb-4">
-              <img src="~/assets/images/slogan.png" alt="" />
+            <div class="logo text-center my-4">
+              <img src="~/assets/images/slogan.png" class="thumb" alt="" />
             </div>
             <div class="d-flex justify-content-center">
               <div class="fund-box">

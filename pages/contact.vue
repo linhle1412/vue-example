@@ -2,9 +2,11 @@
   <div class="page-index bg-form">
     <div class="bg-leaf-banner-bottom">
       <div class="container">
-        <div class="row justify-content-center py-md-5 py-4">
-          <div class="col-lg-8 col-md-12">
-            <div class="logo logo-background text-center"></div>
+        <div class="row">
+          <div class="col-12 py-5">
+            <div class="logo text-center">
+              <img src="~/assets/images/slogan.png" class="thumb" alt="" />
+            </div>
           </div>
         </div>
         <div class='page-title text-center'>

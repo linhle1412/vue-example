@@ -3,10 +3,12 @@
     <div class="bg-leaf-banner-bottom" :class="talentDetail.category == 'suggested_talent' ? 'with-bottom' : ''">
       <div class="container">
         <div class="row">
-          <div class="col-12 py-5">
-            <div class="row justify-content-center">
-              <div class="col-lg-8 col-md-12">
-                <div class="logo logo-background text-center mb-4"></div>
+          <div class="col-12 pb-5">
+            <div class="row">
+              <div class="col-12 py-5">
+                <div class="logo text-center">
+                  <img src="~/assets/images/slogan.png" class="thumb" alt="" />
+                </div>
               </div>
             </div>
             <div class="page-title text-center">
@@ -42,7 +44,7 @@
                     <div v-if="!isLogin" class="d-flex justify-content-center align-items-center h-100">
                       <facebook-login>{{$t('require_login_vote')}}</facebook-login>
                     </div>
-                    <div v-else class="btn-defaut" @click="voteTalent"><a>{{$t('vote_talent')}}</a></div>
+                    <div v-else class="btn-defaut" @click="voteTalent"><a>{{talentDetail.has_voted ? $t('voted') : $t('vote_talent')}}</a></div>
                   </div>
                 </div>
                 <comment-box :comments="comments" @submit="sendCmt"></comment-box>
@@ -175,12 +177,14 @@ export default {
   methods: {
     ...mapActions(["fetchTalentsRelated", "sendComment", "vote"]),
     async voteTalent() {
-      try {
-        await this.vote(this.talentDetail.id)
-        this.talentDetail.vote_count += 1;
-        this.$toast.success(this.$t('vote_success'))
-      } catch(e) {
-        this.$toast.error(e)
+      if (!this.talentDetail.has_voted) {
+        try {
+          await this.vote(this.talentDetail.id)
+          this.talentDetail.vote_count += 1;
+          this.$toast.success(this.$t('vote_success'))
+        } catch(e) {
+          this.$toast.error(e)
+        }
       }
     },
     async sendCmt(value) {

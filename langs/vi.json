@@ -1,4 +1,7 @@
 {
+  "list_sponsored": "Danh sách tài năng đã nhận tài trợ",
+  "talent_name_sponsored": "Tên tài năng",
+  "sponsored_amount": "Số tiền tài trợ",
   "page_title": "Quỹ Phát Triển Tài Năng Việt",
   "prev": "Trang trước",
   "next": "Trang sau",
@@ -61,6 +64,7 @@
   "thank_you" :"Cảm ơn bạn đã gửi thông tin. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất",
   "view_talent" :"Xem các tài năng khác",
   "vote" :"Ủng hộ",
+  "voted" :"Đã ủng hộ",
   "comment" :"Thảo luận",
   "prev_talent" :"Tài năng trước",
   "next_talent" :"Tài năng sau",

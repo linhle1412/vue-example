@@ -3,19 +3,22 @@
     <div class="bg-leaf-banner-bottom">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 col-md-12 mx-auto py-5">
-            <div class="logo logo-background text-center mb-4"></div>
-            
+          <div class="col-12 py-5">
+            <div class="logo text-center">
+              <img src="~/assets/images/slogan.png" class="thumb" alt="" />
+            </div>
+          </div>
+          <div class="col-lg-8 col-md-12 mx-auto pb-5">
             <div class="page-title text-center">
-              Danh sách tài năng đã nhận tài trợ
+              {{$t('list_sponsored')}}
             </div>
             <div class="table-main list-talent">
               <div class="table-head">
                 <div class="row">
                   <div class="col-md-2"></div>
-                  <div class="col-md-4">Tên tài năng</div>
+                  <div class="col-md-4">{{$t('talent_name_sponsored')}}</div>
                   <div class="col-md-2"></div>
-                  <div class="col-md-4 text-center">Số tiền tài trợ</div>
+                  <div class="col-md-4 text-center">{{$t('sponsored_amount')}}</div>
                 </div>
               </div>
               <div
@@ -32,7 +35,7 @@
                       {{ talent.name }}
                     </div>
                     <div class="col-md-2 detail">
-                      <a :href="talent.link">Chi tiết</a>
+                      <a :href="talent.link">{{$t('detail')}}</a>
                     </div>
                     <div class="col-md-4 price">
                       {{ talent.amount | money }}₫
@@ -44,7 +47,7 @@
                       <p class="name">{{ talent.name }}</p>
                       <p class="detail">
                         <a :href="talent.link">
-                          Chi tiết
+                          {{$t('detail')}}
                         </a>
                       </p>
                       <p class="price">{{ talent.amount | money }}₫</p>

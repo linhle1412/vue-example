@@ -3,8 +3,8 @@
     <div class="bg-leaf-banner-bottom">
       <div class="container">
         <div class="row">
-          <div class="col-12 py-5 mb-3">
-            <div class="logo logo-small text-center">
+          <div class="col-12 py-5">
+            <div class="logo text-center">
               <img src="~/assets/images/slogan.png" class="thumb" alt="" />
             </div>
           </div>

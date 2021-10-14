@@ -1,4 +1,7 @@
 {
+  "list_sponsored": "Talent sponsorship list",
+  "talent_name_sponsored": "Talent Name",
+  "sponsored_amount": "Sponsorship Amount",
   "page_title": "Vietnam Talent Development Fund",
   "prev": "Previous",
   "next": "Next",
@@ -55,6 +58,7 @@
   "note" :"Description",
   "submit_suggest" :"Submit",
   "vote" :"Vote",
+  "voted" :"Voted",
   "comment" :"Comment",
   "please_enter": "Please enter ",
   "please_enter_correct": "Please enter the correct ",
