@@ -1,3 +1,9 @@
+## <small>1.0.69 (2021-10-21)</small>
+
+* fix clear storage ([7d26f56](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/7d26f56))
+
+
+
 ## <small>1.0.68 (2021-10-21)</small>
 
 * change cookie to localstorage ([250a77c](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/250a77c))
