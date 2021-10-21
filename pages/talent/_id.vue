@@ -93,11 +93,8 @@ export default {
     } catch (e) {
       redirect("/not-found");
     }
-    try {
-      await store.dispatch('checkToken')
-    } catch (e) {
-
-    }
+   
+   
   },
   head() {
     return {
@@ -151,6 +148,11 @@ export default {
     }
   },
   async mounted() {
+    try {
+      await this.$store.dispatch('checkToken')
+    } catch (e) {
+
+    }
     try {
       let data = await this.fetchTalentsRelated({
         article_id: this.talentDetail.id,

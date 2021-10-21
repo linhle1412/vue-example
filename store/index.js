@@ -215,7 +215,7 @@ const store = () =>
 					let res = await this.$post(`auth/facebook/token`, {
 						'access_token': accessToken
 					})
-					this.$cookies.set('user_token', res.data.token)
+					localStorage.setItem('user_token', res.data.token)
   				this.$axios.setToken(res.data.token, 'Bearer')
 					commit('LOGIN', res.data.token)
 				} catch(e) {
@@ -224,9 +224,10 @@ const store = () =>
 			},
 			async checkToken({commit}) {
 				try {
-					if (!this.$cookies.get('user_token')) {
+					if (!localStorage.getItem('user_token')) {
 						commit('CHECK_TOKEN', false)
 					} else {
+						this.$axios.setToken(localStorage.getItem('user_token'), 'Bearer')
 						await this.$post(`auth/check-token`, {})
 						commit('CHECK_TOKEN', true)
 					}

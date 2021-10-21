@@ -15,7 +15,7 @@ function buildQuery(params) {
   return '?' + arr.join('&');
 }
 export default function ({ $axios, app }, inject) {
-  $axios.setToken(app.$cookies.get('user_token'), 'Bearer')
+  // $axios.setToken(localStorage.getItem('user_token'), 'Bearer')
   $axios.setHeader('locale', app.i18n.locale)
 
   inject('get', (url, params) => {

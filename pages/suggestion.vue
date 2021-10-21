@@ -175,12 +175,6 @@ import allFields from './fields';
 export default {
   components: { PopupSuccess, FacebookLogin },
   layout: "default",
-  async fetch({ store, params, redirect, query }) {
-    try {
-      await store.dispatch('checkToken')
-    } catch (e) {
-    }
-  },
   data() {
     return {
       isSubmitted: false,
@@ -244,7 +238,11 @@ export default {
       return Math.ceil(this.total / this.perpage);
     },
   },
-  mounted() {
+  async mounted() {
+    try {
+      await this.$store.dispatch('checkToken')
+    } catch (e) {
+    }
     this.filterFields = this.fields.slice(0)
   },
   watch: {
