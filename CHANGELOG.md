@@ -1,3 +1,9 @@
+## <small>1.0.70 (2021-11-04)</small>
+
+* fix sth ([f34856e](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/f34856e))
+
+
+
 ## <small>1.0.69 (2021-10-21)</small>
 
 * fix clear storage ([7d26f56](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/7d26f56))
