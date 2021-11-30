@@ -1,3 +1,9 @@
+## <small>1.0.71 (2021-11-30)</small>
+
+* fix fail noti ([528edb7](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/528edb7))
+
+
+
 ## <small>1.0.70 (2021-11-04)</small>
 
 * fix sth ([f34856e](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/f34856e))
