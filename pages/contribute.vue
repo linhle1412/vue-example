@@ -128,8 +128,8 @@
                         >
                       </div>
                     </div>
-                    <!-- <div class="group-radio">
-                      <div class="custom-control custom-radio">
+                    <div class="group-radio">
+                      <!-- <div class="custom-control custom-radio">
                         <input
                           type="radio"
                           class="custom-control-input"
@@ -146,7 +146,7 @@
                           />
                           Ví Momo</label
                         >
-                      </div>
+                      </div> -->
                       <div class="custom-control custom-radio">
                         <input
                           type="radio"
@@ -165,7 +165,7 @@
                           Ví ZaloPay</label
                         >
                       </div>
-                    </div> -->
+                    </div>
                   </div>
                 </div>
                 <div class="text-center mt-4">
@@ -352,21 +352,21 @@ export default {
             this.isSuccess = true;
             this.clearForm();
           } 
-          // else {
-          //   // this.isLoading = false
-          //   // this.isSubmitted = true
-          //   // this.isSuccess = true
-          //   // this.clearForm()
-          //   if (
-          //     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-          //       navigator.userAgent
-          //     )
-          //   ) {
-          //     window.open(res.deeplink);
-          //   } else {
-          //     window.open(res.pay_url);
-          //   }
-          // }
+          else {
+            this.isLoading = false
+            this.isSubmitted = true
+            this.isSuccess = true
+            this.clearForm()
+            if (
+              /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+                navigator.userAgent
+              )
+            ) {
+              window.open(res.deeplink);
+            } else {
+              window.open(res.pay_url);
+            }
+          }
         })
         .catch(e => {
           this.isLoading = false;
