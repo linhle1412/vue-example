@@ -1,3 +1,9 @@
+## <small>1.0.73 (2022-03-15)</small>
+
+* fix sth ([17748ca](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/17748ca))
+
+
+
 ## <small>1.0.72 (2022-03-15)</small>
 
 * add zalo pay ([16c352c](http://c.eyeteam.vn:10022/quy-tu-thien/web/commits/16c352c))
