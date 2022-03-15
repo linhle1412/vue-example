@@ -154,7 +154,7 @@
                           id="contribution-3"
                           name="contribution"
                           v-model="form.method"
-                          value="zalo-pay"
+                          value="zalopay"
                         />
                         <label class="custom-control-label" for="contribution-3"
                           ><img
