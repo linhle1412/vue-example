@@ -364,7 +364,7 @@ export default {
             ) {
               window.open(res.deeplink);
             } else {
-              window.open(res.pay_url);
+              location.href = res.pay_url;
             }
           }
         })
