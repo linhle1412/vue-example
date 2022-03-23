@@ -29,6 +29,7 @@ const store = () =>
 				'hinh_thuc': '',
 			},
 			contactMeta: null,
+			paymentStatus: true
 		}),
 		mutations: {
 			LOGIN(state, token) {
@@ -72,6 +73,9 @@ const store = () =>
 			SET_CONTACT_META(state, data) {
 				state.contactMeta = data
 			},
+			SET_PAYMENT_STATUS(state, data) {
+				state.paymentStatus = data
+			}
 		},
 		actions: {
 			async fetchTalents({ commit }, params) {
@@ -233,6 +237,21 @@ const store = () =>
 					}
 				} catch(e) {
 					commit('CHECK_TOKEN', false)
+				}
+			},
+			async getPaymentStatus({commit}, {payment_provider, status_code}) {
+				try {
+					let res = await this.$get(`payment/payment-status`,{
+						payment_provider,
+						status_code
+					})
+					if (res.data.status == 'failed') {
+						commit('SET_PAYMENT_STATUS', false)
+						return
+					}
+					commit('SET_PAYMENT_STATUS', true)
+				} catch(e) {
+					commit('SET_PAYMENT_STATUS', false)
 				}
 			}
 		},

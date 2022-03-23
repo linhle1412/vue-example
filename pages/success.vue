@@ -4,10 +4,10 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-7 col-md-12 mx-auto py-5">
-            <div class="logo text-center">
+            <div class="logo text-center mb-3">
               <img src="~/assets/images/slogan.png" alt="" />
             </div>
-            <div class="form-contribute">
+            <div class="form-contribute" v-if="isSuccess">
               <div class="img-form text-center">
                 <img src="~/assets/images/img-success.png" alt="">
               </div>
@@ -16,6 +16,21 @@
               </div>
               <div class="content-form text-center" v-html="$t('contribute_success')">
                 
+              </div>
+              <div class="btn-defaut text-center mb-4">
+                <NuxtLink :to="localePath('fund-info')" class='text-uppercase'>
+                  {{$t('nav.fund_info')}}
+                </NuxtLink>
+              </div>
+            </div>
+            <div class="form-contribute" v-else>
+              <div class="img-form text-center">
+                <img src="~/assets/images/img-fail.png" alt="">
+              </div>
+              <div class="title-form text-center">
+                {{$t('payment_failed')}}
+              </div>
+              <div class="content-form text-center" v-html="$t('contribute_fail')">
               </div>
               <div class="btn-defaut text-center mb-4">
                 <NuxtLink :to="localePath('fund-info')" class='text-uppercase'>
@@ -33,8 +48,18 @@
 <script>
 export default {
   layout: "default",
+  async fetch({ store, params, redirect, query }) {
+    try {
+      await store.dispatch('getPaymentStatus', {
+        payment_provider: query.provider || 'zalopay',
+        status_code: query.status
+      })
+    } catch (e) {
+    }
+  },
   data() {
     return {
+      isSuccess: this.$store.state.paymentStatus
     };
   },
   methods: {
