@@ -3,7 +3,7 @@ stages:
   - dev
 
 package_docker:
-  image: alpine:3.14
+  image: registry.gitlab.com/eye-solution/devops/node-docker/docker-alpine:v1.0
   stage: package
   variables:
     DOCKER_TLS_CERTDIR: ''
