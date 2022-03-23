@@ -145,19 +145,19 @@ export default {
     pages: {
       'talent-sponsorship': {
         vi: '/danh-sach-tai-nang-da-nhan-tai-tro',
-        en: '/list-sponsored-talents', 
+        en: '/list-sponsored-talents',
       },
       contribute: {
         vi: '/dong-gop',
-        en: '/donation', 
+        en: '/donation',
       },
       // 'talent-id': {
       //   vi: '/tai-nang/:id',
-      //   en: '/talent/:id', 
+      //   en: '/talent/:id',
       // },
       'talent/index': {
         vi: '/tai-nang-duoc-tai-tro',
-        en: '/sponsored-talents', 
+        en: '/sponsored-talents',
       },
       'talent/_id': {
         vi: '/tai-nang-duoc-tai-tro/:id',
@@ -165,27 +165,27 @@ export default {
       },
       rank: {
         vi: '/bang-vinh-danh',
-        en: '/the-honors-list', 
+        en: '/the-honors-list',
       },
       'fund-info': {
         vi: '/thong-tin-quy',
-        en: '/fund-information', 
+        en: '/fund-information',
       },
       suggestion: {
         vi: '/de-xuat-tai-nang',
-        en: '/talent-suggestion', 
+        en: '/talent-suggestion',
       },
       'suggestion-id': {
         vi: '/de-xuat-tai-nang/:id',
-        en: '/talent-suggestion/:id', 
+        en: '/talent-suggestion/:id',
       },
       contact: {
         vi: '/lien-he',
-        en: '/contact', 
+        en: '/contact',
       },
       partners: {
         vi: '/doi-tac-chien-luoc',
-        en: '/strategic-partnership', 
+        en: '/strategic-partnership',
       },
     }
   },
