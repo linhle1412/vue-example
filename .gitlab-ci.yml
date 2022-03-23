@@ -21,8 +21,8 @@ npm:
   only:
     refs:
       - master
-    # changes:
-    #   - package.json
+    changes:
+      - package.json
   except:
     - tags
 
