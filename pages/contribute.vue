@@ -354,9 +354,8 @@ export default {
           } 
           else {
             this.isLoading = false
-            this.isSubmitted = true
+            // this.isSubmitted = true
             this.isSuccess = true
-            this.clearForm()
             if (
               /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
                 navigator.userAgent
